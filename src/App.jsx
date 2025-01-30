@@ -5,9 +5,9 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 // import PrivateRoute from "./components/PrivateRoute";
 
 // const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
-// const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
-// const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
-// const TrackerPage = lazy(() => import("./pages/TrackerPage/TrackerPage"));
+// const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
+// const SigupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
+// const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 
 import MainPage from "./pages/MainPage/MainPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
