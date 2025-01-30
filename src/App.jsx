@@ -10,8 +10,8 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 // const TrackerPage = lazy(() => import("./pages/TrackerPage/TrackerPage"));
 
 import MainPage from "./pages/MainPage/MainPage";
-import SigninPage from "./pages/SigninPage/SigninPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import SigninPage from "./pages/SigninPage/SigninPage";
 import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
