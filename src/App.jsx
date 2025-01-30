@@ -9,21 +9,22 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 // const SigupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 
-import MainPage from "./pages/MainPage/MainPage";
-import SignupPage from "./pages/SignupPage/SignupPage";
-import SigninPage from "./pages/SigninPage/SigninPage";
-import HomePage from "./pages/HomePage/HomePage";
+// import MainPage from "./pages/MainPage/MainPage";
+// import SignupPage from "./pages/SignupPage/SignupPage";
+// import SigninPage from "./pages/SigninPage/SigninPage";
+// import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
   return (
     <SharedLayout>
+      <p>APP</p>
       {/* // <Suspense fallback={<p>Loading...</p>}> */}
-      <Routes>
+      {/* <Routes>
         <Route path="/welcome" element={<MainPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/home" element={<HomePage />} />
-      </Routes>
+      </Routes> */}
       {/* </Suspense> */}
       {/* <Routes>
         <Route path="/" element={<MainPage />} />
