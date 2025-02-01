@@ -1,0 +1,7 @@
+.mainBackground {
+  min-height: 100vh;
+  background: url("../../assets/images/desk-backgroundMainPage.png") no-repeat,
+    url("../../assets/images/desk-backgroundElementMainPage.png") no-repeat;
+  background-size: contain;
+  background-position: bottom;
+}
