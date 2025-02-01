@@ -11,7 +11,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 
 import MainPage from "./pages/MainPage/MainPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import SigninPage from "./pages/SigninPage/SigninPage";
+// import SigninPage from "./pages/SigninPage/SigninPage";
 import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
@@ -20,7 +20,8 @@ const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route path="welcome" element={<MainPage />} />
         <Route path="signup" element={<SignupPage />} />
-        <Route path="signin" element={<SigninPage />} />
+        {/* <Route path="signin" element={<SigninPage />} /> */}
+        <Route path="home" element={<HomePage />} />
       </Route>
     </Routes>
   );
