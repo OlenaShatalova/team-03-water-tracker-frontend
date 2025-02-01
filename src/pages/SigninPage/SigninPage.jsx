@@ -1,13 +1,13 @@
 import Container from "../../components/Container/Container";
 
-const SignupPage = () => {
+const SigninPage = () => {
   return (
     <main className="signBackground">
       <Container>
-        <div>SignupPage</div>
+        <div>SigninPage</div>
       </Container>
     </main>
   );
 };
 
-export default SignupPage;
+export default SigninPage;

@@ -1,59 +1,60 @@
-// import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
-import SharedLayout from "./components/SharedLayout/SharedLayout";
-// import RestrictedRoute from "./components/RestrictedRoute";
-// import PrivateRoute from "./components/PrivateRoute";
+import { lazy, Suspense } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
-// const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+import RestrictedRoute from "./components/RestrictedRoute";
+import PrivateRoute from "./components/PrivateRoute";
+
+import SharedLayout from "./components/SharedLayout/SharedLayout";
+
+const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+// const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
 // const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
-// const SigupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 
-import MainPage from "./pages/MainPage/MainPage";
+// import MainPage from "./pages/MainPage/MainPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import SigninPage from "./pages/SigninPage/SigninPage";
 import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
   return (
-    <SharedLayout>
-      <p>APP</p>
-      {/* // <Suspense fallback={<p>Loading...</p>}> */}
-      <Routes>
-        <Route path="/welcome" element={<MainPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/home" element={<HomePage />} />
-      </Routes>
-      {/* </Suspense> */}
-      {/* <Routes>
-        <Route path="/" element={<MainPage />} />
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Navigate to="/welcome" />} />
         <Route
-          path="/register"
+          path="welcome"
           element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<SingInPage />}
-            />
+            <Suspense fallback={<div>Add LOADER...</div>}>
+              <MainPage />
+            </Suspense>
           }
         />
         <Route
-          path="/login"
+          path="signup"
           element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<SingUpPage />}
-            />
+            <Suspense fallback={<div>Add LOADER...</div>}>
+              <RestrictedRoute redirectTo="/home" component={<SignupPage />} />
+            </Suspense>
           }
         />
         <Route
-          path="/contacts"
+          path="signin"
           element={
-            <PrivateRoute redirectTo="/login" component={<TrackerPage />} />
+            <Suspense fallback={<div>Add LOADER...</div>}>
+              <RestrictedRoute redirectTo="/home" component={<SigninPage />} />
+            </Suspense>
           }
         />
-      </Routes> */}
-    </SharedLayout>
+        <Route
+          path="home"
+          element={
+            <Suspense fallback={<div>Add LOADER...</div>}>
+              <PrivateRoute redirectTo="/signin" component={<HomePage />} />
+            </Suspense>
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 
