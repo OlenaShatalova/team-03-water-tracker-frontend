@@ -1,8 +1,10 @@
 // import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+
+import RestrictedRoute from "./components/RestrictedRoute";
+import PrivateRoute from "./components/PrivateRoute";
+
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-// import RestrictedRoute from "./components/RestrictedRoute";
-// import PrivateRoute from "./components/PrivateRoute";
 
 // const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 // const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
@@ -19,9 +21,24 @@ const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route path="welcome" element={<MainPage />} />
-        <Route path="signup" element={<SignupPage />} />
-        <Route path="signin" element={<SigninPage />} />
-        <Route path="home" element={<HomePage />} />
+        <Route
+          path="signup"
+          element={
+            <RestrictedRoute redirectTo="/home" component={<SignupPage />} />
+          }
+        />
+        <Route
+          path="signin"
+          element={
+            <RestrictedRoute redirectTo="/home" component={<SigninPage />} />
+          }
+        />
+        <Route
+          path="home"
+          element={
+            <PrivateRoute redirectTo="/signin" component={<HomePage />} />
+          }
+        />
       </Route>
     </Routes>
   );
