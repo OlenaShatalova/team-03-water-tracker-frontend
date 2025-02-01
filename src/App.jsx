@@ -13,7 +13,7 @@ const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 
 // import MainPage from "./pages/MainPage/MainPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import Page from "./pages/Page/Page";
+import SigninPage from "./pages/SigninPage/SigninPage";
 import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
           path="signin"
           element={
             <Suspense fallback={<div>Add LOADER...</div>}>
-              <RestrictedRoute redirectTo="/home" component={<Page />} />
+              <RestrictedRoute redirectTo="/home" component={<SigninPage />} />
             </Suspense>
           }
         />
