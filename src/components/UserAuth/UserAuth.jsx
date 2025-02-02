@@ -6,7 +6,7 @@ const UserAuth = () => {
     <div className={styles.user}>
       <p className={styles.userName}>David</p>
       <img
-        src="/src/assets/images/Ellipse 1.png"
+        src="/src/assets/images/ellipse1.png"
         alt="avatar"
         width="28"
         height="28"
