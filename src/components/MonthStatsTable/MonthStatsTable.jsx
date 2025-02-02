@@ -1,10 +1,19 @@
-import styles from "./MonthStatsTable.module.css"
+import Calendar from "./Calendar/Calendar"
+import CalendarPagination from "./CalendarPagination/CalendarPagination"
+import css from "./MonthStatsTable.module.css"
 
 const MonthStatsTable = () => {
     return (
         <div>
-            <h2 className={styles.title}>Month</h2>
+            <div className={css.container}>
+                <h2 className={css.title}>Month</h2>
+                <CalendarPagination />
+            </div>
+            <>
+                <Calendar />
+            </>
         </div>
+
     )
 }
 
