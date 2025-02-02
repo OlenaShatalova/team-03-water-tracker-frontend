@@ -1,0 +1,11 @@
+.user {
+  display: flex;
+  align-items: center; /* Вирівнює по вертикалі */
+  gap: 8px; /* Відступ між ім'ям і аватаром */
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 400px;
+  line-height: 20px;
+}
