@@ -11,7 +11,13 @@ const UserAuth = () => {
         width="28"
         height="28"
       />
-      <img src="/src/assets/icons/jhh.svg" alt="jhh" width="16" height="16" />
+      <img
+        className={styles.svg}
+        src="/src/assets/icons/jhh.svg"
+        alt="jhh"
+        width="16"
+        height="16"
+      />
     </div>
   );
 };
