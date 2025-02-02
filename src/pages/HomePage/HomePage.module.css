@@ -1,0 +1,95 @@
+.blueContainer {
+    border-radius: 10px;
+    padding: 24px 8px;
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+    background-color: #ECF2FF;
+    margin-top: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 280px;
+    height: 836px;
+}
+
+.mainContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+    url(../../assets/images/mob-bottleHomeScreen.png),
+    url(../../assets/images/mob-backgroundElementHomeScreen.png);
+    /* max-width: 320px; */
+    background-size: 280px 208px, cover;
+    background-repeat: no-repeat, no-repeat;
+    background-position: 20px 162px, 0 0;
+}
+
+/* .mainContainer::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: auto;
+    top: 20px;
+    left: 20px;
+    background-image: url(../../assets/images/mob-bottleHomeScreen.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+} */
+
+@media screen and (min-resolution: 192dpi) {
+    .mainContainer {
+        background-image: 
+        url(../../assets/images/mob-bottleHomeScreen@2x.png),
+        url(../../assets/images/mob-backgroundElementHomeScreen@2x.png);
+    }
+}
+
+@media (min-width: 768px) {
+    .mainContainer {
+        background-image: 
+        url(../../assets/images/tab-bottleHomeScreen.png),
+        url(../../assets/images/tab-backgroundElementHomeScreen.png);
+        background-size: 518px 386px, cover;
+        background-position: center center, 0 0;
+    }
+
+    .blueContainer {
+        padding: 32px 24px;
+        width: 704px;
+        height: 688px;
+    }
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+    .mainContainer {
+        background-image: 
+        url(../../assets/images/tab-bottleHomeScreen@2x.png),
+        url(../../assets/images/tab-backgroundElementHomeScreen@2x.png);
+    }
+}
+
+@media (min-width: 1440px) {
+    .blueContainer {
+        padding: 32px 24px;
+        width: 592px;
+        height: 680px;
+        margin-top: 20px;
+        margin-right: 112px;
+        margin-left: auto;
+    }
+
+    .mainContainer {
+        background-image: 
+        url(../../assets/images/desk-botleHomeScreen.png),
+        url(../../assets/images/desk-backgroundElementMainPage.png);
+        background-size: 738px 548px, contain;
+        background-position: 82px 32px, 0 0;
+    }
+}
+
+@media screen and (min-width: 1440px) and (min-resolution: 192dpi) {
+    .mainContainer {
+        background-image: 
+        url(../../assets/images/desk-botleHomeScreen@2x.png),
+        url(../../assets/images/desk-backgroundElementMainPage@2x.png);
+    }
+}

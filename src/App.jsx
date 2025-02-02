@@ -1,8 +1,8 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import RestrictedRoute from "./components/RestrictedRoute";
-import PrivateRoute from "./components/PrivateRoute";
+// import RestrictedRoute from "./components/RestrictedRoute";
+// import PrivateRoute from "./components/PrivateRoute";
 
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Navigate to="/welcome" />} />
+        {/* <Route index element={<Navigate to="/welcome" />} />
         <Route
           path="welcome"
           element={
@@ -28,30 +28,29 @@ const App = () => {
               <MainPage />
             </Suspense>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="signup"
           element={
             <Suspense fallback={<div>Add LOADER...</div>}>
               <RestrictedRoute redirectTo="/home" component={<SignupPage />} />
             </Suspense>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="signin"
           element={
             <Suspense fallback={<div>Add LOADER...</div>}>
               <RestrictedRoute redirectTo="/home" component={<SigninPage />} />
             </Suspense>
           }
-        />
+        /> */}
         <Route
           path="home"
-          element={
-            <Suspense fallback={<div>Add LOADER...</div>}>
-              <PrivateRoute redirectTo="/signin" component={<HomePage />} />
-            </Suspense>
-          }
+          element={<HomePage />}
+        // <Suspense fallback={<div>Add LOADER...</div>}>
+        //   <PrivateRoute component={<HomePage />} />
+        // </Suspense>
         />
       </Route>
     </Routes>
