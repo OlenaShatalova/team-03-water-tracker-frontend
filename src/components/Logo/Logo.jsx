@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <div>
       <img
-        src="/src/assets/icons/Frame 81.svg"
+        src="/src/assets/icons/logo.svg"
         alt="Water Drop"
         width="102"
         height="48"
