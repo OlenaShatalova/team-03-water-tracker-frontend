@@ -19,7 +19,7 @@ const months = [
 
 const CalendarPagination = () => {
     // const dispatch = useDispatch();
-    const currentDate = useSelector(state => state.water.currentDate);
+    // const currentDate = useSelector(state => state.water.currentDate);
 
     const goToPreviousMonth = () => {
     }
@@ -32,9 +32,15 @@ const CalendarPagination = () => {
             <button className={css.button} type="button" onClick={goToPreviousMonth}>
 
             </button>
-            <p>{months[currentDate.getMonth()]}, {currentDate.getFullYear()}</p>
+            {/* <p>{months[currentDate.getMonth()]}, {currentDate.getFullYear()}</p> */}
+            <p>January, 2023</p>
+            <button className={css.button} type="button" onClick={goToNextMonth}>
+
+            </button>
+
 
         </div>
     )
+}
 
-    export default CalendarPagination;
+export default CalendarPagination;
