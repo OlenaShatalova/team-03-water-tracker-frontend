@@ -1,3 +1,5 @@
+@import url('css/themeVariables.css');
+
 *,
 *::before,
 *::after {
@@ -7,7 +9,7 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #fff;
   color: #2f2f2f;
 }
@@ -63,9 +65,9 @@ button {
 
 .signBackground {
   min-height: 100vh;
-  background: url("./assets/images/desk-bottleForSignin.png") no-repeat bottom
+  background: url('./assets/images/desk-bottleForSignin.png') no-repeat bottom
       40px left,
-    url("./assets/images/desk-backgroundElementMainPage.png") no-repeat bottom
+    url('./assets/images/desk-backgroundElementMainPage.png') no-repeat bottom
       right 20px;
   background-size: auto;
 }
