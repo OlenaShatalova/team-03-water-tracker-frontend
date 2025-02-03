@@ -1,15 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import Container from "../Container/Container";
 import Logo from "../Logo/Logo"; // Підключаємо Logo
 import UserAuth from "../UserAuth/UserAuth"; // Підключаємо UserAuth
-import styles from "./Header.module.css";
+import css from "./Header.module.css";
 
+/*<UserAuth />;*/
 const Header = () => {
   return (
     <header>
-      <nav className={styles.header}>
-        <Logo /> {/* Компонент логотипу */}
-        <UserAuth /> {/* Компонент авторизації */}
-      </nav>
+      <Container>
+        <nav className={css.header}>
+          <Link to="welcome" className={css.logo}>
+            <Logo />
+          </Link>
+          <Link to="signin" className={css.signIn}>
+            Sign In
+            <img
+              className={css.user}
+              src="/src/assets/icons/user.svg"
+              alt="user"
+              width="28"
+              height="28"
+            />
+          </Link>
+        </nav>
+      </Container>
     </header>
   );
 };
