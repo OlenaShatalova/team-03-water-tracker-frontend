@@ -2,13 +2,17 @@
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  align-items: center;
   width: 280px;
   padding: 15px;
 }
 
 .form button {
-  width: auto;
-  padding: 5px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  width: 384px;
+  height: 44px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background: #407bff;
 }

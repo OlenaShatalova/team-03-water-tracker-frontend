@@ -18,14 +18,14 @@ const loginFields = [
     name: 'email',
     type: 'text',
     label: 'Email',
-    placeholder: 'xxx@mail.com',
+    placeholder: 'E-mail',
     autoFocus: 'autoFocus',
   },
   {
     name: 'password',
     type: 'password',
     label: 'Password',
-    placeholder: 'xxxxxxxx',
+    placeholder: 'Password',
   },
 ];
 

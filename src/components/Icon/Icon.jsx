@@ -2,7 +2,7 @@ const Icon = ({
   name,
   width = 24,
   height = 24,
-  color = "currentColor",
+  color = 'currentColor',
   className,
   ariaLabel,
 }) => {
