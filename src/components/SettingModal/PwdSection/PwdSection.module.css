@@ -1,0 +1,54 @@
+.sectWrapper {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.span {
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+
+.pwdInputWrapper {
+  position: relative;
+}
+
+.pwdInput {
+  outline: transparent;
+  border: 1px solid #d7e3ff;
+  border-radius: 6px;
+  padding: 12px 10px;
+  width: 256px;
+  line-height: 125%;
+  color: #407bff;
+}
+
+.pwdInput::placeholder {
+  color: #9ebbff;
+}
+
+.eyeBtn {
+  position: absolute;
+  left: 230px;
+  top: 45%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+}
+
+@media screen and (min-width: 768px) {
+  .pwdInput {
+    width: 392px;
+  }
+
+  .eyeBtn {
+    left: 366px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .sectWrapper {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

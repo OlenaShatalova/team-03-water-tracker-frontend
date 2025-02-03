@@ -1,12 +1,14 @@
-import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }) => {
+import Header from "../Header/Header";
+
+const SharedLayout = () => {
   return (
-      <div>
-
-      <Suspense fallback={null}>{children}</Suspense>
-    </div>
+    <>
+      <Header />
+      <Outlet />
+    </>
   );
 };
 
-export default Layout;
+export default SharedLayout;

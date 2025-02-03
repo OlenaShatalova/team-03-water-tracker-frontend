@@ -5,10 +5,6 @@
   inset: 0;
 }
 
-button {
-  cursor: pointer;
-}
-
 .modal {
   position: absolute;
   top: 50%;
@@ -20,6 +16,12 @@ button {
   padding: 32px 12px;
 }
 
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
 .closeBtn {
   outline: none;
   border: none;
@@ -27,13 +29,7 @@ button {
 }
 
 .closeIcon svg:hover {
-  stroke: #407bff;
-}
-
-.titleWrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
+  color: #407bff;
 }
 
 .blockTtl {
@@ -64,21 +60,11 @@ button {
 
 .uploadText {
   font-weight: 500;
-  font-size: 14px;
-  line-height: 129%;
   margin-left: 8px;
 }
 
-.spanGender {
-  margin-left: 8px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 125%;
-}
-
-.genderTtl,
-.pwdTtl {
-  margin-bottom: 12px;
+.sectWrapper {
+  margin-top: 24px;
 }
 
 .textInput {
@@ -87,54 +73,27 @@ button {
   border-radius: 6px;
   padding: 12px 10px;
   width: 256px;
-  /* height: 44px; */
   line-height: 125%;
   color: #407bff;
-}
-
-.textInput.pwdInput {
-  margin-bottom: 12px;
 }
 
 .textInput::placeholder {
   color: #9ebbff;
 }
 
-.sectWrapper {
-  margin-bottom: 24px;
-}
-
-.span {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.pwdLabel {
-  margin-bottom: 12px;
-}
-
-.pwdInputWrapper {
-  position: relative;
-}
-
-.eyeBtn {
-  position: absolute;
-  left: 230px;
-  top: 45%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-}
-
 .saveBtn {
   border-radius: 10px;
-  padding: 8px 30px;
+  padding: 8px auto;
   width: 100%;
   height: 36px;
   background-color: #407bff;
   color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   border: transparent;
+}
+
+.saveBtn:hover {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
 }
 
 @media screen and (min-width: 768px) {
@@ -148,12 +107,8 @@ button {
   }
 
   .saveBtn {
-    padding: 10px 30px;
+    padding: 10px auto;
     width: 160px;
-  }
-
-  .saveBtn:hover {
-    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
   }
 
   .saveBtnWrpr {
@@ -163,9 +118,24 @@ button {
 
   .textInput {
     width: 392px;
-    /* height: 72px; */
   }
 }
 
 @media screen and (min-width: 1440px) {
+  .modal {
+    width: 1008px;
+    height: 592px;
+  }
+
+  .sectWrapper:not(:last-child) {
+    margin-top: 52px;
+  }
+
+  .userDetailsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
 }
