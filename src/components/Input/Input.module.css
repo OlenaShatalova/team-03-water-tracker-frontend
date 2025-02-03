@@ -1,0 +1,30 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.input {
+  background-color: transparent;
+  outline: none;
+  padding-inline: 5px;
+}
+
+.input:autofill {
+  background-color: inherit;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.label input::placeholder {
+  color: rgba(25, 118, 210, 0.5);
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  bottom: -18px;
+  left: 5px;
+}
