@@ -61,6 +61,7 @@ ol {
 
 button {
   padding: 0;
+  cursor: pointer;
 }
 
 .signBackground {

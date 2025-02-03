@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import Container from "../Container/Container";
+import Container from '../Container/Container';
 
 const Header = () => (
   <header>

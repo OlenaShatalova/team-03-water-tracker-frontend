@@ -1,20 +1,20 @@
-import { lazy, Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import RestrictedRoute from "./components/RestrictedRoute";
-import PrivateRoute from "./components/PrivateRoute";
+import RestrictedRoute from './components/RestrictedRoute';
+import PrivateRoute from './components/PrivateRoute';
 
-import SharedLayout from "./components/SharedLayout/SharedLayout";
+import SharedLayout from './components/SharedLayout/SharedLayout';
 
-const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 // const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
 // const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 
 // import MainPage from "./pages/MainPage/MainPage";
-import SignupPage from "./pages/SignupPage/SignupPage";
-import SigninPage from "./pages/SigninPage/SigninPage";
-import HomePage from "./pages/HomePage/HomePage";
+import SignupPage from './pages/SignupPage/SignupPage';
+import SigninPage from './pages/SigninPage/SigninPage';
+import HomePage from './pages/HomePage/HomePage';
 
 const App = () => {
   return (
