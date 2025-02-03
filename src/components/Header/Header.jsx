@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Container from '../Container/Container';
-import Logo from "../Logo/Logo"; // Підключаємо Logo
-import UserAuth from "../UserAuth/UserAuth"; // Підключаємо UserAuth
+import Logo from '../Logo/Logo'; // Підключаємо Logo
+import UserAuth from '../UserAuth/UserAuth'; // Підключаємо UserAuth
 
-import css from "./Header.module.css";
+import css from './Header.module.css';
 
 /*<UserAuth />;*/
 const Header = () => {
