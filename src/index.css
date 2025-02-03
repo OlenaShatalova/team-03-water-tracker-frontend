@@ -1,4 +1,5 @@
 @import url('css/themeVariables.css');
+@import url('css/backgroundImages.css');
 
 *,
 *::before,
@@ -12,6 +13,11 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #fff;
   color: #2f2f2f;
+}
+
+body.dark {
+  background-color: var(--color-bg-dark) !important;
+  color: var(--color-text-dark) !important;
 }
 
 #root {
