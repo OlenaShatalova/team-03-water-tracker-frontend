@@ -1,35 +1,35 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Container from '../Container/Container';
+import Logo from '../Logo/Logo'; // Підключаємо Logo
+import UserAuth from '../UserAuth/UserAuth'; // Підключаємо UserAuth
 
-const Header = () => (
-  <header>
-    <Container>
-      <nav>
-        <Link to="welcome">LogoTracker</Link> | <Link to="signin">Sign In</Link>
-      </nav>
-    </Container>
-  </header>
-);
+import css from './Header.module.css';
 
-export default Header;
-/*import React from "react";
-import css from "./Header.css";
-import logo from "../../assets/icons";
-
+/*<UserAuth />;*/
 const Header = () => {
-  const username = "David"; // Отримати з Redux або бекенду
-  const userAvatar = "https://randomuser.me/api/portraits/men/45.jpg"; // Тестова картинка
-
   return (
-    <HeaderWrapper>
-      <Logo className={css.logo} src={logo} alt="Tracker of Water" />
-      <UserSection>
-        <span>{username}</span>
-        <Avatar src={userAvatar} alt="User Avatar" />
-      </UserSection>
-    </HeaderWrapper>
+    <header>
+      <Container>
+        <nav className={css.header}>
+          <Link to="welcome" className={css.logo}>
+            <Logo />
+          </Link>
+          <Link to="signin" className={css.signIn}>
+            Sign In
+            <img
+              className={css.user}
+              src="/src/assets/icons/user.svg"
+              alt="user"
+              width="28"
+              height="28"
+            />
+          </Link>
+        </nav>
+      </Container>
+    </header>
   );
 };
 
-export default Header;*/
+export default Header;
