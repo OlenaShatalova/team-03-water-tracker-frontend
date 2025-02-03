@@ -11,6 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { auth } from "./auth/slice";
+import { waterReducer } from "./water/waterSlice";
 
 const persistConfig = {
   key: "userToken", // ключ для збереження в сховищі
@@ -21,6 +22,7 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, auth),
+    water: waterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -6,6 +6,7 @@
   margin: 0 auto;
   gap: 22px;
   padding: 24px 0;
+  background-color: rgb(71, 71, 245);
 }
 .item {
   display: flex;
