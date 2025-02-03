@@ -1,0 +1,129 @@
+:root {
+  /* Light Theme Colors */
+  --color-bg-light: #fff;
+  --color-text-light: #2f2f2f;
+  --color-primary-light: #407bff;
+  --color-secondary-light-1: #ecf2ff;
+  --color-secondary-light-2: #ef5050;
+  --color-secondary-light-3: #9ebbff;
+  --color-accent-light-orange: #ff9d43;
+  --color-accent-light-blue: #d7e3ff;
+
+  /* Light Theme Shadows */
+  --shadow-light-primary: 0 4px 14px rgba(64, 123, 255, 0.3);
+  --shadow-light-secondary: 0 4px 4px rgba(64, 123, 255, 0.3);
+  --shadow-light-tertiary: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  /* Light Theme Cursors */
+  --cursor-pointer-light-hover: url('/src/assets/images/cursors/mdi_cursor-pointer.svg'),
+    pointer;
+  --cursor-pointer-light-active: url('/src/assets/images/cursors/mdi_cursor-pointer.svg'),
+    pointer;
+
+  /* Dark Theme Colors */
+  --color-bg-dark: #1c1d26;
+  --color-text-dark: #d5dff5;
+  --color-primary-dark: #5082f2;
+  --color-secondary-dark-1: #1f2438;
+  --color-secondary-dark-2: #f16161;
+  --color-secondary-dark-3: #2f3875;
+  --color-accent-dark-orange: #ffa756;
+  --color-accent-dark-blue: #2a3052;
+
+  /* Dark Theme Shadows */
+  --shadow-dark-primary: 0 4px 14px rgba(0, 0, 0, 0.2);
+  --shadow-dark-secondary: 0 4px 14px rgba(0, 0, 0, 0.2);
+  --shadow-dark-tertiary: 0 4px 8px rgba(0, 0, 0, 0.34);
+
+  /* Dark Theme Cursors */
+  --cursor-pointer-dark-hover: url('/src/assets/images/cursors/outlineArrow1.svg'),
+    pointer;
+  --cursor-pointer-dark-active: url('/src/assets/images/cursors/outlineArrow2.svg'),
+    pointer;
+
+  /* Default Variables */
+  --color-bg: var(--color-bg-light);
+  --color-text: var(--color-text-light);
+  --color-primary: var(--color-primary-light);
+  --color-secondary-1: var(--color-secondary-light-1);
+  --color-secondary-2: var(--color-secondary-light-2);
+  --color-secondary-3: var(--color-secondary-light-3);
+  --color-accent-orange: var(--color-accent-light-orange);
+  --color-accent-blue: var(--color-accent-light-blue);
+
+  --shadow-primary: var(--shadow-light-primary);
+  --shadow-secondary: var(--shadow-light-secondary);
+  --shadow-tertiary: var(--shadow-light-tertiary);
+
+  --cursor-hover: var(--cursor-pointer-light-hover);
+  --cursor-active: var(--cursor-pointer-light-active);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: var(--color-bg-dark);
+    --color-text: var(--color-text-dark);
+    --color-primary: var(--color-primary-dark);
+    --color-secondary-1: var(--color-secondary-dark-1);
+    --color-secondary-2: var(--color-secondary-dark-2);
+    --color-secondary-3: var(--color-secondary-dark-3);
+    --color-accent-orange: var(--color-accent-dark-orange);
+    --color-accent-blue: var(--color-accent-dark-blue);
+
+    --shadow-primary: var(--shadow-dark-primary);
+    --shadow-secondary: var(--shadow-dark-secondary);
+    --shadow-tertiary: var(--shadow-dark-tertiary);
+
+    --cursor-hover: var(--cursor-pointer-dark-hover);
+    --cursor-active: var(--cursor-pointer-dark-active);
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body.light {
+  --color-bg: var(--color-bg-light);
+  --color-text: var(--color-text-light);
+  --color-primary: var(--color-primary-light);
+  --color-secondary-1: var(--color-secondary-light-1);
+  --color-secondary-2: var(--color-secondary-light-2);
+  --color-secondary-3: var(--color-secondary-light-3);
+  --color-accent-orange: var(--color-accent-light-orange);
+  --color-accent-blue: var(--color-accent-light-blue);
+
+  --shadow-primary: var(--shadow-light-primary);
+  --shadow-secondary: var(--shadow-light-secondary);
+  --shadow-tertiary: var(--shadow-light-tertiary);
+
+  --cursor-hover: var(--cursor-pointer-light-hover);
+  --cursor-active: var(--cursor-pointer-light-active);
+}
+
+body.dark {
+  --color-bg: var(--color-bg-dark);
+  --color-text: var(--color-text-dark);
+  --color-primary: var(--color-primary-dark);
+  --color-secondary-1: var(--color-secondary-dark-1);
+  --color-secondary-2: var(--color-secondary-dark-2);
+  --color-secondary-3: var(--color-secondary-dark-3);
+  --color-accent-orange: var(--color-accent-dark-orange);
+  --color-accent-blue: var(--color-accent-dark-blue);
+
+  --shadow-primary: var(--shadow-dark-primary);
+  --shadow-secondary: var(--shadow-dark-secondary);
+  --shadow-tertiary: var(--shadow-dark-tertiary);
+
+  --cursor-hover: var(--cursor-pointer-dark-hover);
+  --cursor-active: var(--cursor-pointer-dark-active);
+}
+
+.button:hover {
+  cursor: var(--cursor-hover);
+}
+
+.button:active {
+  cursor: var(--cursor-active);
+}
