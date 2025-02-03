@@ -13,6 +13,7 @@ import MainPage from "./pages/MainPage/MainPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import SigninPage from "./pages/SigninPage/SigninPage";
 import HomePage from "./pages/HomePage/HomePage";
+import SettingModal from "./components/SettingModal/SettingModal";
 
 const App = () => {
   return (
@@ -53,6 +54,7 @@ const App = () => {
           }
         />
       </Routes> */}
+      <SettingModal />
     </SharedLayout>
   );
 };
