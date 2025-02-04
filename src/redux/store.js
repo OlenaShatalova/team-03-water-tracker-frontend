@@ -18,6 +18,7 @@ const persistConfig = {
   storage, // сховище (localStorage)
   whitelist: ['token'], // вказуємо, що зберігати
 };
+
 const waterPersistConfig = {
   key: 'water',
   storage,
