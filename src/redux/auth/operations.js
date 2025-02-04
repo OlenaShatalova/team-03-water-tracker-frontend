@@ -22,7 +22,7 @@ export const register = createAsyncThunk(
     //     "password": "examplepassword"
     // }
     try {
-      const { data } = await authApi.post('/users/signup', formData);
+      const { data } = await authApi.post('/auth/register', formData);
       console.log('Data: ', data);
       setToken(data.token);
       return data;
@@ -54,7 +54,7 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    const { data } = await authApi.post('/users/logout');
+    const { data } = await authApi.post('/auth/logout');
     clearToken();
     return data;
   } catch (error) {
