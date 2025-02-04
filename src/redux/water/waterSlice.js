@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchWaterPerMonth } from './waterOperations';
 
 const localDate = () => {
   const milliseconds = Date.now();
@@ -28,7 +29,7 @@ const waterSlice = createSlice({
       },
     },
     loading: false,
-    error: false,
+    error: null,
     activeDay: localDate(),
     currentDate: Date.now(),
   },
@@ -40,13 +41,17 @@ const waterSlice = createSlice({
       state.currentDate = action.payload;
     },
   },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchWaterPerMonth.pending, handleLoading)
+      .addCase(fetchWaterPerMonth.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.waters.waterPerMonth = action.payload;
+      })
+      .addCase(fetchWaterPerMonth.rejected, handleError);
+  },
 });
-
-
-
-
-
-
 
 export const waterReducer = waterSlice.reducer;
 export const { setActiveDay, setCurrentDate } = waterSlice.actions;
