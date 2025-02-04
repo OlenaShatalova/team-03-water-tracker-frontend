@@ -1,7 +1,44 @@
 .mainBackground {
   min-height: 100vh;
-  background: url("../../assets/images/desk-backgroundMainPage.png") no-repeat,
-    url("../../assets/images/desk-backgroundElementMainPage.png") no-repeat;
-  background-size: contain;
+  background: var(--bg-image-mobile-welcome) no-repeat;
+
+  /* background-size: contain; */
   background-position: bottom;
+}
+@media screen and (min-width: 768px) {
+  .mainBackground {
+    background: var(--bg-image-tablet-welcome) no-repeat;
+    /* background-size: contain; */
+    background-position: bottom;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .mainBackground {
+    background: var(--bg-image-desktop-welcome) no-repeat;
+    /* background-size: contain; */
+    background-position: bottom;
+  }
+}
+
+.welcomeContainer {
+  margin-top: 24px;
+  max-width: 280px;
+  height: 840px;
+}
+
+@media screen and (min-width: 768px) {
+  .welcomeContainer {
+    margin-top: 40px;
+    max-width: 704px;
+    height: 646px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .welcomeContainer {
+    margin: 80px 98px auto 104px;
+    max-width: 1014px;
+    height: 366px;
+  }
 }
