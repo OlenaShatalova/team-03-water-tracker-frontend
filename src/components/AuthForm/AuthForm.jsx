@@ -17,7 +17,7 @@ const AuthForm = ({
   linkText,
 }) => {
   return (
-    <>
+    <div className={css.signContainer}>
       <Title>{title}</Title>
       <Formik
         initialValues={initialValues}
@@ -34,7 +34,7 @@ const AuthForm = ({
         </Form>
       </Formik>
       <LinkButton to={linkTo}>{linkText}</LinkButton>
-    </>
+    </div>
   );
 };
 

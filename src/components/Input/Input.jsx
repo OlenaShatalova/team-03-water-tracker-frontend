@@ -18,32 +18,27 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
 
   return (
     <>
-      <label className={css.label} style={{ position: 'relative' }}>
+      <label className={css.label}>
         <span>{label}</span>
-        <Field
-          type={inputType}
-          name={name}
-          placeholder={placeholder}
-          className={css.input}
-          autoFocus={autoFocus}
-          // autoComplete={name}
-        />
-        {/* Іконка для перемикання видимості пароля */}
-        {type === 'password' && (
-          <span
-            onClick={togglePasswordVisibility}
-            style={{
-              position: 'absolute',
-              right: '8px',
-              top: '75%',
-              transform: 'translateY(-50%)',
-              cursor: 'pointer',
-              fontSize: '16px',
-            }}
-          >
-            <ReactSVG src={showPassword ? eye : eyeSlash} />
-          </span>
-        )}
+        <div style={{ position: 'relative', width: '100%' }}>
+          <Field
+            type={inputType}
+            name={name}
+            placeholder={placeholder}
+            className={css.input}
+            autoFocus={autoFocus}
+            // autoComplete={name}
+          />
+          {/* Іконка для перемикання видимості пароля */}
+          {type === 'password' && (
+            <span onClick={togglePasswordVisibility} className={css.iconEye}>
+              <ReactSVG
+                style={{ height: '20px' }}
+                src={showPassword ? eye : eyeSlash}
+              />
+            </span>
+          )}
+        </div>
         <ErrorMessage name={name} component="span" className={css.error} />
       </label>
     </>
