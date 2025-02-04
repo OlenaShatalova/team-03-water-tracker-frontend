@@ -11,6 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { auth } from "./auth/slice";
+import { modal } from "./modal/slice";
 
 const persistConfig = {
   key: "userToken", // ключ для збереження в сховищі
@@ -21,6 +22,7 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, auth),
+    modal: persistReducer(persistConfig, modal),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

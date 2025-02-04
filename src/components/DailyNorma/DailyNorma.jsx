@@ -1,17 +1,28 @@
-import styles from "./DailyNorma.module.css"
+import { useDispatch, useSelector } from "react-redux"
+import { openModal } from "../../redux/modal/slice"
+import css from "./DailyNorma.module.css"
+import { selectIsModalOpen } from "../../redux/modal/selectors";
+import DailyNormaModal from "../DailyNormaModal/DailyNormaModal";
 
-const onOpenModal = () => {
-    console.log("Succesfully opened modal!")
-}
 
 const DailyNorma = () => {
+    const dispatch = useDispatch();
+    const isOpen = useSelector(selectIsModalOpen);
+
+    const onOpenModal = () => {
+        dispatch(openModal())
+        console.log("Modal window is opened!")
+    }
+
+
     return (
-        <div className={styles.container}>
-            <h3 className={styles.title}>My daily norma</h3>
-            <div className={styles.containerForNumbers}>
-                <div className={styles.number}>1.5 L</div>
-                <button onClick={onOpenModal} className={styles.button}>Edit</button>
+        <div className={css.container}>
+            <h3 className={css.title}>My daily norma</h3>
+            <div className={css.containerForNumbers}>
+                <div className={css.number}>1.5 L</div>
+                <button onClick={onOpenModal} className={css.button}>Edit</button>
             </div>
+            {isOpen && <DailyNormaModal />}
         </div>
     )
 }
