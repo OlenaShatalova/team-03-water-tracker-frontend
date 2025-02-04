@@ -2,6 +2,8 @@ import * as Yup from 'yup';
 
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/auth/operations';
 
 const loginSchema = Yup.object({
   email: Yup.string()
@@ -30,8 +32,11 @@ const loginFields = [
 ];
 
 const SigninPage = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (formValue, formAction) => {
     console.log(formValue, formAction);
+    dispatch(login(formValue));
   };
 
   return (
