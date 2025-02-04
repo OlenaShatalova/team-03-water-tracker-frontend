@@ -1,35 +1,35 @@
 :root {
   /* LIGHT BASE VARIABLES */
-  --welcome-element-mobile-light: url(/assets/images/welcome/welcome-element-mobile-light@1x.png);
-  --welcome-background-mobile-light: url(/assets/images/welcome/welcome-background-mobile-light@1x.png);
-  --welcome-element-tablet-light: url(/assets/images/welcome/welcome-element-tablet-light@1x.png);
-  --welcome-background-tablet-light: url(/assets/images/welcome/welcome-background-tablet-light@1x.png);
-  --welcome-element-desktop-light: url(/assets/images/welcome/welcome-element-desktop-light@1x.png);
-  --welcome-background-desktop-light: url(/assets/images/welcome/welcome-background-desktop-light@1x.png);
+  --welcome-element-mobile-light: url(../assets/images/welcome/welcome-element-mobile-light@1x.png);
+  --welcome-background-mobile-light: url(../assets/images/welcome/welcome-background-mobile-light@1x.png);
+  --welcome-element-tablet-light: url(/..assets/images/welcome/welcome-element-tablet-light@1x.png);
+  --welcome-background-tablet-light: url(../assets/images/welcome/welcome-background-tablet-light@1x.png);
+  --welcome-element-desktop-light: url(../assets/images/welcome/welcome-element-desktop-light@1x.png);
+  --welcome-background-desktop-light: url(../assets/images/welcome/welcome-background-desktop-light@1x.png);
 
-  --home-dots-mobile-light: url(/assets/images/home/home-dots-mobile-light@1x.png);
-  --home-dots-tablet-light: url(/assets/images/home/home-dots-tablet-light@1x.png);
-  --home-dots-desktop-light: url(/assets/images/home/home-dots-desktop-light@1x.png);
+  --home-dots-mobile-light: url(../assets/images/home/home-dots-mobile-light@1x.png);
+  --home-dots-tablet-light: url(../assets/images/home/home-dots-tablet-light@1x.png);
+  --home-dots-desktop-light: url(../assets/images/home/home-dots-desktop-light@1x.png);
 
-  --home-bottle-mobile-light: url(/assets/images/home/home-bottle-mobile-light@1x.png);
-  --home-bottle-tablet-light: url(/assets/images/home/home-bottle-tablet-light@1x.png);
-  --home-bottle-desktop-light: url(/assets/images/home/home-bottle-desktop-light@1x.png);
+  --home-bottle-mobile-light: url(../assets/images/home/home-bottle-mobile-light@1x.png);
+  --home-bottle-tablet-light: url(../assets/images/home/home-bottle-tablet-light@1x.png);
+  --home-bottle-desktop-light: url(../assets/images/home/home-bottle-desktop-light@1x.png);
 
   /* DARK BASE VARIABLES */
-  --welcome-element-mobile-dark: url(/assets/images/welcome/welcome-element-mobile-dark@1x.png);
-  --welcome-background-mobile-dark: url(/assets/images/welcome/welcome-background-mobile-dark@1x.png);
-  --welcome-element-tablet-dark: url(/assets/images/welcome/welcome-element-tablet-dark@1x.png);
-  --welcome-background-tablet-dark: url(/assets/images/welcome/welcome-background-tablet-dark@1x.png);
-  --welcome-element-desktop-dark: url(/assets/images/welcome/welcome-element-desktop-dark@1x.png);
-  --welcome-background-desktop-dark: url(/assets/images/welcome/welcome-background-desktop-dark@1x.png);
+  --welcome-element-mobile-dark: url(../assets/images/welcome/welcome-element-mobile-dark@1x.png);
+  --welcome-background-mobile-dark: url(../assets/images/welcome/welcome-background-mobile-dark@1x.png);
+  --welcome-element-tablet-dark: url(../assets/images/welcome/welcome-element-tablet-dark@1x.png);
+  --welcome-background-tablet-dark: url(../assets/images/welcome/welcome-background-tablet-dark@1x.png);
+  --welcome-element-desktop-dark: url(../assets/images/welcome/welcome-element-desktop-dark@1x.png);
+  --welcome-background-desktop-dark: url(../assets/images/welcome/welcome-background-desktop-dark@1x.png);
 
-  --home-dots-mobile-dark: url(/assets/images/home/home-dots-mobile-dark@1x.png);
-  --home-dots-tablet-dark: url(/assets/images/home/home-dots-tablet-dark@1x.png);
-  --home-dots-desktop-dark: url(/assets/images/home/home-dots-desktop-dark@1x.png);
+  --home-dots-mobile-dark: url(../assets/images/home/home-dots-mobile-dark@1x.png);
+  --home-dots-tablet-dark: url(../assets/images/home/home-dots-tablet-dark@1x.png);
+  --home-dots-desktop-dark: url(../assets/images/home/home-dots-desktop-dark@1x.png);
 
-  --home-bottle-mobile-dark: url(/assets/images/home/home-bottle-mobile-dark@1x.png);
-  --home-bottle-tablet-dark: url(/assets/images/home/home-bottle-tablet-dark@1x.png);
-  --home-bottle-desktop-dark: url(/assets/images/home/home-bottle-desktop-dark@1x.png);
+  --home-bottle-mobile-dark: url(../assets/images/home/home-bottle-mobile-dark@1x.png);
+  --home-bottle-tablet-dark: url(../assets/images/home/home-bottle-tablet-dark@1x.png);
+  --home-bottle-desktop-dark: url(../assets/images/home/home-bottle-desktop-dark@1x.png);
 }
 
 @media (prefers-color-scheme: dark) {
