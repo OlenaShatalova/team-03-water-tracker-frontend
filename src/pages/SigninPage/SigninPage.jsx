@@ -1,9 +1,10 @@
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+
+import { login } from '../../redux/auth/operations';
 
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/auth/operations';
 
 const loginSchema = Yup.object({
   email: Yup.string()
@@ -19,14 +20,14 @@ const loginFields = [
   {
     name: 'email',
     type: 'text',
-    label: 'Email',
+    label: 'Enter your email',
     placeholder: 'E-mail',
     autoFocus: 'autoFocus',
   },
   {
     name: 'password',
     type: 'password',
-    label: 'Password',
+    label: 'Enter your password',
     placeholder: 'Password',
   },
 ];
@@ -37,10 +38,12 @@ const SigninPage = () => {
   const handleSubmit = (formValue, formAction) => {
     console.log(formValue, formAction);
     dispatch(login(formValue));
+
+    // formAction.resetForm();
   };
 
   return (
-    <main className="signBackground">
+    <main className="signInUpPages">
       <Container>
         <AuthForm
           title={'Sign In'}
