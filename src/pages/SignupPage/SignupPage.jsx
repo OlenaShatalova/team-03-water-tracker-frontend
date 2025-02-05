@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
@@ -52,7 +52,7 @@ const SignupPage = () => {
 
   useEffect(() => {
     if (authError) {
-      toast.error(authError, { position: 'top-center' });
+      console.error('Registration error:', authError);
     }
   }, [authError]);
 
@@ -63,14 +63,18 @@ const SignupPage = () => {
   }, [isLoggedIn, navigate]);
 
   const handleSubmit = (formValues, formActions) => {
-    dispatch(register(formValues))
+    const userData = { email: formValues.email, password: formValues.password };
+
+    console.log('Data sent to server:', userData); // Додано для діагностики
+
+    dispatch(register(userData)) // Виправлено: тепер відправляємо очищені дані
       .unwrap()
       .then(() => {
-        toast.success('Registration successful!', { position: 'top-center' });
+        console.log('Registration successful!');
         navigate('/signin'); // Переадресація на сторінку входу
       })
-      .catch(() => {
-        // Помилки обробляються через useEffect
+      .catch(error => {
+        console.error('Registration failed:', error); // Додано для точнішої діагностики
       })
       .finally(() => formActions.setSubmitting(false));
   };
