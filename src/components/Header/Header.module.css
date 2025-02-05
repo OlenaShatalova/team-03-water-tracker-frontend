@@ -1,53 +1,43 @@
-@media screen and (min-width: 768px) {
-  .logo {
-    width: 102px;
-    height: 48px;
-  }
-}
-
 .header {
-  max-width: 100%;
-  width: 280px;
-  height: 48px;
+  padding-top: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 94px;
 }
 
-@media screen and (min-width: 768px) {
-  .header {
-    width: 704px;
-    height: 48px;
-    top: 16px;
-    left: 32px;
-    gap: 512px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .header {
-    gap: 1024px;
-  }
+.logo {
+  width: 102px;
+  height: 48px;
 }
 
 .signIn {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  text-align: left;
-  text-decoration: none;
-  color: #407bff;
   display: flex;
-  align-items: center; /* Додаємо вирівнювання по центру */
-  /* Відстань між текстом та іконкою */
+  gap: 8px;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #407bff;
+}
+
+.iconMen {
+  height: 28px;
 }
 
 @media screen and (min-width: 768px) {
+  .header {
+    padding-top: 16px;
+  }
+
   .signIn {
+    font-size: 18px;
+    line-height: 1.33333;
   }
 }
-
-.user {
-  padding-left: 8px;
+/*
+@media screen and (min-width: 1440px) {
+  .header {
+   pt12
+  }
 }
+ */
