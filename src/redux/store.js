@@ -8,11 +8,11 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { auth } from "./auth/slice";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { auth } from './auth/slice';
 import { waterReducer } from './water/waterSlice';
-import { modal } from "./modal/slice";
+import { modal } from './modal/slice';
 
 const persistConfig = {
   key: 'userToken', // ключ для збереження в сховищі
@@ -23,14 +23,14 @@ const persistConfig = {
 const waterPersistConfig = {
   key: 'water',
   storage,
-  whitelist: [], 
+  whitelist: [],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, auth),
     water: persistReducer(waterPersistConfig, waterReducer),
-    modal: persistReducer(persistConfig, modal),
+    modal: modal,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

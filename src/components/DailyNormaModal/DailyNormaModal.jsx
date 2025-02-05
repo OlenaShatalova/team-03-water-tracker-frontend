@@ -5,6 +5,7 @@ import { useCallback, useEffect, useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./DailyNormaModal.module.css"
+import Input from "../Input/Input";
 
 const validationSchema = Yup.object({
     option: Yup.string().required("Required"),
@@ -70,30 +71,40 @@ const DailyNormaModal = () => {
                     <Form>
                         <div>
                             <p className={css.subTitle}>Calculate your rate:</p>
-                            <Field type="radio" name="option" value="For woman" id={womanBtnId} />
-                            <label htmlFor={womanBtnId}>For woman</label>
+                            <div className={css.radioContainer}>
+                                <div className={css.radio}>
+                                    <Field className={css.radioButton} type="radio" name="option" value="For woman" id={womanBtnId} />
+                                    <label htmlFor={womanBtnId}>For woman</label>
+                                </div>
 
-                            <Field type="radio" name="option" value="For man" id={manBtnId} />
-                            <label htmlFor={manBtnId}>For man</label>
-
-                            <ErrorMessage name="option" component="div" style={{ color: "red" }} />
+                                <div className={css.radio}>
+                                    <Field className={css.radioButton} type="radio" name="option" value="For man" id={manBtnId} />
+                                    <label htmlFor={manBtnId}>For man</label>
+                                </div>
+                            </div>
+                            <ErrorMessage name="option" component="span" style={{ color: "red" }} />
                         </div>
 
                         <div className={css.containerForQuestion}>
                             <label htmlFor={kgId}>Your weight in kilograms:</label>
-                            <Field type="number" name="kg" id={kgId} />
+                            {/* <Field type="number" name="kg" id={kgId} /> */}
+                            < Input type="number" name="kg" id={kgId} />
+                            <ErrorMessage name="kg" component="span" style={{ color: "red" }} />
                         </div>
 
                         <div className={css.containerForQuestion}>
                             <label htmlFor={sportTimes}>The time of active participation in sports or other activities with a high physical. load in hours:</label>
-                            <Field type="number" name="sportTimes" id={sportTimes} />
+                            {/* <Field type="number" name="sportTimes" id={sportTimes} /> */}
+                            < Input type="number" name="sportTimes" id={sportTimes} />
+                            <ErrorMessage name="sportTimes" component="span" style={{ color: "red" }} />
                         </div>
 
                         <p>The required amount of water in liters per day: </p>
 
                         <div>
                             <label className={css.subTitle} htmlFor={howMuchWater}>Write down how much water you will drink:</label>
-                            <Field type="number" name="howMuchWater" id={howMuchWater} />
+                            {/* <Field type="number" name="howMuchWater" id={howMuchWater} /> */}
+                            <Input type="number" name="howMuchWater" id={howMuchWater} />
                         </div>
 
 
