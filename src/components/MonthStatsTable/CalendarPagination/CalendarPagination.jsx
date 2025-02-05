@@ -3,6 +3,7 @@ import css from "./CalendarPagination.module.css"
 import left from "../../../assets/icons/left.svg";
 import right from "../../../assets/icons/right.svg";
 import { setCurrentDate } from "../../../redux/water/waterSlice";
+import { fetchWaterPerMonth } from "../../../redux/water/waterOperations";
 const months = [
     "January",
     "February",
@@ -25,8 +26,10 @@ const CalendarPagination = () => {
 
     const fetchAndSetDate = (newDate) => {
         const localDate = newDate.toLocaleDateString();
+        const year = newDate.getFullYear();
+        const month = newDate.getMonth() + 1;
         dispatch(setCurrentDate(newDate.getTime()));
-        // dispatch(fetchWaterPerMonth(localDate));
+        dispatch(fetchWaterPerMonth({ year, month }));
     };
 
 
