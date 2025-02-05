@@ -1,9 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import Container from '../Container/Container';
-import Logo from '../Logo/Logo'; // Підключаємо Logo
 import UserAuth from '../UserAuth/UserAuth'; // Підключаємо UserAuth
+
+import logo from '../../assets/icons/logo.svg';
+import iconMen from '../../assets/icons/user.svg';
 
 import css from './Header.module.css';
 
@@ -13,18 +15,12 @@ const Header = () => {
     <header>
       <Container>
         <nav className={css.header}>
-          <Link to="welcome" className={css.logo}>
-            <Logo />
+          <Link to="welcome">
+            <ReactSVG src={logo} className={css.logo} />
           </Link>
           <Link to="signin" className={css.signIn}>
             Sign In
-            <img
-              className={css.user}
-              src="/src/assets/icons/user.svg"
-              alt="user"
-              width="28"
-              height="28"
-            />
+            <ReactSVG src={iconMen} className={css.iconMen} />
           </Link>
         </nav>
       </Container>
