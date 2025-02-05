@@ -20,7 +20,7 @@ const months = [
 
 
 const CalendarPagination = () => {
-    
+
     const dispatch = useDispatch();
 
     const fetchAndSetDate = (newDate) => {
@@ -37,6 +37,7 @@ const CalendarPagination = () => {
         const newDate = new Date(currentDate);
         newDate.setMonth(newDate.getMonth() - 1);
         fetchAndSetDate(newDate);
+       
 
     }
 
@@ -48,11 +49,11 @@ const CalendarPagination = () => {
 
     return (
         <div className={css.container}>
-            <button  className={css.button} type="button" onClick={goToPreviousMonth}>
+            <button className={css.button} type="button" onClick={goToPreviousMonth}>
                 <img src={left} alt="" />
             </button>
             <p>{months[dateObj.getMonth()]}, {dateObj.getFullYear()}</p>
-            
+
             <button className={css.button} type="button" onClick={goToNextMonth}>
                 <img src={right} alt="" />
             </button>
