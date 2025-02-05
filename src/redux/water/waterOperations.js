@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // https://watertracker-app-if0o.onrender.com/api/water/
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = 'https://watertracker-app-if0o.onrender.com/api';
 axios.defaults.withCredentials = true;
 
 
