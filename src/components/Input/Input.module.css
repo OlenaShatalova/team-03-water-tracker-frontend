@@ -1,0 +1,46 @@
+.label {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.34;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  border: 1px solid #9ebbff;
+  border-radius: 6px;
+  padding: 12px 10px;
+  width: 100%;
+  height: 44px;
+  outline: none;
+}
+
+.label input::placeholder {
+  font-size: 16px;
+  line-height: 125%;
+  color: #9ebbff;
+  letter-spacing: -0.01em;
+}
+
+.error {
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: #ef5050;
+}
+
+.iconEye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  /* cursor: pointer; */
+}
+
+.iconEye svg {
+  width: 20px;
+  height: 20px;
+  color: #407bff;
+}

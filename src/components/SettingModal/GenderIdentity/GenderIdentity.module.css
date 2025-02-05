@@ -1,0 +1,18 @@
+.sectWrapper {
+  margin-top: 24px;
+}
+
+.genderTtl {
+  margin-bottom: 12px;
+}
+
+.spanGender {
+  margin-left: 8px;
+  line-height: 125%;
+}
+
+@media screen and (min-width: 1440px) {
+  .sectWrapper {
+    margin-top: 0;
+  }
+}

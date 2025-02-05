@@ -1,23 +1,36 @@
-import { lazy, Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import RestrictedRoute from "./components/RestrictedRoute";
-import PrivateRoute from "./components/PrivateRoute";
+import RestrictedRoute from './components/RestrictedRoute';
+import PrivateRoute from './components/PrivateRoute';
 
-import SharedLayout from "./components/SharedLayout/SharedLayout";
+import SharedLayout from './components/SharedLayout/SharedLayout';
+//import { useDispatch, useSelector } from 'react-redux';
+//import { selectIsRefreshing } from './redux/auth/selectors';
+//import { refreshUser } from './redux/auth/operations';
 
-const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 // const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
 // const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 
 // import MainPage from "./pages/MainPage/MainPage";
-import SignupPage from "./pages/SignupPage/SignupPage";
-import SigninPage from "./pages/SigninPage/SigninPage";
-import HomePage from "./pages/HomePage/HomePage";
+import SignupPage from './pages/SignupPage/SignupPage';
+import SigninPage from './pages/SigninPage/SigninPage';
+import HomePage from './pages/HomePage/HomePage';
 
 const App = () => {
+  // const dispatch = useDispatch();
+  // const isRefreshing = useSelector(selectIsRefreshing);
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
   return (
+    //isRefreshing ?
+    //  <p>Refreshing...</p>
+    // ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Navigate to="/welcome" />} />

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -11,20 +11,28 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { auth } from "./auth/slice";
+import { waterReducer } from './water/waterSlice';
 import { modal } from "./modal/slice";
 
 const persistConfig = {
-  key: "userToken", // ключ для збереження в сховищі
+  key: 'userToken', // ключ для збереження в сховищі
   storage, // сховище (localStorage)
-  whitelist: ["token"], // вказуємо, що зберігати
+  whitelist: ['token'], // вказуємо, що зберігати
+};
+
+const waterPersistConfig = {
+  key: 'water',
+  storage,
+  whitelist: [], 
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, auth),
+    water: persistReducer(waterPersistConfig, waterReducer),
     modal: persistReducer(persistConfig, modal),
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

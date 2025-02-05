@@ -1,3 +1,6 @@
+@import url('css/themeVariables.css');
+@import url('css/backgroundImages.css');
+
 *,
 *::before,
 *::after {
@@ -7,9 +10,14 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #fff;
   color: #2f2f2f;
+}
+
+body.dark {
+  background-color: var(--color-bg-dark) !important;
+  color: var(--color-text-dark) !important;
 }
 
 #root {
@@ -59,13 +67,33 @@ ol {
 
 button {
   padding: 0;
+  cursor: pointer;
 }
 
-.signBackground {
+.signInUpPages {
   min-height: 100vh;
-  background: url("./assets/images/desk-bottleForSignin.png") no-repeat bottom
+  background: url('./assets/images/desk-bottleForSignin.png') no-repeat bottom
       40px left,
-    url("./assets/images/desk-backgroundElementMainPage.png") no-repeat bottom
+    url('./assets/images/desk-backgroundElementMainPage.png') no-repeat bottom
       right 20px;
   background-size: auto;
+
+  padding-top: 24px;
+  padding-bottom: 296px;
+  text-align: start;
+}
+
+@media screen and (min-width: 768px) {
+  .signInUpPages {
+    padding-top: 40px;
+    padding-bottom: 248px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .signInUpPages {
+    padding-top: 162px;
+    padding-bottom: 266px;
+    padding-left: 840px;
+  }
 }

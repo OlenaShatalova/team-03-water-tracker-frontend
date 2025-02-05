@@ -1,35 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-import Container from "../Container/Container";
+import Container from '../Container/Container';
+import UserAuth from '../UserAuth/UserAuth'; // Підключаємо UserAuth
 
-const Header = () => (
-  <header>
-    <Container>
-      <nav>
-        <Link to="welcome">LogoTracker</Link> | <Link to="signin">Sign In</Link>
-      </nav>
-    </Container>
-  </header>
-);
+import logo from '../../assets/icons/logo.svg';
+import iconMen from '../../assets/icons/user.svg';
 
-export default Header;
-/*import React from "react";
-import css from "./Header.css";
-import logo from "../../assets/icons";
+import css from './Header.module.css';
 
+/*<UserAuth />;*/
 const Header = () => {
-  const username = "David"; // Отримати з Redux або бекенду
-  const userAvatar = "https://randomuser.me/api/portraits/men/45.jpg"; // Тестова картинка
-
   return (
-    <HeaderWrapper>
-      <Logo className={css.logo} src={logo} alt="Tracker of Water" />
-      <UserSection>
-        <span>{username}</span>
-        <Avatar src={userAvatar} alt="User Avatar" />
-      </UserSection>
-    </HeaderWrapper>
+    <header>
+      <Container>
+        <nav className={css.header}>
+          <Link to="welcome">
+            <ReactSVG src={logo} className={css.logo} />
+          </Link>
+          <Link to="signin" className={css.signIn}>
+            Sign In
+            <ReactSVG src={iconMen} className={css.iconMen} />
+          </Link>
+        </nav>
+      </Container>
+    </header>
   );
 };
 
-export default Header;*/
+export default Header;

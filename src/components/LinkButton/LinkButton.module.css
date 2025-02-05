@@ -1,0 +1,12 @@
+.linkButton {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #9ebbff;
+}
+.linkButton:hover,
+.linkButton:focus {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  background: #9ebbff;
+}

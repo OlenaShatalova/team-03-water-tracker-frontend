@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectIsModalOpen } from "../../redux/modal/selectors"
 import { closeModal } from "../../redux/modal/slice";
 // import { ReactSVG } from "react-svg";
-import { useEffect, useId } from "react";
+import { useCallback, useEffect, useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./DailyNormaModal.module.css"
@@ -20,9 +20,9 @@ const DailyNormaModal = () => {
 
     const dispatch = useDispatch();
     const isOpen = useSelector(selectIsModalOpen);
-    const onModalClose = () => {
-        dispatch(closeModal())
-    }
+    const onModalClose = useCallback(() => {
+        dispatch(closeModal());
+    }, [dispatch]);
 
     // для закриття модалки на esc
     useEffect(() => {
