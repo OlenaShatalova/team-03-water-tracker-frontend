@@ -1,1 +1,2 @@
-export const selectIsModalOpen = (state) => state.modal.isOpen;
+export const selectIsWaterRateModalOpen = state => state.modal.isWaterRateOpen;
+export const selectIsAddWaterModalOpen = state => state.modal.isAddWaterOpen;

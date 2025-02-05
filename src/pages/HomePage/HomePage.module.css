@@ -23,6 +23,13 @@
     background-position: 20px 162px, 0 0;
 }
 
+.ratioAndButtonContainer {
+    position: absolute;
+    top: 386px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 /* .mainContainer::after {
     content: "";
     position: absolute;
@@ -56,6 +63,14 @@
         padding: 32px 24px;
         width: 704px;
         height: 688px;
+    }
+
+    .ratioAndButtonContainer {
+        top: 506px;
+        margin-left: 32px;
+        margin-right: 32px;
+        display: flex;
+        gap: 12px;
     }
 }
 
@@ -91,5 +106,12 @@
         background-image: 
         url(../../assets/images/desk-botleHomeScreen@2x.png),
         url(../../assets/images/desk-backgroundElementMainPage@2x.png);
+    }
+
+    .ratioAndButtonContainer {
+        top: 654px;
+        margin-left: 112px;
+        margin-right: 32px;
+        gap: 23px;
     }
 }
