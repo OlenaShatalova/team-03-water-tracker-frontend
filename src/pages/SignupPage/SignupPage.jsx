@@ -11,9 +11,6 @@ import { register } from '../../redux/auth/operations';
 import { selectAuthError, selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const registerSchema = Yup.object({
-  name: Yup.string()
-    .max(32, 'Name must be at most 32 characters')
-    .required('Name is required'),
   email: Yup.string()
     .email('Enter a valid email')
     .required('Email is required'),
@@ -21,16 +18,12 @@ const registerSchema = Yup.object({
     .min(8, 'Password must be at least 8 characters')
     .max(64, 'Password must be less than 64 characters')
     .required('Password is required'),
+  repeatPassword: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Repeat password is required'),
 });
 
 const registerFields = [
-  {
-    name: 'name',
-    type: 'text',
-    label: 'Name',
-    placeholder: 'Name',
-    autoFocus: true,
-  },
   {
     name: 'email',
     type: 'email',
@@ -42,6 +35,12 @@ const registerFields = [
     type: 'password',
     label: 'Password',
     placeholder: 'Password',
+  },
+  {
+    name: 'repeatPassword',
+    type: 'password',
+    label: 'Repeat password',
+    placeholder: 'Repeat password',
   },
 ];
 
@@ -77,11 +76,11 @@ const SignupPage = () => {
   };
 
   return (
-    <main className="signBackground">
+    <main className="signInUpPages">
       <Container>
         <AuthForm
           title={'Sign Up'}
-          initialValues={{ name: '', email: '', password: '' }}
+          initialValues={{ email: '', password: '', repeatPassword: '' }}
           onSubmit={handleSubmit}
           validationSchema={registerSchema}
           fields={registerFields}
