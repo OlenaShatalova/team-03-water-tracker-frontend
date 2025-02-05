@@ -1,19 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
 import { openModal } from "../../redux/modal/slice"
 import css from "./DailyNorma.module.css"
-import { selectIsModalOpen } from "../../redux/modal/selectors";
+import { selectIsWaterRateModalOpen } from "../../redux/modal/selectors";
 import DailyNormaModal from "../DailyNormaModal/DailyNormaModal";
 
 
 const DailyNorma = () => {
     const dispatch = useDispatch();
-    const isOpen = useSelector(selectIsModalOpen);
+    const isOpen = useSelector(selectIsWaterRateModalOpen);
 
     const onOpenModal = () => {
-        dispatch(openModal())
+        dispatch(openModal("isWaterRateOpen"))
         console.log("Modal window is opened!")
     }
-
 
     return (
         <div className={css.container}>

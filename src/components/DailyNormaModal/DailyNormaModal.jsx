@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsModalOpen } from "../../redux/modal/selectors"
+import { selectIsWaterRateModalOpen } from "../../redux/modal/selectors"
 import { closeModal } from "../../redux/modal/slice";
 import { useCallback, useEffect, useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -19,9 +19,9 @@ const DailyNormaModal = () => {
     const howMuchWater = useId();
 
     const dispatch = useDispatch();
-    const isOpen = useSelector(selectIsModalOpen);
+    const isOpen = useSelector(selectIsWaterRateModalOpen);
     const onModalClose = useCallback(() => {
-        dispatch(closeModal());
+        dispatch(closeModal("isWaterRateOpen"));
     }, [dispatch]);
 
     // для закриття модалки на esc
@@ -50,8 +50,10 @@ const DailyNormaModal = () => {
                 </div>
 
                 <div className={css.explanation}>
-                    <p className={css.text}>For girl: <span className={css.blueText}>V=(M*0,03) + (T*0,4)</span></p>
-                    <p className={css.text}>For man: <span className={css.blueText}>V=(M*0,04) + (T*0,6)</span></p>
+                    <div className={css.containerForCalc}>
+                        <p className={css.text}>For girl: <span className={css.blueText}>V=(M*0,03) + (T*0,4)</span></p>
+                        <p className={css.text}>For man: <span className={css.blueText}>V=(M*0,04) + (T*0,6)</span></p>
+                    </div>
 
                     <div className={css.containerForSmallText}>
                         <p className={css.smallText}>
@@ -88,23 +90,26 @@ const DailyNormaModal = () => {
                         <div className={css.containerForQuestion}>
                             <label htmlFor={kgId}>Your weight in kilograms:</label>
                             {/* <Field type="number" name="kg" id={kgId} /> */}
-                            < Input type="number" name="kg" id={kgId} />
+                            <Input placeholder={0} type="number" name="kg" id={kgId} />
                             <ErrorMessage name="kg" component="span" style={{ color: "red" }} />
                         </div>
 
                         <div className={css.containerForQuestion}>
                             <label htmlFor={sportTimes}>The time of active participation in sports or other activities with a high physical. load in hours:</label>
                             {/* <Field type="number" name="sportTimes" id={sportTimes} /> */}
-                            < Input type="number" name="sportTimes" id={sportTimes} />
+                            < Input placeholder={0} type="number" name="sportTimes" id={sportTimes} />
                             <ErrorMessage name="sportTimes" component="span" style={{ color: "red" }} />
                         </div>
 
-                        <p>The required amount of water in liters per day: </p>
+                        <div className={css.containerForWater}>
+                            <p className={css.textWidth}>The required amount of water in liters per day:</p>
+                            <p className={css.valueOfWater}>1.8 L</p>
+                        </div>
 
                         <div>
                             <label className={css.subTitle} htmlFor={howMuchWater}>Write down how much water you will drink:</label>
                             {/* <Field type="number" name="howMuchWater" id={howMuchWater} /> */}
-                            <Input type="number" name="howMuchWater" id={howMuchWater} />
+                            <Input placeholder={0} type="number" name="howMuchWater" id={howMuchWater} />
                         </div>
 
 

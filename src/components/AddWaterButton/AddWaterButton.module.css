@@ -1,0 +1,35 @@
+.button {
+    border-radius: 10px;
+    width: 280px;
+    height: 36px;
+    cursor: pointer;
+    margin-top: 16px;
+    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+    background-color: #407BFF;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    color: white;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .button {
+        width: 336px;
+        height: 44px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .button {
+        margin-top: 25px;
+        width: 178px;
+        height: 44px;
+    }
+}

@@ -1,3 +1,4 @@
+import AddWaterButton from "../../components/AddWaterButton/AddWaterButton";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 import TodayWaterList from "../../components/TodayWaterList/TodayWaterList";
@@ -10,7 +11,10 @@ const HomePage = () => {
     <div className={css.mainContainer}>
       <img src="" alt="" />
       <DailyNorma />
-      <WaterRatioPanel />
+      <div className={css.ratioAndButtonContainer}>
+        <WaterRatioPanel />
+        <AddWaterButton />
+      </div>
       <div className={css.blueContainer}>
         <TodayWaterList />
         <MonthStatsTable />

@@ -32,6 +32,7 @@ const waterSlice = createSlice({
     error: null,
     activeDay: localDate(),
     currentDate: Date.now(),
+    // isWaterRateModalOpen: false,
   },
   reducers: {
     setActiveDay(state, action) {
