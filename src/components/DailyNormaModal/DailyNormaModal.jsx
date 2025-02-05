@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsModalOpen } from "../../redux/modal/selectors"
 import { closeModal } from "../../redux/modal/slice";
-// import { ReactSVG } from "react-svg";
 import { useCallback, useEffect, useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -98,7 +97,7 @@ const DailyNormaModal = () => {
                         </div>
 
 
-                        <button type="submit">Save</button>
+                        <button className={css.button} type="submit">Save</button>
                     </Form>
                     {/* )} */}
                 </Formik>
