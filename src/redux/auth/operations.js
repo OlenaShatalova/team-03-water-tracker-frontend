@@ -16,19 +16,17 @@ export const clearToken = () => {
 export const register = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
-    // {
-    //     "name": "Tom Ford",
-    //     "email": "example@gmail.com",
-    //     "password": "examplepassword"
-    // }
     try {
       const { data } = await authApi.post('/auth/register', formData);
-      console.log('Data: ', data);
+      console.log('Data received from server:', data);
       setToken(data.token);
       return data;
     } catch (error) {
-      console.error('Error response: ', error.response);
-      return thunkAPI.rejectWithValue(error.message);
+      console.error(
+        'Error response from server:',
+        error.response?.data || error.message
+      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
