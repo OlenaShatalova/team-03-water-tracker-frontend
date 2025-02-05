@@ -2,16 +2,16 @@ import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 import TodayWaterList from "../../components/TodayWaterList/TodayWaterList";
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
-import styles from "./HomePage.module.css"
+import css from "./HomePage.module.css"
 
 
 const HomePage = () => {
   return (
-    <div className={styles.mainContainer}>
+    <div className={css.mainContainer}>
       <img src="" alt="" />
       <DailyNorma />
       <WaterRatioPanel />
-      <div className={styles.blueContainer}>
+      <div className={css.blueContainer}>
         <TodayWaterList />
         <MonthStatsTable />
       </div>

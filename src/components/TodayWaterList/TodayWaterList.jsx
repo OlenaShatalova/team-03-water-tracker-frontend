@@ -1,10 +1,10 @@
-import styles from "./TodayWaterList.module.css"
+import css from "./TodayWaterList.module.css"
 
 const TodayWaterList = () => {
     return (
         <div>
-            <h2 className={styles.title}>Today</h2>
-            <ul><li></li></ul>
+            <h2 className={css.title}>Today</h2>
+            <ul></ul>
         </div>
     )
 }
