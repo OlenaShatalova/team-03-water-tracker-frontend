@@ -17,7 +17,7 @@ const HomePage = () => {
       </div>
       <div className={css.blueContainer}>
         <TodayWaterList />
-        {/* <MonthStatsTable /> */}
+        <MonthStatsTable />
       </div>
     </div>
   )
