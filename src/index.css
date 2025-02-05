@@ -70,11 +70,30 @@ button {
   cursor: pointer;
 }
 
-.signBackground {
+.signInUpPages {
   min-height: 100vh;
   background: url('./assets/images/desk-bottleForSignin.png') no-repeat bottom
       40px left,
     url('./assets/images/desk-backgroundElementMainPage.png') no-repeat bottom
       right 20px;
   background-size: auto;
+
+  padding-top: 24px;
+  padding-bottom: 296px;
+  text-align: start;
+}
+
+@media screen and (min-width: 768px) {
+  .signInUpPages {
+    padding-top: 40px;
+    padding-bottom: 248px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .signInUpPages {
+    padding-top: 162px;
+    padding-bottom: 266px;
+    padding-left: 840px;
+  }
 }
