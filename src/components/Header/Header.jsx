@@ -3,7 +3,7 @@ import { ReactSVG } from 'react-svg';
 
 import Container from '../Container/Container';
 import UserAuth from '../UserAuth/UserAuth'; // Підключаємо UserAuth
-
+import UserLogo from '../UserLogo/UserLogo';
 import logo from '../../assets/icons/logo.svg';
 import iconMen from '../../assets/icons/user.svg';
 
@@ -21,6 +21,7 @@ const Header = () => {
           <Link to="signin" className={css.signIn}>
             Sign In
             <ReactSVG src={iconMen} className={css.iconMen} />
+            <UserLogo user={user} />
           </Link>
         </nav>
       </Container>
