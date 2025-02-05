@@ -32,7 +32,7 @@ const Calendar = () => {
                     {/* <CalendarItem
                         key={day}
                         day={day}
-                        waterDate={dayData}
+                        waterData={dayData}
                         feasibility={feasibility}
                         onClick={() => handleDayClick(day)}
                         isActive={day === activeDay}
