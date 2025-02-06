@@ -5,6 +5,9 @@ const initialState = {
   user: {
     name: null,
     email: null,
+    dailyNorm: 1500,
+    gender: 'female',
+    avatar: null,
   },
   token: null,
   isLoggedIn: false,
@@ -23,6 +26,8 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.loading = false;
         state.isLoggedIn = true;
         state.error = null;
@@ -38,6 +43,8 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.loading = false;
         state.error = null;
         state.isLoggedIn = true;

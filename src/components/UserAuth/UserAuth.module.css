@@ -1,11 +1,20 @@
-.user {
+.signIn {
   display: flex;
-  align-items: center; /* Вирівнює по вертикалі */
-  gap: 8px; /* Відступ між ім'ям і аватаром */
+  gap: 8px;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #407bff;
 }
 
-.userName {
-  font-size: 16px;
-  font-weight: 400px;
-  line-height: 20px;
+.iconMen {
+  height: 28px;
+}
+
+@media screen and (min-width: 768px) {
+  .signIn {
+    font-size: 18px;
+    line-height: 1.33333;
+  }
 }
