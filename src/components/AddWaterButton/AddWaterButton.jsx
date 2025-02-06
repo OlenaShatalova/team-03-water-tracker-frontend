@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAddWaterModalOpen } from "../../redux/modal/selectors";
-import { openModal } from "../../redux/modal/slice";
+import { selectIsAddWaterModalOpen } from "../../redux/water/waterSelectors";
+import { openModal } from "../../redux/water/waterSlice";
 import css from "./AddWaterButton.module.css";
 import AddWaterModal from "../AddWaterModal/AddWaterModal";
 
