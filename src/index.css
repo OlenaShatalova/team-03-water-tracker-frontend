@@ -11,8 +11,8 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #fff;
-  color: #2f2f2f;
+  --color-bg-light: #fff;
+  --color-text-light: #2f2f2f;
 }
 
 body.dark {
@@ -72,10 +72,8 @@ button {
 
 .signInUpPages {
   min-height: 100vh;
-  background: url('./assets/images/desk-bottleForSignin.png') no-repeat bottom
-      40px left,
-    url('./assets/images/desk-backgroundElementMainPage.png') no-repeat bottom
-      right 20px;
+  background: var(--bg-bottle-desktop-home) no-repeat bottom 40px left,
+    var(--bg-image-desktop-home) no-repeat bottom right 20px;
   background-size: auto;
 
   padding-top: 24px;
@@ -85,6 +83,8 @@ button {
 
 @media screen and (min-width: 768px) {
   .signInUpPages {
+    background: var(--bg-bottle-tablet-home) no-repeat bottom left,
+      var(--bg-image-tablet-home) no-repeat bottom right;
     padding-top: 40px;
     padding-bottom: 248px;
   }
@@ -92,6 +92,8 @@ button {
 
 @media screen and (min-width: 1440px) {
   .signInUpPages {
+    background: var(--bg-bottle-desktop-home) no-repeat bottom left,
+      var(--bg-image-desktop-home) no-repeat bottom right;
     padding-top: 162px;
     padding-bottom: 266px;
     padding-left: 840px;
