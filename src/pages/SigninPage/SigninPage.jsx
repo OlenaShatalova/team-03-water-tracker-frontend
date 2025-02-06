@@ -35,8 +35,7 @@ const loginFields = [
 const SigninPage = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (formValue, formAction) => {
-    console.log(formValue, formAction);
+  const handleSubmit = formValue => {
     dispatch(login(formValue));
 
     // formAction.resetForm();
