@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import css from "./AddWaterModal.module.css"
-import { selectIsAddWaterModalOpen } from "../../redux/modal/selectors";
-import { closeModal } from "../../redux/modal/slice";
+import { selectIsAddWaterModalOpen } from "../../redux/water/waterSelectors";
+import { closeModal } from "../../redux/water/waterSlice";
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
 import { useCallback, useEffect, useId } from "react";
+import css from "./AddWaterModal.module.css"
 import Input from "../Input/Input";
+import * as Yup from "yup";
 
 const validationSchema = Yup.object({
     option: Yup.string().required("Required"),
