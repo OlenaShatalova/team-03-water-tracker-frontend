@@ -10,14 +10,14 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 //import { refreshUser } from './redux/auth/operations';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
-// const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
-// const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
-// const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
+const SigninPage = lazy(() => import('./pages/SigninPage/SigninPage'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
 // import MainPage from "./pages/MainPage/MainPage";
-import SignupPage from './pages/SignupPage/SignupPage';
-import SigninPage from './pages/SigninPage/SigninPage';
-import HomePage from './pages/HomePage/HomePage';
+// import SignupPage from './pages/SignupPage/SignupPage';
+// import SigninPage from './pages/SigninPage/SigninPage';
+// import HomePage from './pages/HomePage/HomePage';
 
 const App = () => {
   // const dispatch = useDispatch();
