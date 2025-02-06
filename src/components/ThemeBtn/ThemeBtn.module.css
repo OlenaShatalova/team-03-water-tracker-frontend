@@ -1,15 +1,17 @@
 .themeButton {
-  background-color: var(--background);
-  border: 1px solid var(--secondary-blue);
-  box-shadow: inset 0 4px 14px 0 rgba(64, 123, 255, 0.54);
-  color: var(--primary-blue);
+  background-color: var(
+    --color-secondary-3
+  ); /* ✅ Використовує глобальну змінну */
+  border: 1px solid var(--color-primary); /* ✅ primary-blue замінено */
+  box-shadow: var(--shadow-primary); /* ✅ Додає змінну для тіні */
+  color: var(--color-text); /* ✅ primary-blue замінено */
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 10px;
   border-radius: 20px;
   width: 56px;
-  cursor: var(--cursor-h);
+  cursor: var(--cursor-hover); /* ✅ cursor-h замінено */
   position: relative;
   overflow: hidden;
 }
@@ -33,13 +35,13 @@
 
 .themeButton:active {
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  cursor: var(--cursor-a);
+  cursor: var(--cursor-active);
 }
 
-.themeButton:hover .icon {
-  color: var(--secondary-orange);
+.themeButton:hover.icon {
+  color: var(--color-accent-orange);
 }
 
 .themeButton:hover {
-  border: solid 1px var(--secondary-orange);
+  border: solid 1px var(--color-accent-orange);
 }
