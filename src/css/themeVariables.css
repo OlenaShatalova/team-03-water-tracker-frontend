@@ -59,7 +59,7 @@
   --cursor-active: var(--cursor-pointer-light-active);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: var(--color-bg-dark);
     --color-text: var(--color-text-dark);
@@ -77,7 +77,7 @@
     --cursor-hover: var(--cursor-pointer-dark-hover);
     --cursor-active: var(--cursor-pointer-dark-active);
   }
-}
+} */
 
 body {
   background-color: var(--color-bg);
