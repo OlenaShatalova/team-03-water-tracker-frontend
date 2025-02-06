@@ -1,0 +1,95 @@
+.waterTrackerTitle {
+  font-size: 28px;
+  line-height: 1.14;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.waterTrackerSubtitle {
+  font-size: 24px;
+  line-height: 1.25;
+  margin-bottom: 24px;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.benefitsTitle {
+  font-size: 18px;
+  line-height: 1.12;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.benefitsItem {
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.benefitsBox {
+  margin-bottom: 24px;
+}
+
+.tryTrackerBtn {
+  padding: 8px 30px;
+  width: 280px;
+  height: 36px;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  color: var(--color-bg);
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.waterTrackerContainer {
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .waterTrackerTitle {
+    font-size: 36px;
+    line-height: 1.17;
+  }
+  .waterTrackerSubtitle {
+    font-size: 26px;
+    line-height: 1.23;
+  }
+  .benefitsList {
+    flex-direction: row;
+  }
+  .tryTrackerBtn {
+    padding: 10px 30px;
+    width: 336px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+  .waterTrackerContainer {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .benefitsList {
+    flex-direction: column;
+  }
+  .benefitsBox {
+    margin-bottom: 24px;
+  }
+
+  .tryTrackerBtn {
+    width: 384px;
+  }
+  .waterTrackerContainer {
+    margin-bottom: 0;
+  }
+}
