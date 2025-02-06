@@ -10,28 +10,9 @@
   height: 48px;
 }
 
-.signIn {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #407bff;
-}
-
-.iconMen {
-  height: 28px;
-}
-
 @media screen and (min-width: 768px) {
   .header {
     padding-top: 16px;
-  }
-
-  .signIn {
-    font-size: 18px;
-    line-height: 1.33333;
   }
 }
 /*
