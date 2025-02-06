@@ -47,6 +47,7 @@ const registerFields = [
 const SignupPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const authError = useSelector(selectAuthError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -65,12 +66,13 @@ const SignupPage = () => {
   const handleSubmit = (formValues, formActions) => {
     const userData = { email: formValues.email, password: formValues.password };
 
-    console.log('Data sent to server:', userData); // Додано для діагностики
+    // console.log('Data sent to server:', userData);
+    // Додано для діагностики
 
     dispatch(register(userData)) // Виправлено: тепер відправляємо очищені дані
       .unwrap()
       .then(() => {
-        console.log('Registration successful!');
+        // console.log('Registration successful!');
         navigate('/signin'); // Переадресація на сторінку входу
       })
       .catch(error => {
