@@ -12,7 +12,6 @@ const MainPage = () => {
           <WhyDrinkWater />
         </div>
       </Container>
-      ;
     </main>
   );
 };
