@@ -3,8 +3,11 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import RestrictedRoute from './components/RestrictedRoute';
 import PrivateRoute from './components/PrivateRoute';
-import LoaderFallback from './components/LoaderFallback/LoaderFallback';
+
 import SharedLayout from './components/SharedLayout/SharedLayout';
+//import { useDispatch, useSelector } from 'react-redux';
+//import { selectIsRefreshing } from './redux/auth/selectors';
+//import { refreshUser } from './redux/auth/operations';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
@@ -17,33 +20,54 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 // import HomePage from './pages/HomePage/HomePage';
 
 const App = () => {
+  // const dispatch = useDispatch();
+  // const isRefreshing = useSelector(selectIsRefreshing);
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
   return (
-    <Suspense fallback={<LoaderFallback />}>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Navigate to="/welcome" />} />
-          <Route path="welcome" element={<MainPage />} />
-          <Route
-            path="signup"
-            element={
+    //isRefreshing ?
+    //  <p>Refreshing...</p>
+    // ) : (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Navigate to="/welcome" />} />
+        <Route
+          path="welcome"
+          element={
+            <Suspense fallback={<div>Add LOADER...</div>}>
+              <MainPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="signup"
+          element={
+            <Suspense fallback={<div>Add LOADER...</div>}>
               <RestrictedRoute redirectTo="/home" component={<SignupPage />} />
-            }
-          />
-          <Route
-            path="signin"
-            element={
+            </Suspense>
+          }
+        />
+        <Route
+          path="signin"
+          element={
+            <Suspense fallback={<div>Add LOADER...</div>}>
               <RestrictedRoute redirectTo="/home" component={<SigninPage />} />
-            }
-          />
-          <Route
-            path="home"
-            element={
+            </Suspense>
+          }
+        />
+        <Route
+          path="home"
+          element={
+            <Suspense fallback={<div>Add LOADER...</div>}>
               <PrivateRoute redirectTo="/signin" component={<HomePage />} />
-            }
-          />
-        </Route>
-      </Routes>
-    </Suspense>
+            </Suspense>
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 
