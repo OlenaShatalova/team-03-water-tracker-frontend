@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { store } from '../redux/store';
 
 // Створення екземпляру Axios
 const api = axios.create({
@@ -6,43 +7,34 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Інтерсептор для відповіді
-api.interceptors.response.use(
-  response => {
-    // Якщо сервер повернув токен після логінізації чи реєстрації
-    const {
-      data: { data },
-    } = response;
-    console.log({ data });
-
-    if (data.accessToken) {
-      // Записуємо токен в Local Storage
-      localStorage.setItem('userToken', data.accessToken);
-    }
-
-    return response;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
-
 // Інтерсептор для запитів
 api.interceptors.request.use(config => {
-  // Якщо є токен, додаємо його до заголовка Authorization
-  const token = localStorage.getItem('userToken');
+  const state = store.getState(); // Отримуємо стан Redux
+  const token = state.auth.token; // Токен беремо з Redux
+  console.log({ state, token });
+
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
   }
-
-  console.log(token, config);
 
   // Якщо запит використовує Multipart, змінюємо заголовок
   if (config.headers['Content-Type'] === 'multipart/form-data') {
     config.headers['Authorization'] = `Bearer ${token}`; // Додаємо токен для multipart запитів
   }
 
+  // console.log(token, config);
   return config;
 });
+
+// Інтерсептор для відповіді
+api.interceptors.response.use(
+  response => {
+    // console.log(response);
+    return response;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
 
 export default api;
