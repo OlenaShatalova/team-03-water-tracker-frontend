@@ -1,19 +1,10 @@
-import React, { useState } from 'react';
-import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
-import css from './UserLogoModal.module.css';
+import React from 'react';
 
-const UserLogoModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
+const UserLogoModal = ({ onClose, user }) => {
   return (
-    <div className={css.container}>
-      <button className={css.logoutButton} onClick={openModal}>
-        Logout
-      </button>
-      {isModalOpen && <UserLogoutModal onClose={closeModal} />}
+    <div>
+      {/* <p>Hello, {user.name || user.email}!</p>
+      <button onClick={onClose}>Close</button> */}
     </div>
   );
 };
