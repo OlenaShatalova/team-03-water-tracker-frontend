@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
-import UserAvatar from '../SettingModal/UserAvatar/UserAvatar';
 
 import dropdownIcon from '../../assets/icons/jhh.svg';
 
