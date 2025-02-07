@@ -1,0 +1,65 @@
+.dailyWaterWrapper {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    border-bottom: 1px solid var(--color-accent-light-blue);
+}
+
+.dailyWaterVolume {
+    font-size: 18px;
+    line-height: 1.33;
+    text-align: right;
+    margin-left: auto;
+    color: var(--color-primary-light);
+}
+
+.dailyWaterTime {
+    line-height: 2;
+    font-size: 12px;
+    color: var(--color-text-light);
+}
+
+.dailyWaterDataWrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+    gap: 12px;
+}
+
+.dailyWaterBtnWrapper {
+    display: flex;
+    margin-right: 0;
+    gap: 18px;
+}
+
+.dailyWaterEditBtn {
+    fill: none;
+    border: none;
+    stroke: var(--color-secondary-light-3);
+    background-color: transparent;
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.dailyWaterEditBtn:hover {
+    border-bottom: 1px solid var(--color-secondary-light-3);
+}
+
+.dailyWaterDeleteBtn {
+    fill: none;
+    border: none;
+    stroke: var(--color-secondary-light-2);
+    background-color: transparent;
+}
+
+.dailyWaterDeleteBtn:hover {
+    border-bottom: 1px solid var(--color-secondary-light-2);
+}
+
+@media (min-width: 768px) {
+    .dailyWaterWrapper {
+        height: 60px;
+    }
+}
+
+@media (min-width: 1440px) {}

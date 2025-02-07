@@ -1,0 +1,1 @@
+export const selectWaterRecordsToday = (state) => state.water.waterRecords || [];
