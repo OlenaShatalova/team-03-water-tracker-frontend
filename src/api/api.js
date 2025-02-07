@@ -4,6 +4,7 @@ import { store } from '../redux/store';
 // Створення екземпляру Axios
 const api = axios.create({
   baseURL: 'https://watertracker-app-if0o.onrender.com/api',
+  // baseURL: 'http://localhost:3000/api/',
   headers: { 'Content-Type': 'application/json' },
 });
 
