@@ -12,7 +12,7 @@ const api = axios.create({
 api.interceptors.request.use(config => {
   const state = store.getState(); // Отримуємо стан Redux
   const token = state.auth.token; // Токен беремо з Redux
-  console.log({ state, token });
+  console.log({ state });
 
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchWaterPerMonth } from './waterOperations';
+import { fetchWaterPerMonth, fetchWaterRate } from './waterOperations';
 
 const localDate = () => {
   const milliseconds = Date.now();
@@ -32,7 +32,10 @@ const waterSlice = createSlice({
     error: null,
     activeDay: localDate(),
     currentDate: Date.now(),
-    // isWaterRateModalOpen: false,
+
+    isWaterRateOpen: false,
+    waterRate: 0,
+    isAddWaterOpen: false,
   },
   reducers: {
     setActiveDay(state, action) {
@@ -41,6 +44,15 @@ const waterSlice = createSlice({
     setCurrentDate(state, action) {
       state.currentDate = action.payload;
     },
+    openModal: (state, action) => {
+      state[action.payload] = true;
+    },
+    closeModal: (state, action) => {
+      state[action.payload] = false;
+    },
+    // setWaterRate: (state, action) => {
+    //   state.waterRate = action.payload;
+    // },
   },
   extraReducers: builder => {
     builder
@@ -50,9 +62,20 @@ const waterSlice = createSlice({
         state.error = null;
         state.waters.waterPerMonth = action.payload;
       })
-      .addCase(fetchWaterPerMonth.rejected, handleError);
+      .addCase(fetchWaterPerMonth.rejected, handleError)
+      .addCase(fetchWaterRate.pending, handleLoading)
+      .addCase(fetchWaterRate.fulfilled, (state, action) => {
+        state.waterRate = action.payload;
+      })
+      .addCase(fetchWaterRate.rejected, handleError);
   },
 });
 
 export const waterReducer = waterSlice.reducer;
-export const { setActiveDay, setCurrentDate } = waterSlice.actions;
+export const {
+  setActiveDay,
+  setCurrentDate,
+  openModal,
+  closeModal,
+  // setWaterRate,
+} = waterSlice.actions;

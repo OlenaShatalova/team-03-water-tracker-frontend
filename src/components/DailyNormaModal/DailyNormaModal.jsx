@@ -1,23 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsWaterRateModalOpen } from "../../redux/modal/selectors"
-import { closeModal } from "../../redux/modal/slice";
-import { useCallback, useEffect, useId } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { selectIsWaterRateModalOpen } from "../../redux/water/waterSelectors"
+import { closeModal } from "../../redux/water/waterSlice";
+import { useCallback, useEffect } from "react";
+import DailyNormaModalForm from "../DailyNormaModalForm/DailyNormaModalForm";
 import css from "./DailyNormaModal.module.css"
-import Input from "../Input/Input";
 
-const validationSchema = Yup.object({
-    option: Yup.string().required("Required"),
-});
 
 const DailyNormaModal = () => {
-    const womanBtnId = useId();
-    const manBtnId = useId();
-    const kgId = useId();
-    const sportTimes = useId();
-    const howMuchWater = useId();
-
     const dispatch = useDispatch();
     const isOpen = useSelector(selectIsWaterRateModalOpen);
     const onModalClose = useCallback(() => {
@@ -62,62 +51,7 @@ const DailyNormaModal = () => {
                     </div>
                 </div>
 
-                <Formik
-                    initialValues={{ option: "" }}
-                    validationSchema={validationSchema}
-                    onSubmit={(values) => {
-                        console.log(values.kg)
-                    }}
-                >
-                    {/* {({ values }) => ( */}
-                    <Form>
-                        <div>
-                            <p className={css.subTitle}>Calculate your rate:</p>
-                            <div className={css.radioContainer}>
-                                <div className={css.radio}>
-                                    <Field className={css.radioButton} type="radio" name="option" value="For woman" id={womanBtnId} />
-                                    <label htmlFor={womanBtnId}>For woman</label>
-                                </div>
-
-                                <div className={css.radio}>
-                                    <Field className={css.radioButton} type="radio" name="option" value="For man" id={manBtnId} />
-                                    <label htmlFor={manBtnId}>For man</label>
-                                </div>
-                            </div>
-                            <ErrorMessage name="option" component="span" style={{ color: "red" }} />
-                        </div>
-
-                        <div className={css.containerForQuestion}>
-                            <label htmlFor={kgId}>Your weight in kilograms:</label>
-                            {/* <Field type="number" name="kg" id={kgId} /> */}
-                            <Input placeholder={0} type="number" name="kg" id={kgId} />
-                            <ErrorMessage name="kg" component="span" style={{ color: "red" }} />
-                        </div>
-
-                        <div className={css.containerForQuestion}>
-                            <label htmlFor={sportTimes}>The time of active participation in sports or other activities with a high physical. load in hours:</label>
-                            {/* <Field type="number" name="sportTimes" id={sportTimes} /> */}
-                            < Input placeholder={0} type="number" name="sportTimes" id={sportTimes} />
-                            <ErrorMessage name="sportTimes" component="span" style={{ color: "red" }} />
-                        </div>
-
-                        <div className={css.containerForWater}>
-                            <p className={css.textWidth}>The required amount of water in liters per day:</p>
-                            <p className={css.valueOfWater}>1.8 L</p>
-                        </div>
-
-                        <div>
-                            <label className={css.subTitle} htmlFor={howMuchWater}>Write down how much water you will drink:</label>
-                            {/* <Field type="number" name="howMuchWater" id={howMuchWater} /> */}
-                            <Input placeholder={0} type="number" name="howMuchWater" id={howMuchWater} />
-                        </div>
-
-
-                        <button className={css.button} type="submit">Save</button>
-                    </Form>
-                    {/* )} */}
-                </Formik>
-
+                <DailyNormaModalForm />
 
             </div>
         </div>
