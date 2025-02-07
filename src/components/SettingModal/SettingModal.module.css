@@ -10,7 +10,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: var(--color-bg);
   border-radius: 10px;
   width: 280px;
   max-height: 90vh;
@@ -34,11 +34,11 @@
   outline: none;
   border: none;
   background-color: inherit;
-  color: #2f2f2f;
+  color: var(--color-text);
 }
 
 .closeIcon svg:hover {
-  color: #407bff;
+  color: var(--color-primary);
 }
 
 .photoTtl {
@@ -64,11 +64,11 @@
 }
 
 .uploadLink:hover {
-  color: #407bff;
+  color: var(--color-primary);
 }
 
 .uploadIcon svg:hover {
-  stroke: #407bff;
+  stroke: var(--color-primary);
 }
 
 .uploadText {
@@ -87,14 +87,13 @@
   padding: 8px;
   width: 100%;
   height: 36px;
-  background-color: #407bff;
-  color: #ffffff;
+  background-color: var(--color-primary);
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   border: transparent;
 }
 
 .saveBtn:hover {
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  box-shadow: var(--shadow-light-primary);
 }
 
 @media screen and (min-width: 768px) {

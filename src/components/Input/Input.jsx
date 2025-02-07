@@ -12,6 +12,9 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
   const [inputValue, setInputValue] = useState(''); // Зберігає реальне значення введеного тексту
   const [displayValue, setDisplayValue] = useState(''); // Для відображення тексту або зірочок
 
+  // const { errors } = useFormikContext();
+  // const hasError = errors[name];
+
   const isPwdField = type === 'password';
 
   useEffect(() => {
@@ -37,7 +40,7 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
       setDisplayValue(value); // Показуємо введене значення як текст
     }
   };
-
+  // hasError && css.errorLabel
   return (
     <>
       <label className={css.label}>
