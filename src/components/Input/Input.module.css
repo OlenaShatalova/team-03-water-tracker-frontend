@@ -9,26 +9,36 @@
 }
 
 .input {
-  border: 1px solid #9ebbff;
+  border: 1px solid var(--color-accent-blue);
   border-radius: 6px;
   padding: 12px 10px;
   width: 100%;
   height: 44px;
   outline: none;
+  background-color: var(--color-bg);
+}
+
+.label input {
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
 }
 
 .label input::placeholder {
-  font-size: 16px;
-  line-height: 125%;
-  color: #9ebbff;
-  letter-spacing: -0.01em;
+  color: var(--color-secondary-3);
 }
+
+/* .errorLabel .input {
+  border: 1px solid var(--color-secondary-2);
+  color: var(--color-secondary-2);
+} */
 
 .error {
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: #ef5050;
+  color: var(--color-secondary-2);
 }
 
 .iconEye {
@@ -36,11 +46,11 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 .iconEye svg {
   width: 20px;
   height: 20px;
-  color: #407bff;
+  color: var(--color-primary);
 }

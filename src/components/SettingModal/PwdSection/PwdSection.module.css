@@ -1,48 +1,25 @@
 .sectWrapper {
   margin-top: 24px;
   margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.span {
-  display: block;
-  margin-bottom: 8px;
-  margin-top: 12px;
+.pwdTtl {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
 }
 
-.pwdInputWrapper {
-  position: relative;
-}
-
-.pwdInput {
-  outline: transparent;
-  border: 1px solid #d7e3ff;
-  border-radius: 6px;
-  padding: 12px 10px;
-  width: 256px;
-  line-height: 125%;
-  color: #407bff;
-}
-
-.pwdInput::placeholder {
-  color: #9ebbff;
-}
-
-.eyeBtn {
-  position: absolute;
-  left: 230px;
-  top: 45%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
+.sectWrapper > label {
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 @media screen and (min-width: 768px) {
-  .pwdInput {
+  .sectWrapper > label {
     width: 392px;
-  }
-
-  .eyeBtn {
-    left: 366px;
   }
 }
 
