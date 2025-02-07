@@ -3,7 +3,7 @@ import css from './GenderIdentity.module.css';
 
 const GenderIdentity = () => {
   return (
-    <div className={css.sectWrapper}>
+    <div>
       <h3 className={css.genderTtl}>Your gender identity</h3>
       <label>
         <Field type="radio" name="gender" value="woman" />

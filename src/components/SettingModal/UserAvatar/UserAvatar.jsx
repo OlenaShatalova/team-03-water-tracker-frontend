@@ -1,7 +1,7 @@
-import css from "./UserAvatar.module.css";
-
+import css from './UserAvatar.module.css';
+// { name, photo }
 const UserAvatar = () => {
-  //   const getInitial = (name) => (name ? name.charAt(0).toUpperCase() : "?");
+  // const getInitial = name => (name ? name.charAt(0).toUpperCase() : '?');
 
   return (
     <div className={css.userAvatar}>
