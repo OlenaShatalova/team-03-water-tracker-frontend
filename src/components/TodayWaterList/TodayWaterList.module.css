@@ -1,5 +1,82 @@
-.title {
+.todayWaterListSectionWrapper {
+    height: 258px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;  
+}
+
+.todayWaterListWrapper {
+    width: 100%;
+}
+
+.todayWaterListHeader {
     font-weight: 500;
-    font-size: 24px;
-    line-height: 125%;
+    line-height: 1.25;
+    padding-top: 0;
+    padding-left: 0;
+    margin-bottom: 16px;
+}
+
+.todayWaterListBtn {
+    height: 20px;
+    width: 97px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--color-primary-light);
+    border: none;
+    background-color: transparent;
+    transition: color 0.3s ease-in-out;
+}
+
+.plusIcon {
+    stroke: var(--color-primary-light);
+    fill: currentColor;
+    transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out;
+}
+
+.todayWaterListBtn:hover {
+    color: var(--color-accent-light-orange);
+}
+
+.todayWaterListBtn:hover .plusIcon {
+    stroke: var(--color-accent-light-orange); 
+}
+
+.scrollableList {
+    max-height: 180px;
+    margin-bottom: 12px;
+    padding-right: 4px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary-light-3) transparent;
+}
+
+.scrollableList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scrollableList::-webkit-scrollbar-thumb {
+    background: var(--color-secondary-light-3);
+    border-radius: 8px;
+}
+
+.scrollableList::-webkit-scrollbar-track {
+    background: 2px solid var(--color-accent-light-blue);
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1440px) {
+   
 }
