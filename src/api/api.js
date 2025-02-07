@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { store } from '../redux/store';
+import { logout, refreshUser } from '../redux/auth/operations';
 
 // Створення екземпляру Axios
 const api = axios.create({
@@ -24,16 +25,54 @@ api.interceptors.request.use(config => {
   }
 
   // console.log(token, config);
+  console.log('[REQUEST] Sending request to:', config.url);
+  console.log('[REQUEST] Current token:', token);
   return config;
 });
 
 // Інтерсептор для відповіді
 api.interceptors.response.use(
   response => {
-    // console.log(response);
+    console.log('[RESPONSE] Success:', response.config.url, response.status);
+
     return response;
   },
-  error => {
+  async error => {
+    console.log(
+      '[ERROR] Response error:',
+      error.response?.status,
+      error.config?.url
+    );
+
+    const originalRequest = error.config;
+
+    // Якщо токен невалідний і запит ще не був повторений
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      console.log('[REFRESH] Token expired, trying to refresh...');
+
+      originalRequest._retry = true;
+      try {
+        const { payload } = await store.dispatch(refreshUser());
+
+        if (payload?.accessToken) {
+          console.log(
+            '[REFRESH] Token refreshed successfully:',
+            payload.accessToken
+          );
+
+          originalRequest.headers[
+            'Authorization'
+          ] = `Bearer ${payload.accessToken}`;
+          return api(originalRequest); // Повторюємо оригінальний запит
+        }
+      } catch (refreshError) {
+        console.log('[REFRESH] Token refresh failed, logging out...');
+
+        store.dispatch(logout()); // Якщо рефреш не вдався – вихід з акаунту
+        return Promise.reject(refreshError);
+      }
+    }
+
     return Promise.reject(error);
   }
 );

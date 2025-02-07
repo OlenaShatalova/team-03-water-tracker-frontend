@@ -90,19 +90,33 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 //   }
 // );
 
+// export const refreshUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const savedToken = localStorage.getItem('userToken');
+//     if (!savedToken) {
+//       return thunkAPI.rejectWithValue('Token does not exist!');
+//     }
+//     try {
+//       // Якщо токен є, додаємо його в заголовок автоматично через інтерсептор
+//       const { data } = await api.get('/users/current');
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const savedToken = localStorage.getItem('userToken');
-    if (!savedToken) {
-      return thunkAPI.rejectWithValue('Token does not exist!');
-    }
     try {
-      // Якщо токен є, додаємо його в заголовок автоматично через інтерсептор
-      const { data } = await api.get('/users/current');
-      return data;
+      const response = await api.post('/auth/refresh');
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Token does not exist!'
+      );
     }
   }
 );
