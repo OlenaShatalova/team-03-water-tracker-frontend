@@ -72,16 +72,18 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.isRefreshing = false;
+        // state.isRefreshing = false;
+        // state.loading = false;
         state.isLoggedIn = true;
-        state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.accessToken;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        state.isRefreshing = false;
-        state.loading = false;
-        state.error = action.payload;
+        // state.isRefreshing = false;
+        // state.loading = false;
+        // state.error = action.payload;
+        state.token = null;
+        state.isLoggedIn = false;
       });
   },
 });
