@@ -68,6 +68,7 @@ ol {
 button {
   padding: 0;
   cursor: pointer;
+  color: white;
 }
 
 .signInUpPages {

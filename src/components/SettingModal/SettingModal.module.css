@@ -13,7 +13,9 @@
   background-color: #ffffff;
   border-radius: 10px;
   width: 280px;
+  max-height: 90vh;
   padding: 32px 12px;
+  overflow: auto;
 }
 
 .titleWrapper {
@@ -22,18 +24,28 @@
   margin-bottom: 24px;
 }
 
+.mainTtl {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 123%;
+}
+
 .closeBtn {
   outline: none;
   border: none;
   background-color: inherit;
+  color: #2f2f2f;
 }
 
 .closeIcon svg:hover {
   color: #407bff;
 }
 
-.blockTtl {
+.photoTtl {
   margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
 }
 
 .photoWrapper {
@@ -48,6 +60,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 129%;
+  gap: 8px;
 }
 
 .uploadLink:hover {
@@ -60,30 +73,18 @@
 
 .uploadText {
   font-weight: 500;
-  margin-left: 8px;
+  line-height: 129%;
 }
 
-.sectWrapper {
+.userDetailsWrapper > label {
+  font-weight: 500;
+  line-height: 1.11;
   margin-top: 24px;
-}
-
-.textInput {
-  outline: transparent;
-  border: 1px solid #d7e3ff;
-  border-radius: 6px;
-  padding: 12px 10px;
-  width: 256px;
-  line-height: 125%;
-  color: #407bff;
-}
-
-.textInput::placeholder {
-  color: #9ebbff;
 }
 
 .saveBtn {
   border-radius: 10px;
-  padding: 8px auto;
+  padding: 8px;
   width: 100%;
   height: 36px;
   background-color: #407bff;
@@ -102,22 +103,18 @@
     width: 704px;
   }
 
-  .eyeBtn {
-    left: 366px;
+  .userDetailsWrapper > label {
+    width: 392px;
   }
 
   .saveBtn {
-    padding: 10px auto;
+    padding: 10px;
     width: 160px;
   }
 
   .saveBtnWrpr {
     display: flex;
     justify-content: flex-end;
-  }
-
-  .textInput {
-    width: 392px;
   }
 }
 
@@ -127,14 +124,13 @@
     height: 592px;
   }
 
-  .sectWrapper:not(:last-child) {
+  .userDetailsWrapper > label:first-of-type {
     margin-top: 52px;
   }
 
-  .userDetailsWrapper {
+  .userDetailsAndPwd {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    align-items: start;
     gap: 24px;
     margin-bottom: 24px;
   }

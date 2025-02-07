@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Field, ErrorMessage } from 'formik';
+import { useEffect, useState } from 'react';
+import { ErrorMessage, Field } from 'formik';
 import { ReactSVG } from 'react-svg';
 
 import eye from '../../assets/icons/eye.svg';
@@ -8,13 +8,35 @@ import eyeSlash from '../../assets/icons/eyeSlash.svg';
 import css from './Input.module.css';
 
 const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
-  const [showPassword, setShowPassword] = useState();
+  const [showPassword, setShowPassword] = useState(false);
+  const [inputValue, setInputValue] = useState(''); // Зберігає реальне значення введеного тексту
+  const [displayValue, setDisplayValue] = useState(''); // Для відображення тексту або зірочок
+
+  const isPwdField = type === 'password';
+
+  useEffect(() => {
+    if (isPwdField) {
+      setDisplayValue();
+      showPassword ? inputValue : '*'.repeat(inputValue.length);
+    }
+  }, [showPassword, inputValue, isPwdField]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const inputType = type === 'password' && showPassword ? 'text' : type;
+  const handleInputChange = evt => {
+    const value = evt.target.value;
+    setInputValue(value); // Оновлюємо реальне значення
+    // console.log(inputValue);
+
+    // Якщо пароль прихований, показуємо зірочки, якщо відкритий - текст
+    if (isPwdField && !showPassword) {
+      setDisplayValue('*'.repeat(value.length)); // Маскуємо зірочками
+    } else {
+      setDisplayValue(value); // Показуємо введене значення як текст
+    }
+  };
 
   return (
     <>
@@ -22,11 +44,13 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
         <span>{label}</span>
         <div style={{ position: 'relative', width: '100%' }}>
           <Field
-            type={inputType}
+            type="text"
             name={name}
             placeholder={placeholder}
             className={css.input}
             autoFocus={autoFocus}
+            value={displayValue} // Відображаємо або текст, або зірочки
+            onChange={handleInputChange} // Оновлюємо значення при зміні
             // autoComplete={name}
           />
           {/* Іконка для перемикання видимості пароля */}

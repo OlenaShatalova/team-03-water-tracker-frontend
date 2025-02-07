@@ -9,7 +9,7 @@
 }
 
 .input {
-  border: 1px solid #9ebbff;
+  border: 1px solid #d7e3ff;
   border-radius: 6px;
   padding: 12px 10px;
   width: 100%;
@@ -17,11 +17,15 @@
   outline: none;
 }
 
-.label input::placeholder {
+.label input {
   font-size: 16px;
   line-height: 125%;
-  color: #9ebbff;
+  color: #407bff;
   letter-spacing: -0.01em;
+}
+
+.label input::placeholder {
+  color: #9ebbff;
 }
 
 .error {
@@ -36,7 +40,7 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 .iconEye svg {
