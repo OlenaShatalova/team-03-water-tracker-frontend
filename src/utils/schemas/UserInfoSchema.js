@@ -14,4 +14,7 @@ export const UserInfoSchema = Yup.object({
   password: Yup.string()
     .min(8, 'Password must be at least 8 symbols')
     .max(64, 'Password must be at most 64 symbols'),
+  repeatPassword: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Repeat password is required'),
 });
