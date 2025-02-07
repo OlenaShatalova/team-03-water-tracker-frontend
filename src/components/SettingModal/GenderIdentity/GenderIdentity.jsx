@@ -6,12 +6,12 @@ const GenderIdentity = () => {
     <div>
       <h3 className={css.genderTtl}>Your gender identity</h3>
       <label>
-        <Field type="radio" name="gender" value="woman" />
-        <span className={css.spanGender}>Woman</span>
+        <Field type="radio" name="gender" value="female" />
+        <span className={css.spanGender}>Female</span>
       </label>
       <label style={{ marginLeft: '24px' }}>
-        <Field type="radio" name="gender" value="man" />
-        <span className={css.spanGender}>Man</span>
+        <Field type="radio" name="gender" value="male" />
+        <span className={css.spanGender}>Male</span>
       </label>
     </div>
   );

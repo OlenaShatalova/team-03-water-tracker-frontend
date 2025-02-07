@@ -100,8 +100,8 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
           <Field
             type={inputType}
             name={name}
-            placeholder={placeholder}
             className={css.input}
+            placeholder={placeholder}
             autoFocus={autoFocus}
             // autoComplete={name}
           />

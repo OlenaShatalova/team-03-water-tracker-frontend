@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const emailRegexp = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
 
 export const UserInfoSchema = Yup.object({
-  gender: Yup.string().oneOf(['man', 'woman']),
+  gender: Yup.string().oneOf(['male', 'female']),
   name: Yup.string().max(32, 'Name must be at most 32 symbols'),
   email: Yup.string()
     .matches(emailRegexp, 'Invalid email address')

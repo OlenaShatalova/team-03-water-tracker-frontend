@@ -1,27 +1,27 @@
 import css from './SettingModal.module.css';
 
 import { Form, Formik } from 'formik';
-import { ReactSVG } from 'react-svg';
 import { useEffect } from 'react';
-// import { useState } from 'react';
-
-import UserAvatar from './UserAvatar/UserAvatar';
+import { ReactSVG } from 'react-svg';
 
 import close from '../../assets/icons/close.svg';
 import upload from '../../assets/icons/upload.svg';
 
+import UserAvatar from './UserAvatar/UserAvatar';
 import GenderIdentity from './GenderIdentity/GenderIdentity';
 import PwdSection from './PwdSection/PwdSection';
 import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
 import Input from '../Input/Input';
 
 const INITIAL_VALUES = {
-  gender: 'man',
+  gender: 'female',
   name: '',
   email: '',
   oldpassword: '',
   password: '',
 };
+
+//Створити userConfig
 
 const SettingModal = ({ onCloseModal }) => {
   // const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,6 +76,7 @@ const SettingModal = ({ onCloseModal }) => {
               <ReactSVG src={close} className={css.closeIcon} />
             </button>
           </div>
+
           <h3 className={css.photoTtl}>Your photo</h3>
           <div className={css.photoWrapper}>
             <UserAvatar />
@@ -84,6 +85,7 @@ const SettingModal = ({ onCloseModal }) => {
               <span className={css.uploadText}>Upload a photo</span>
             </a>
           </div>
+
           <div className={css.userDetailsAndPwd}>
             <div className={css.userDetailsWrapper}>
               <GenderIdentity />
@@ -92,6 +94,7 @@ const SettingModal = ({ onCloseModal }) => {
             </div>
             <PwdSection className={css.pwdWrapper} />
           </div>
+
           <div className={css.saveBtnWrpr}>
             <button className={css.saveBtn}>Save</button>
           </div>
