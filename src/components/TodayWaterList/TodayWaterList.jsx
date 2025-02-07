@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, closeModal } from '../../redux/modal/slice';
+// import { openModal, closeModal } from '../../redux/modal/slice';
 import DailyWaterIntake from '../DailyWaterIntake/DailyWaterIntake';
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
 
@@ -12,18 +12,22 @@ import plus from '../../assets/icons/plus.svg';
 import css from './TodayWaterList.module.css';
 
 const TodayWaterList = () => {
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
   // const isOpen = useSelector(selectIsAddWaterModalOpen);
   const isOpen = false;
 
   const waterRecords = useSelector(selectWaterRecordsToday);
 
   const handleOpenModal = () => {
-    dispatch(openModal('isAddWaterOpen'));
+    console.log('open');
+
+    // dispatch(openModal('isAddWaterOpen'));
   };
 
   const handleCloseModal = () => {
-    dispatch(closeModal('isAddWaterOpen'));
+    console.log('close');
+
+    // dispatch(closeModal('isAddWaterOpen'));
   };
 
   return (
