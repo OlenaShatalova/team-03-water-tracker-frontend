@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId, useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../redux/water/waterSlice";
-import { validationSchema } from "../../utils/validationSchemaWaterRate";
+import { validationSchema } from "../../utils/schemas/validationSchemaWaterRate";
 import { SuccessToast } from "../../utils/successToast";
 import { fetchWaterRate } from "../../redux/water/waterOperations";
 import { ErrorToast } from "../../utils/errorToast";
