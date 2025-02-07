@@ -19,7 +19,9 @@ export const register = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await api.post('/auth/register', formData);
+      const {
+        data: { data },
+      } = await api.post('/auth/register', formData);
       console.log('Data received from server:', data);
       // setToken(data.token);
       // Токен зберігається в LocalStorage інтерсептором в API
