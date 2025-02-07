@@ -19,8 +19,8 @@
 
 //   useEffect(() => {
 //     if (isPwdField) {
-//       setDisplayValue();
-//       showPassword ? inputValue : '*'.repeat(inputValue.length);
+//       setDisplayValue(
+//       showPassword ? inputValue : '*'.repeat(inputValue.length));
 //     }
 //   }, [showPassword, inputValue, isPwdField]);
 
@@ -57,7 +57,7 @@
 //             // autoComplete={name}
 //           />
 //           {/* Іконка для перемикання видимості пароля */}
-//           {type === 'password' && (
+//           {isPwdField && (
 //             <span onClick={togglePasswordVisibility} className={css.iconEye}>
 //               <ReactSVG
 //                 style={{ height: '20px' }}
