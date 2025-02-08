@@ -35,6 +35,7 @@ export default function UserLogoModal({ children }) {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '16px',
+                  backgroundColor: '#fff',
                 },
                 '& .MuiButtonBase-root': {
                   padding: '0px',
