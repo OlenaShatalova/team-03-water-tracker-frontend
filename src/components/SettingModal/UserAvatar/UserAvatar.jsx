@@ -8,8 +8,16 @@ const UserAvatar = ({ avatarUrl }) => {
   const user = useSelector(selectUser);
   const [bgColor, setBgColor] = useState(getRandomColor());
 
-  const getInitial = () =>
-    user.name ? user.name[0].toUpperCase() : user.email[0].toUpperCase();
+  const getInitial = () => {
+    if (user && user.name) {
+      return user.name[0].toUpperCase() || user.email[0].toUpperCase();
+    } else {
+      return '';
+    }
+  };
+  // user && user.name
+  //   ? user.name[0].toUpperCase()
+  //   : user.email[0].toUpperCase();
 
   function getRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
