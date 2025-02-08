@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-// import { openModal, closeModal } from '../../redux/modal/slice';
+import { selectIsAddWaterModalOpen } from "../../redux/water/waterSelectors";
+import { openModal } from "../../redux/water/waterSlice";
 import DailyWaterIntake from '../DailyWaterIntake/DailyWaterIntake';
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
 
 import { selectWaterRecordsToday } from '../../redux/today/selectors';
-// import { selectIsAddWaterModalOpen } from "../../redux/modal/selectors";
 
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
@@ -12,32 +12,22 @@ import plus from '../../assets/icons/plus.svg';
 import css from './TodayWaterList.module.css';
 
 const TodayWaterList = () => {
-  //   const dispatch = useDispatch();
-  // const isOpen = useSelector(selectIsAddWaterModalOpen);
-  const isOpen = false;
-
-  const waterRecords = useSelector(selectWaterRecordsToday);
-
-  const handleOpenModal = () => {
-    console.log('open');
-
-    // dispatch(openModal('isAddWaterOpen'));
-  };
-
-  const handleCloseModal = () => {
-    console.log('close');
-
-    // dispatch(closeModal('isAddWaterOpen'));
-  };
-
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectIsAddWaterModalOpen);
+  const onAddWaterButton = () => {
+      dispatch(openModal("isAddWaterOpen"))
+      console.log("Modal window is opened!")
+  }
+  const todayRecord = useSelector(selectWaterRecordsToday);
+  
   return (
     <div className={css.todayWaterListSectionWrapper}>
       <h2 className={css.todayWaterListHeader}>Today</h2>
 
       <div className={css.todayWaterListWrapper}>
-        {waterRecords.length > 0 && (
+        {todayRecord.length > 0 && (
           <ul className={css.scrollableList}>
-            {waterRecords.map(({ _id, waterVolume, time }) => (
+            {todayRecord.map(({ _id, waterVolume, time }) => (
               <li className={css.waterRecordDataWrapper} key={_id}>
                 <DailyWaterIntake
                   record={{ id: _id, volume: waterVolume, time: time }}
@@ -48,12 +38,12 @@ const TodayWaterList = () => {
         )}
       </div>
 
-      <button className={css.todayWaterListBtn} onClick={handleOpenModal}>
+      <button className={css.todayWaterListBtn} onClick={onAddWaterButton}>
         <ReactSVG src={plus} className={css.plusIcon} />
         Add water
       </button>
 
-      {isOpen && <AddWaterModal onClose={handleCloseModal} />}
+      {isOpen && <AddWaterModal onClose={onAddWaterButton} />}
     </div>
   );
 };
