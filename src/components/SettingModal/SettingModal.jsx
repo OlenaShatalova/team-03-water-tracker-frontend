@@ -12,6 +12,8 @@ import GenderIdentity from './GenderIdentity/GenderIdentity';
 import PwdSection from './PwdSection/PwdSection';
 import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
 import Input from '../Input/Input';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/selectors';
 
 const INITIAL_VALUES = {
   gender: 'female',
@@ -24,6 +26,8 @@ const INITIAL_VALUES = {
 //Створити userConfig
 
 const SettingModal = ({ onCloseModal }) => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
   // const onOpenModal = () => {
