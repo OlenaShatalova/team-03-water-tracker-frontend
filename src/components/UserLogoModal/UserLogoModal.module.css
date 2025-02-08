@@ -1,0 +1,48 @@
+.wrapper {
+  position: relative; /* Це допоможе правильно позиціонувати меню */
+  display: inline-block;
+}
+.UserLogoMenu {
+  border-radius: 10px;
+  padding: 16px;
+  width: 118px;
+  height: 88px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+  background: #ffffff;
+  gap: 16px;
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  margin-top: 12px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserLogoButton {
+  color: #407bff;
+  width: 86px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .UserLogoMenu {
+    top: 60%;
+    left: 50%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .UserLogoMenu {
+    top: 90%;
+    left: 50%;
+  }
+}
