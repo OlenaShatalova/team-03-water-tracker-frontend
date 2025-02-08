@@ -1,6 +1,21 @@
 .userAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  background-color: aqua;
+  background-color: random;
+}
+
+.userInitial {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.avatarImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
 }

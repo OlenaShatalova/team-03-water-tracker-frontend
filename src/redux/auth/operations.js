@@ -113,3 +113,35 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (formData, thunkAPI) => {
+    try {
+      const { data } = await api.patch('/users/current/update', formData);
+      return data;
+    } catch (error) {
+      console.error(
+        'Error response from server:',
+        error.response?.data || error.message
+      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+  async (avatar, thunkAPI) => {
+    try {
+      const { data } = await api.put('user/current/avatar', avatar);
+      return data;
+    } catch (error) {
+      console.error(
+        'Error response from server:',
+        error.response?.data || error.message
+      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);

@@ -61,6 +61,7 @@
   font-size: 14px;
   line-height: 129%;
   gap: 8px;
+  cursor: pointer;
 }
 
 .uploadLink:hover {

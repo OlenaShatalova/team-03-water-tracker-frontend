@@ -8,12 +8,21 @@ export const UserInfoSchema = Yup.object({
   email: Yup.string()
     .matches(emailRegexp, 'Invalid email address')
     .required('Email is required'),
-  oldpassword: Yup.string()
+  oldPassword: Yup.string()
     .min(8, 'Password must be at least 8 symbols')
     .max(64, 'Password must be at most 64 symbols'),
   password: Yup.string()
     .min(8, 'Password must be at least 8 symbols')
     .max(64, 'Password must be at most 64 symbols'),
+  // repeatPassword: Yup.string().when('password', {
+  //   is: password => password && password.length > 0, // Якщо поле password заповнене
+  //   then: Yup.string()
+  //     .required('Repeat password is required')
+  //     .test('passwords-match', 'Passwords must match', function (value) {
+  //       return value === this.parent.password; // Порівнюємо значення repeatPassword з password
+  //     }),
+  //   otherwise: Yup.string().notRequired(), // Якщо password не заповнене — поле repeatPassword не є обов'язковим
+  // }),
 });
 
 // Поля для логіну

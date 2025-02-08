@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, refreshUser } from './operations';
-import { setToken } from './operations'; // Adjust the import path as necessary
+import {
+  login,
+  logout,
+  refreshUser,
+  register,
+  updateAvatar,
+  updateUser,
+} from './operations';
 
 const initialState = {
   user: {
@@ -28,7 +34,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.loading = false;
         state.isLoggedIn = true;
@@ -101,6 +107,36 @@ const authSlice = createSlice({
         state.error = action.payload;
         state.token = null;
         state.isLoggedIn = false;
+      })
+      .addCase(updateUser.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+
+        state.loading = false;
+        state.error = null;
+        state.user = action.payload.user;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateAvatar.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        console.log(action.payload);
+
+        state.loading = false;
+        state.error = null;
+        state.user.avatar = action.payload.user.avatar;
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

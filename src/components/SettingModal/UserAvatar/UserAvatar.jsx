@@ -1,15 +1,44 @@
 import css from './UserAvatar.module.css';
-// { name, photo }
-const UserAvatar = () => {
-  // const getInitial = name => (name ? name.charAt(0).toUpperCase() : '?');
+import { useSelector } from 'react-redux';
+
+import { selectUser } from '../../../redux/auth/selectors';
+import { useEffect, useState } from 'react';
+
+const UserAvatar = ({ avatarUrl }) => {
+  const user = useSelector(selectUser);
+  const [bgColor, setBgColor] = useState(getRandomColor());
+
+  const getInitial = () =>
+    user.name ? user.name[0].toUpperCase() : user.email[0].toUpperCase();
+
+  function getRandomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  useEffect(() => {
+    if (!user.avatarUrl) {
+      const storedColor = localStorage.getItem(`avatarColor-${user._id}`);
+      if (storedColor) {
+        setBgColor(storedColor);
+      } else {
+        const newColor = getRandomColor();
+        localStorage.setItem(`avatarColor-${user._id}`, newColor);
+        setBgColor(newColor);
+      }
+    }
+  }, [user]);
 
   return (
-    <div className={css.userAvatar}>
-      {/* {photo ? (
-        <img src={photo} alt={`${name}'s avatar`} className={css.avatarImg} />
+    <div className={css.userAvatar} style={{ backgroundColor: bgColor }}>
+      {avatarUrl ? (
+        <img
+          src={avatarUrl}
+          alt={`${user.name || 'User'}'s avatar`}
+          className={css.avatarImg}
+        />
       ) : (
-        <div className={css.avatarImg}>{getInitial(name)}</div>
-      )} */}
+        <span className={css.userInitial}>{getInitial()}</span>
+      )}
     </div>
   );
 };

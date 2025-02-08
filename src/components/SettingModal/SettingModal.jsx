@@ -1,7 +1,8 @@
 import css from './SettingModal.module.css';
 
 import { Form, Formik } from 'formik';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import close from '../../assets/icons/close.svg';
@@ -10,35 +11,37 @@ import upload from '../../assets/icons/upload.svg';
 import UserAvatar from './UserAvatar/UserAvatar';
 import GenderIdentity from './GenderIdentity/GenderIdentity';
 import PwdSection from './PwdSection/PwdSection';
-import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
 import Input from '../Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
+
 import { selectUser } from '../../redux/auth/selectors';
+import { updateAvatar, updateUser } from '../../redux/auth/operations';
+import { ErrorToast } from '../../utils/errorToast';
+// import toast from 'react-hot-toast';
 
-const INITIAL_VALUES = {
-  gender: 'female',
-  name: '',
-  email: '',
-  oldpassword: '',
-  password: '',
-};
+// const [isModalOpen, setIsModalOpen] = useState(false);
 
-//Створити userConfig
+// const onOpenModal = () => {
+//   setIsModalOpen(true);
+//   document.body.style.overflow = 'hidden';
+// };
+
+// const onCloseModal = () => {
+//   setIsModalOpen(false);
+//   document.body.style.overflow = 'auto';
+// };
+
+// <button type="button" onClick={onOpenModal}></button>;
+// {
+//   isModalOpen && <SettingModal onCloseModal={onCloseModal} />;
+// }
 
 const SettingModal = ({ onCloseModal }) => {
-  const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const onOpenModal = () => {
-  //   setIsModalOpen(true);
-  //   document.body.style.overflow = 'hidden';
-  // };
-
-  // const onCloseModal = () => {
-  //   setIsModalOpen(false);
-  //   document.body.style.overflow = 'auto';
-  // };
+  const dispatch = useDispatch();
+  const avatarRef = useRef(null);
+  const [avatar, setAvatar] = useState();
+  const [avatarUrl, setAvatarUrl] = useState();
 
   useEffect(() => {
     const onKeyDown = evt => {
@@ -53,18 +56,47 @@ const SettingModal = ({ onCloseModal }) => {
     };
   }, [onCloseModal]);
 
-  const handleSubmit = values => {
-    console.log(values);
-  };
   const onBackdropClick = evt => {
     if (evt.target === evt.currentTarget) {
       onCloseModal();
     }
   };
 
+  const onUploadCllick = () => {
+    avatarRef.current.click(); // Відкриваємо файловий діалог
+  };
+
+  const handleChangeAvatar = e => {
+    const file = e.target.files[0];
+    const maxFileSize = 5 * 1024 * 1024;
+    if (file) {
+      if (file.size > maxFileSize) {
+        ErrorToast('Please choose a file less than 5MB');
+      } else {
+        setAvatar(file);
+        const tempUrl = URL.createObjectURL(file); //Створення тимчасового url файлу для відображення в img
+        setAvatarUrl(tempUrl);
+      }
+    }
+  };
+
+  const handleSubmit = () => {
+    // console.log(user);
+    // console.log(avatar);
+    dispatch(updateUser(user));
+    dispatch(updateAvatar(avatar));
+    // console.log(user);
+    // actions.resetForm();
+  };
+
   return (
     <Formik
-      initialValues={INITIAL_VALUES}
+      initialValues={{
+        gender: user.gender,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatarUrl,
+      }}
       validationSchema={UserInfoSchema}
       onSubmit={handleSubmit}
     >
@@ -83,10 +115,19 @@ const SettingModal = ({ onCloseModal }) => {
 
           <h3 className={css.photoTtl}>Your photo</h3>
           <div className={css.photoWrapper}>
-            <UserAvatar />
-            <a href="" className={css.uploadLink}>
+            <UserAvatar avatarUrl={avatarUrl} />
+            <input
+              ref={avatarRef} // Привʼязуємо ref до input
+              type="file"
+              accept="avatar/*"
+              style={{ display: 'none' }}
+              onChange={handleChangeAvatar}
+            />
+            <a className={css.uploadLink}>
               <ReactSVG src={upload} className={css.uploadIcon} />
-              <span className={css.uploadText}>Upload a photo</span>
+              <span className={css.uploadText} onClick={onUploadCllick}>
+                Upload a photo
+              </span>
             </a>
           </div>
 
@@ -100,7 +141,9 @@ const SettingModal = ({ onCloseModal }) => {
           </div>
 
           <div className={css.saveBtnWrpr}>
-            <button className={css.saveBtn}>Save</button>
+            <button type="submit" className={css.saveBtn}>
+              Save
+            </button>
           </div>
         </Form>
       </div>
