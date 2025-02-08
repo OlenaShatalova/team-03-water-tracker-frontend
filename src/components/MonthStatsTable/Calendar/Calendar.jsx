@@ -43,10 +43,12 @@ const Calendar = ({openModal}) => {
         return totalValue >= userWaterRate ? 100 : Math.round((totalValue / userWaterRate) * 100);
     };
     const handleDayClick = (day) => {
+        
         const formattedDay = `${String(day).padStart(2, '0')}.${String(month + 1).padStart(2, '0')}.${year}`;
         openModal();
         dispatch(setActiveDay(formattedDay));
         dispatch(fetchWaterPerDay(formattedDay));
+        
     };
     const arrayOfDays = Array.from({ length: daysInMonth(month, year) }, (_, index) => index + 1);
     useEffect(() => {
