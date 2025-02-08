@@ -16,10 +16,11 @@
   height: 100vh;
   background-image: url(../../assets/images/mob-bottleHomeScreen.png),
     url(../../assets/images/mob-backgroundElementHomeScreen.png);
-  /* max-width: 320px; */
+  max-width: 320px;
   background-size: 280px 208px, cover;
   background-repeat: no-repeat, no-repeat;
   background-position: 20px 162px, 0 0;
+  /* background-size: auto; */
 }
 
 .ratioAndButtonContainer {
@@ -52,6 +53,7 @@
       url(../../assets/images/tab-backgroundElementHomeScreen.png);
     background-size: 518px 386px, cover;
     background-position: center center, 0 0;
+    max-width: 786px;
   }
 
   .blueContainer {
@@ -91,6 +93,7 @@
       url(../../assets/images/desk-backgroundElementMainPage.png);
     background-size: 738px 548px, contain;
     background-position: 82px 32px, 0 0;
+    max-width: 1440px;
   }
 }
 
