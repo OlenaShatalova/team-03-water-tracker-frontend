@@ -29,7 +29,7 @@ const CalendarPagination = () => {
         const year = newDate.getFullYear();
         const month = newDate.getMonth() + 1;
         dispatch(setCurrentDate(newDate.getTime()));
-        dispatch(fetchWaterPerMonth({ month, year }));
+        // dispatch(fetchWaterPerMonth({ month, year }));
     };
 
 

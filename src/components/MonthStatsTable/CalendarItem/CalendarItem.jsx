@@ -1,9 +1,19 @@
-
+import { useDispatch } from 'react-redux';
+import { setActiveDay } from '../../../redux/water/waterSlice';
+import css from './CalendarItem.module.css'
 
 const CalendarItem = ({ feasibility = 0, day, isActive, onClick }) => {
     const containerStyle = {
-        backgroundColor: isActive ? '#323f47' : (feasibility < 100 ? 'rgba(50, 63, 71, 0.2)' : '#FFFFFF'),
-        color: isActive ? '#9be1a0' : '#000000'
+        backgroundColor: isActive ? '#323f47' : (feasibility < 100 ? '#fff' : '#FFFFFF'),
+        color: isActive ? '#9be1a0' : '#000000',
+        border: feasibility < 100 ? '1px solid #ff9d43' : 'none'
+    };
+const dispatch = useDispatch();
+
+
+    const handleClick = () => {
+        dispatch(setActiveDay(day));
+        onClick();
     };
 
     return (

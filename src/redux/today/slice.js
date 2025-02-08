@@ -1,49 +1,50 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { logout } from '../auth/operations';
-import { fetchWaterToday, deleteWater } from "./operations";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchWaterToday, deleteWater } from './operations';
+import { logout } from '../auth/operations'; 
 
-const handlePending = (state) => {
-  state.loading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.loading = false;
-  state.error = action.payload;
+const initialState = {
+  data: {
+    todayRecord: [],
+  },
+  loading: false,
+  error: null,
 };
 
 const waterSlice = createSlice({
   name: 'water',
-  initialState: {
-    waterRecords: [],  
-    loading: false,
-    error: null,
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchWaterToday.pending, handlePending)
+      .addCase(fetchWaterToday.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchWaterToday.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = null;
-        state.waterRecords = action.payload;  
+        state.data.todayRecord = action.payload.todayRecord;
       })
-      .addCase(fetchWaterToday.rejected, handleRejected)
-      
-      .addCase(deleteWater.pending, handlePending)
+      .addCase(fetchWaterToday.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(deleteWater.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = null;
-        const index = state.waterRecords.findIndex(  
-          (waterRecord) => waterRecord._id === action.payload._id
+        state.data.todayRecord = state.data.todayRecord.filter(
+          (record) => record._id !== action.payload._id
         );
-        state.waterRecords.splice(index, 1);  
       })
-      .addCase(deleteWater.rejected, handleRejected)
-      .addCase(logout.fulfilled, (state) => {
-        state.waterRecords = [];  
-        state.error = null;
+      .addCase(deleteWater.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(logout.fulfilled, (state) => { 
+        state.data.todayRecord = []; 
       });
   },
 });
 
-export const waterRecords = waterSlice.reducer;
+export const waterReducer = waterSlice.reducer;
