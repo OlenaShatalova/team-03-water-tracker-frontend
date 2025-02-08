@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
+import {
+  registerFields,
+  registerSchema,
+} from '../../utils/schemas/UserInfoSchema';
 import { ErrorToast } from '../../utils/errorToast';
 import { SuccessToast } from '../../utils/successToast';
 
@@ -9,27 +12,6 @@ import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import register from '../../redux/auth/operations';
 import { selectAuthError, selectIsLoggedIn } from '../../redux/auth/selectors';
-
-const registerFields = [
-  {
-    name: 'email',
-    type: 'email',
-    label: 'Email',
-    placeholder: 'E-mail',
-  },
-  {
-    name: 'password',
-    type: 'password',
-    label: 'Password',
-    placeholder: 'Password',
-  },
-  {
-    name: 'repeatPassword',
-    type: 'password',
-    label: 'Repeat password',
-    placeholder: 'Repeat password',
-  },
-];
 
 const SignupPage = () => {
   const dispatch = useDispatch();
@@ -75,7 +57,7 @@ const SignupPage = () => {
           title={'Sign Up'}
           initialValues={{ email: '', password: '', repeatPassword: '' }}
           onSubmit={handleSubmit}
-          validationSchema={UserInfoSchema}
+          validationSchema={registerSchema}
           fields={registerFields}
           btnText={'Sign Up'}
           linkTo={'/signin'}

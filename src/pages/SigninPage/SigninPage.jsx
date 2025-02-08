@@ -1,36 +1,9 @@
 import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
-
+import { loginFields } from '../../utils/schemas/UserInfoSchema';
 import { login } from '../../redux/auth/operations';
-
+import { loginSchema } from '../../utils/schemas/UserInfoSchema';
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
-
-const loginSchema = Yup.object({
-  email: Yup.string()
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: Yup.string()
-    .required('Password is required')
-    .min(8, 'Password must be at least 8 characters')
-    .max(64, 'Password must be less than 64 characters'),
-});
-
-const loginFields = [
-  {
-    name: 'email',
-    type: 'text',
-    label: 'Enter your email',
-    placeholder: 'E-mail',
-    autoFocus: 'autoFocus',
-  },
-  {
-    name: 'password',
-    type: 'password',
-    label: 'Enter your password',
-    placeholder: 'Password',
-  },
-];
 
 const SigninPage = () => {
   const dispatch = useDispatch();
