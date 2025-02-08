@@ -36,14 +36,17 @@ const UserLogoutModal = ({ onClose }) => {
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
-        <h2 className={css.title}>Delete entry</h2>
-        <p className={css.text}>Are you sure you want to delete the entry?</p>
+        <button className={css.closeButton} onClick={onClose}>
+          ✕
+        </button>
+        <h2 className={css.title}>Log out</h2>
+        <p className={css.text}>Do you really want to leave?</p>
         <div className={css.buttonWrapper}>
           <button className={css.cancelButton} onClick={onClose}>
             Cancel
           </button>
-          <button className={css.deleteButton} onClick={handleLogout}>
-            Delete
+          <button className={css.logoutButton} onClick={handleLogout}>
+            Log out
           </button>
         </div>
       </div>
