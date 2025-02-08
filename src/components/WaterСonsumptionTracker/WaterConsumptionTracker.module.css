@@ -23,10 +23,14 @@
 }
 
 .benefitsItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 16px;
   line-height: 1.25;
   font-weight: 400;
   color: var(--color-text);
+  width: 216px;
 }
 
 .benefitsList {
@@ -76,6 +80,10 @@
   .waterTrackerContainer {
     margin-bottom: 0;
   }
+  .benefitsItem {
+    width: 224px;
+    gap: 10px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -91,5 +99,8 @@
   }
   .waterTrackerContainer {
     margin-bottom: 0;
+  }
+  .benefitsItem {
+    width: 248px;
   }
 }
