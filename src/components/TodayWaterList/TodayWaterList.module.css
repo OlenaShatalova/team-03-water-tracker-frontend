@@ -74,7 +74,9 @@
 }
 
 @media (min-width: 768px) {
-
+    .scrollableList {
+        max-height: 176px;
+      }
 }
 
 @media (min-width: 1440px) {
