@@ -31,7 +31,9 @@ const UserLogo = () => {
 
   return (
     <Link onClick={toggleModal} className={css.userButton}>
-      <span className={css.userName}>{user.name || user.email}</span>
+      <span className={css.userName}>
+        {user.name || user.email.split('@')[0]}
+      </span>
       {getUserAvatar()}
       <ReactSVG src={dropdownIcon} className={css.dropdownIcon} />
       {isOpen && <UserLogoModal onClose={toggleModal} user={user} />}
