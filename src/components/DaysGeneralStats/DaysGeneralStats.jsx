@@ -9,12 +9,12 @@ const DaysGeneralStats = ({ date, dailyNorm, percent, portions }) => {
 
       <div className={css.title}>
         <p>Daily norma:</p>
-        <p className={css.statsData}>{dailyNorm} L</p>
+        <p className={css.statsData}>{dailyNorm} </p>
       </div>
 
       <div className={css.title}>
         <p>Fulfillment of the daily norm:</p>
-        <p className={css.statsData}>{percent}%</p>
+        <p className={css.statsData}>{percent}</p>
       </div>
 
       <div className={css.title}>
