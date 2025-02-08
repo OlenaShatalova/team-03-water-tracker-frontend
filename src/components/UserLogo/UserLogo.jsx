@@ -1,23 +1,15 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 
-import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
-
-import UserLogoModal from '../UserLogoModal/UserLogoModal';
 
 import dropdownIcon from '../../assets/icons/jhh.svg';
 
 import css from './UserLogo.module.css';
+import UserLogoModal from '../UserLogoModal/UserLogoModal';
 
 const UserLogo = () => {
   const user = useSelector(selectUser);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsOpen(prev => !prev);
-  };
 
   const getUserAvatar = () => {
     if (user && user.avatar) {
@@ -30,14 +22,13 @@ const UserLogo = () => {
   };
 
   return (
-    <Link onClick={toggleModal} className={css.userButton}>
+    <UserLogoModal>
       <span className={css.userName}>
         {user.name || user.email.split('@')[0]}
       </span>
       {getUserAvatar()}
       <ReactSVG src={dropdownIcon} className={css.dropdownIcon} />
-      {isOpen && <UserLogoModal onClose={toggleModal} user={user} />}
-    </Link>
+    </UserLogoModal>
   );
 };
 
