@@ -1,37 +1,123 @@
 .title {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 133%;
-    color: #407BFF;
-    margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: left;
+  color: #407bff;
+  margin-bottom: 10px;
 }
 
-.progressBarContainer {
-    width: 280px;
-    height: 82px;
+.wrapper {
+  width: 280px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.progressContainer {
+  position: relative;
+  width: 100%;
+  padding: 0 12px;
+}
+
+.progressBar {
+  position: relative;
+  height: 8px;
+  background: #d7e3ff;
+  border-radius: 10px;
+}
+
+.progressFill {
+  height: 100%;
+  background: #9ebbff;
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+}
+
+.progressIndicator {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border: 1px solid #407bff;
+  border-radius: 50%;
+}
+
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  height: 20px;
+}
+
+.label {
+  position: absolute;
+  transform: translateX(-50%);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #407bff;
+  transition: color 0.3s, font-weight 0.3s;
+}
+
+.label::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 8px;
+  background-color: #d7e3ff;
+}
+
+.label.active {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #407bff;
+}
+
+.label.active::before {
+  top: -12px;
+}
+
+.leftLabel {
+  left: 0%;
+}
+
+.middleLabel {
+  left: 50%;
+}
+
+.rightLabel {
+  left: 100%;
 }
 
 @media (min-width: 768px) {
-    .progressBarContainer {
-        width: 356px;
-        height: 90px;
-    }
-
-    .title {
-        margin-bottom: 16px;
-    }
+  .title {
+    margin-bottom: 16px;
+  }
+  .wrapper {
+    width: 356px;
+  }
 }
 
 @media (min-width: 1440px) {
-    .container {
-        top: 654px;
-        margin-left: 112px;
-        margin-right: 32px;
-        gap: 23px;
-    }
-    
-    .progressBarContainer {
-        width: 391px;
-        height: 90px;
-    }
+  .wrapper {
+    width: 391px;
+  }
 }
