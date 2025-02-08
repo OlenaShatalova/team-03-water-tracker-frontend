@@ -17,7 +17,7 @@ import { waterReducer } from './water/waterSlice';
 const persistConfig = {
   key: 'userToken', // ключ для збереження в сховищі
   storage, // сховище (localStorage)
-  whitelist: ['token'], // вказуємо, що зберігати
+  whitelist: ['token', 'user'], // вказуємо, що зберігати
 };
 
 const waterPersistConfig = {

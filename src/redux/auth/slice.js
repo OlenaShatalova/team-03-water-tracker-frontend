@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, logout, refreshUser, register } from './operations';
+import register, { login, logout, refreshUser } from './operations';
 
 const initialState = {
   user: {
@@ -9,7 +9,7 @@ const initialState = {
     gender: 'female',
     avatar: null,
   },
-  token: null,
+  token: null, // Отримуємо токен із localStorage
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
@@ -19,6 +19,7 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+
   extraReducers: builder => {
     builder
       .addCase(register.pending, state => {
@@ -43,7 +44,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload);
+        console.log('login', action.payload);
 
         state.loading = false;
         state.error = null;
@@ -60,6 +61,8 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logout.fulfilled, () => {
+        localStorage.removeItem('persist:userToken');
+
         return initialState;
       })
       .addCase(logout.rejected, (state, action) => {
@@ -72,16 +75,19 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        // state.isRefreshing = false;
-        // state.loading = false;
+        console.log('ref.ful', action.payload);
+
+        state.isRefreshing = false;
+        state.loading = false;
         state.isLoggedIn = true;
-        state.user = action.payload.user;
-        state.token = action.payload.accessToken;
+        state.user = action.payload;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        // state.isRefreshing = false;
-        // state.loading = false;
-        // state.error = action.payload;
+        console.log(action.payload);
+
+        state.isRefreshing = false;
+        state.loading = false;
+        state.error = action.payload;
         state.token = null;
         state.isLoggedIn = false;
       });
