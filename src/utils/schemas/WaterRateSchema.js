@@ -17,5 +17,11 @@ export const validationSchema = Yup.object({
     .typeError('Must be a number')
     .min(0, 'Cannot be negative')
     .max(15, 'Too much water')
-    .required('Required'),
+    .required('Required')
+    .test(
+      'is-decimal',
+      'Must be a valid number (e.g., 1.5, 2.3)',
+      value =>
+        value === undefined || /^(\d+(\.\d{1,2})?)$/.test(value.toString())
+    ),
 });

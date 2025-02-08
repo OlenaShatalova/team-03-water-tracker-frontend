@@ -6,7 +6,7 @@ const initialState = {
   user: {
     name: null,
     email: null,
-    dailyNorm: 1500,
+    // dailyNorm: 1500,
     gender: 'female',
     avatar: null,
   },

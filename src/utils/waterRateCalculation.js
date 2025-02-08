@@ -6,6 +6,6 @@ export const calculateWaterRate = ({ gender, weight, sportTimes }) => {
   } else {
     calculatedNumber = weight * 0.04 + sportTimes * 0.6;
   }
-
+  ``;
   return Number(calculatedNumber.toFixed(2));
 };

@@ -4,6 +4,7 @@ import { closeModal } from "../../redux/water/waterSlice";
 import { useCallback, useEffect } from "react";
 import DailyNormaModalForm from "../DailyNormaModalForm/DailyNormaModalForm";
 import css from "./DailyNormaModal.module.css"
+import Icon from "../Icon/Icon.jsx";
 
 
 const DailyNormaModal = () => {
@@ -28,13 +29,18 @@ const DailyNormaModal = () => {
     if (!isOpen) return null
 
     return (
-        <div className={css.modalOverlay}>
-            <div className={css.modal}>
+        <div onClick={onModalClose} className={css.modalOverlay}>
+            <div onClick={(e) => e.stopPropagation()} className={css.modal}>
                 <div className={css.containerForTitleAndButton}>
                     <h2 className={css.title}>My daily norma</h2>
                     <button className={css.closeButton} onClick={onModalClose}>
-                        {/* <ReactSVG src={iconName} className={css.iconStyle} /> */}
-                        ❌
+                        <Icon
+                            name="icon-cross"
+                            width={24}
+                            height={24}
+                            color="#407BFF"
+                            className={css.icon}
+                        />
                     </button>
                 </div>
 
