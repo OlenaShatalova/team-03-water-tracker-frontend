@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://watertracker-app-if0o.onrender.com/api';; 
+axios.defaults.baseURL = 'https://watertracker-app-if0o.onrender.com/api';
 
 export const fetchWaterToday = createAsyncThunk(
-  'water/fetchWaterToday',
+  'today/fetchWaterToday', 
   async () => {
     try {
       const response = await axios.get('/api/water/water-today'); 
@@ -16,7 +16,7 @@ export const fetchWaterToday = createAsyncThunk(
 );
 
 export const deleteWater = createAsyncThunk(
-  'water/deleteWater',
+  'today/deleteWater', 
   async (id) => {
     try {
       const response = await axios.delete(`/api/water/${id}`); 

@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import register, { login, logout, refreshUser } from './operations';
+import { register, login, logout, refreshUser } from './operations';
+import { setToken } from './operations'; // Adjust the import path as necessary
 
 const initialState = {
   user: {
     name: null,
     email: null,
-    // dailyNorm: 1500,
+    dailyNorm: 1500,
     gender: 'female',
     avatar: null,
   },
@@ -32,8 +33,13 @@ const authSlice = createSlice({
         state.loading = false;
         state.isLoggedIn = true;
         state.error = null;
-        state.token = action.payload.accessToken;
+        state.token = action.payload.token || action.payload.accessToken;
         state.user = action.payload.user;
+
+        if (action.payload.accessToken) {
+          setToken(action.payload.accessToken);
+          localStorage.setItem('token', action.payload.accessToken);
+        }
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
@@ -51,6 +57,11 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.token = action.payload.accessToken;
         state.user = action.payload.user;
+
+        if (action.payload.accessToken) {
+          setToken(action.payload.accessToken);
+          localStorage.setItem('token', action.payload.accessToken);
+        }
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -75,7 +86,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        console.log('ref.ful', action.payload);
+        // console.log('ref.ful', action.payload);
 
         state.isRefreshing = false;
         state.loading = false;
@@ -83,7 +94,7 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.isRefreshing = false;
         state.loading = false;

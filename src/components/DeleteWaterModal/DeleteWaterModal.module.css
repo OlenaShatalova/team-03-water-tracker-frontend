@@ -48,7 +48,7 @@
     font-size: 18px;
 }
 
-.btnWrapper {
+.btnsWrapper {
     width: 232px;
     height: 96px;
     gap: 24px;
@@ -101,6 +101,30 @@ background: var(--color-accent-light-blue);
     cursor: url(../../assets/images/cursors/mdi_cursor-pointer.svg), auto;
 }
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    .modalContent {
+        top: 200px;
+        width: 592px;
+        height: 208px;
+    }
+    .btnsWrapper {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    width: 344px;
+    height: 44px;
+    justify-self: self-end;
+    }
+    .btnsWrapper button {
+        width: 160px;
+        height: 44px;
+    }
+}
 
-@media (min-width: 1440px) {}
+@media (min-width: 1440px) {
+    .modalContent {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+}
