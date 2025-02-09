@@ -50,7 +50,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log('login', action.payload);
+        // console.log('login', action.payload);
 
         state.loading = false;
         state.error = null;
