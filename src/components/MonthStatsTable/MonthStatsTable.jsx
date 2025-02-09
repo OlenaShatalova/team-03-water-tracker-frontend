@@ -9,7 +9,9 @@ import { selectUser } from '../../redux/auth/selectors';
 const MonthStatsTable = () => {
   const activeDay = useSelector(state => state.water.activeDay);
   const waterPerMonth = useSelector(state => state.water.waters?.waterPerMonth || []);
-  const user = useSelector(selectUser);
+  const { dailyNorm} = useSelector(selectUser);
+
+ 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
@@ -32,7 +34,8 @@ const MonthStatsTable = () => {
       entry.date.day === formattedDay.day && entry.date.month === formattedDay.month
     ) || { dailyNorm: "0", percentage: "0%", consumptionCount: 0 }
     : { dailyNorm: "0", percentage: "0%", consumptionCount: 0 };
-
+  
+ 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -58,7 +61,7 @@ const MonthStatsTable = () => {
         <div ref={modalRef} className={css.modalWrapper}>
           <DaysGeneralStats
             date={activeDay}
-            dailyNorm={activeDayData.dailyNorm}
+            dailyNorm={dailyNorm}
             percent={activeDayData.percentage}
             portions={activeDayData.consumptionCount}
           />
