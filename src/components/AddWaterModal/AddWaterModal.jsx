@@ -1,35 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAddWaterModalOpen } from "../../redux/water/waterSelectors";
+import { selectCurrentDate, selectIsAddWaterModalOpen } from "../../redux/water/waterSelectors";
 import { closeModal } from "../../redux/water/waterSlice";
 import { Field, Form, Formik } from "formik";
-import { useCallback, useEffect, useId, useState } from "react";
-import css from "./AddWaterModal.module.css"
+import { useCallback, useEffect, useId } from "react";
+import css from "./AddWaterModal.module.css";
 import Input from "../Input/Input";
 import * as Yup from "yup";
 import Icon from "../Icon/Icon.jsx";
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
+import { addWater } from "../../redux/today/operations.js";
+import { SuccessToast } from "../../utils/successToast.js";
+import { ErrorToast } from "../../utils/errorToast.js";
 
 const validationSchema = Yup.object({
     time: Yup.string().required("Required"),
-    water: Yup.number().min(50, "Minimum 50 ml").required("Required"),
+    water: Yup.number().min(10, "Minimum 10 ml").required("Required"),
 });
 
-const initialValues = {
-    time: "",
-    water: "",
-}
-
 const AddWaterModal = () => {
-    const [liters, setLiters] = useState(0);
+    const currentTime = useSelector(selectCurrentDate);
+    const formattedTime = new Date(currentTime).toLocaleTimeString("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
 
-    const onMinusButton = () => {
-        if (liters === 0) return
-        setLiters(liters - 50);
-    }
-
-    const onPlusButton = () => {
-        setLiters(liters + 50);
+    const initialValues = {
+        time: formattedTime,
+        water: 0,
     }
 
     const time = useId();
@@ -38,19 +36,46 @@ const AddWaterModal = () => {
     const dispatch = useDispatch();
     const isOpen = useSelector(selectIsAddWaterModalOpen);
     const onModalClose = useCallback(() => {
-        dispatch(closeModal("isAddWaterOpen"))
-        // console.log("Modal window is closed!")
+        dispatch(closeModal("isAddWaterOpen"));
     }, [dispatch]);
 
-    const handleSubmit = ({ values }) => {
-        console.log(values.liters)
-        dispatch(closeModal("isAddWaterOpen"))
-    }
+    const handleSubmit = async (values, actions) => {
+        try {
+            const now = new Date();
+            const [hours, minutes] = values.time.split(':');
 
-    const handleChange = () => {
-    }
+            const formattedTime = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                hours,
+                minutes
+            ).toISOString(); // Генерує ISO 8601
 
-    // для закриття модалки на esc
+            const waterData = {
+                waterVolume: values.water,
+                date: formattedTime, // Правильний формат для Joi
+            };
+
+            console.log("waterData:", waterData);
+            await dispatch(addWater(waterData)).unwrap();
+
+            actions.resetForm();
+            onModalClose();
+            SuccessToast("Successfully added water record!");
+        } catch {
+            ErrorToast("Failed to add water record. Please try again.");
+        }
+    };
+    // const onAddWater = (waterData) => {
+    //     const water = {
+    //         ...waterData,
+    //     }
+    //     const action = addWater(water);
+    //     dispatch(action)
+    // }
+
+    // закриття модалки на esc
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "Escape") {
@@ -62,7 +87,7 @@ const AddWaterModal = () => {
         return () => document.removeEventListener("keydown", handleKeyDown);
     }, [onModalClose]);
 
-    if (!isOpen) return null
+    if (!isOpen) return null;
 
     return (
         <div onClick={onModalClose} className={css.modalOverlay}>
@@ -81,17 +106,26 @@ const AddWaterModal = () => {
                 </div>
                 <p className={css.subTitle}>Choose a value:</p>
 
+
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                 >
-                    {({ values }) => (
+                    {({ values, handleChange, setFieldValue }) => (
                         <Form>
                             <div>
                                 <p className={css.text}>Amount of water:</p>
                                 <div className={css.buttonsContainer}>
-                                    <button onClick={onMinusButton} className={css.roundButtons}>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            if (values.water > 0) {
+                                                setFieldValue("water", values.water - 50);
+                                            }
+                                        }}
+                                        className={css.roundButtons}
+                                    >
                                         <Icon
                                             name="icon-minus"
                                             width={24}
@@ -101,25 +135,46 @@ const AddWaterModal = () => {
                                         />
                                     </button>
                                     <div className={css.valueOfWater}>
-                                        <p className={css.valueNumber}>{liters} ml</p>
+                                        <p className={css.valueNumber}>{values.water} ml</p>
                                     </div>
-                                    <button onClick={onPlusButton} className={css.roundButtons}>
+                                    <button
+                                        type="button"
+                                        onClick={() => setFieldValue("water", values.water + 50)}  // Обновляем значение воды через Formik
+                                        className={css.roundButtons}
+                                    >
                                         <ReactSVG src={plus} className={css.plusIcon} />
                                     </button>
                                 </div>
                             </div>
+
                             <div>
-                                <label className={css.text} htmlFor={time}>Recording time:</label>
-                                <Field as={Input} placeholder={"07:00"} type="text" name={time} id={time} />
+                                <label className={css.text} htmlFor="time">Recording time:</label>
+                                <Field
+                                    as={Input}
+                                    placeholder="07:00"
+                                    type="text"
+                                    name="time"
+                                    id={time}
+                                />
                             </div>
 
                             <div className={css.containerBeforeValue}>
-                                <label htmlFor={water}><p className={css.subTitle}>Enter the value of the water used:</p></label>
-                                <Field onChange={handleChange} value={values.water} as={Input} placeholder={"50"} type="number" name={water} id={water} />
+                                <label htmlFor="water">
+                                    <p className={css.subTitle}>Enter the value of the water used:</p>
+                                </label>
+                                <Field
+                                    as={Input}
+                                    value={values.water}
+                                    onChange={handleChange}
+                                    placeholder="50"
+                                    type="number"
+                                    name="water"
+                                    id={water}
+                                />
                             </div>
 
                             <div className={css.buttonAndNumberContainer}>
-                                <p className={css.valueNumber}>{liters} ml</p>
+                                <p className={css.valueNumber}>{values.water} ml</p>
                                 <button className={css.button} type="submit">Save</button>
                             </div>
                         </Form>
@@ -127,7 +182,7 @@ const AddWaterModal = () => {
                 </Formik>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AddWaterModal
+export default AddWaterModal;

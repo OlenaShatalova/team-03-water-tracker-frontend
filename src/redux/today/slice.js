@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchWaterToday, deleteWater } from './operations';
+import { fetchWaterToday, deleteWater, addWater } from './operations';
 import { logout } from '../auth/operations';
 
 const initialState = {
@@ -43,6 +43,16 @@ const todaySlice = createSlice({
       })
       .addCase(logout.fulfilled, state => {
         state.data.todayRecord = [];
+      })
+      .addCase(addWater.pending, state => {
+        state.loading = true;
+      })
+      .addCase(addWater.fulfilled, (state, action) => {
+        state.data.todayRecord = [...state.data.todayRecord, action.payload];
+      })
+      .addCase(addWater.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
