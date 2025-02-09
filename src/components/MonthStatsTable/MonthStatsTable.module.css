@@ -1,3 +1,7 @@
+.container {
+  height: 506px;
+}
+
 .containerPag {
   display: flex;
   align-items: center;
@@ -13,6 +17,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .container {
+    height: 331.98px;
+  }
+
   .title {
     font-size: 26px;
     line-height: 123%;

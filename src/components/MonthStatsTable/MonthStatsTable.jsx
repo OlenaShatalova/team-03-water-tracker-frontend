@@ -66,7 +66,7 @@ const MonthStatsTable = () => {
   }, []);
 
   return (
-    <div style={{ height: '331.98px' }}>
+    <div className={css.container}>
       <div className={css.containerPag}>
         <h2 className={css.title}>Month</h2>
         <CalendarPagination />
