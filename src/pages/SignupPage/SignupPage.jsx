@@ -7,6 +7,7 @@ import {
 } from '../../utils/schemas/UserInfoSchema';
 import { ErrorToast } from '../../utils/errorToast';
 import { SuccessToast } from '../../utils/successToast';
+
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { register } from '../../redux/auth/operations';
