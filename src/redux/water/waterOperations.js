@@ -2,6 +2,23 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 // import axios from 'axios';
 import api from '../../api/api';
 
+export const fetchWaterToday = createAsyncThunk(
+  'water/fetchWaterToday',
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.get('/water/today', {});
+
+      console.log('API Response:', response.data);
+
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Error fetching water data'
+      );
+    }
+  }
+);
+
 export const fetchWaterPerMonth = createAsyncThunk(
   'water/fetchWater',
   async ({ month, year }, thunkAPI) => {
