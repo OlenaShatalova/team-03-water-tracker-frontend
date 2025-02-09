@@ -20,11 +20,11 @@ const SignupPage = () => {
   const authError = useSelector(selectAuthError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    if (authError) {
-      ErrorToast('Registration error: ' + authError);
-    }
-  }, [authError]);
+  // useEffect(() => {
+  //   if (authError) {
+  //     ErrorToast('Registration error: ' + authError);
+  //   }
+  // }, [authError]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -32,7 +32,7 @@ const SignupPage = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleSubmit = (formValues, formActions) => {
+  const handleSubmit = async (formValues, formActions) => {
     const userData = { email: formValues.email, password: formValues.password };
 
     dispatch(register(userData))
