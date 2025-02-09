@@ -12,7 +12,6 @@ const DailyNorma = () => {
 
     const onOpenModal = () => {
         dispatch(openModal("isWaterRateOpen"))
-        console.log("Modal window is opened!")
     }
 
     return (

@@ -14,7 +14,7 @@ const initialValues = {
     gender: "",
     weight: "",
     sportTimes: "",
-    finalNumber: "",
+    dailyNorm: "",
 }
 
 const DailyNormaModalForm = () => {
@@ -31,7 +31,7 @@ const DailyNormaModalForm = () => {
 
     const handleSubmit = async (values) => {
         try {
-            await dispatch(fetchWaterRate(values.finalNumber)).unwrap();
+            await dispatch(fetchWaterRate(values.dailyNorm)).unwrap();
             dispatch(closeModal("isWaterRateOpen"));
             SuccessToast("Successfully set your water rate!");
         } catch {
@@ -118,7 +118,7 @@ const DailyNormaModalForm = () => {
                             placeholder={0}
                             step="0.1"
                             type="number"
-                            name="finalNumber"
+                            name="dailyNorm"
                             id={finalNumberId}
                         />
                     </div>
