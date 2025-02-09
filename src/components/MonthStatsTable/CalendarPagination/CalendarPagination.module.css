@@ -1,16 +1,19 @@
 .container {
-    display: flex;
-   justify-content: space-between;
-    align-items: center;
-    width: 128px;
-    height: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  height: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-primary);
 }
 
-.button{
-    border: none;
-    background-color: transparent;
-    align-content: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.button {
+  border: none;
+  background-color: transparent;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

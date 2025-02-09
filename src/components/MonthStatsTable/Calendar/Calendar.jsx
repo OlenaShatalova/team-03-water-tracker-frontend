@@ -6,9 +6,9 @@ import { setActiveDay } from '../../../redux/water/waterSlice';
 import {
   selectCurrentDate,
   selectWaterPerMonth,
-  selectWaterRateNumber,
+  // selectWaterRateNumber,
 } from '../../../redux/water/waterSelectors';
-import { selectUser } from '../../../redux/auth/selectors';
+// import { selectUser } from '../../../redux/auth/selectors';
 
 import CalendarItem from '../CalendarItem/CalendarItem';
 
