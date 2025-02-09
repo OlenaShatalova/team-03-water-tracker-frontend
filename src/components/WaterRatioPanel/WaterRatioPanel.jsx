@@ -1,10 +1,27 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './WaterRatioPanel.module.css';
+import { fetchWaterToday } from '../../redux/water/waterOperations';
+import { selectPercentTodayWater } from '../../redux/water/waterSelectors';
 
 const WaterRatioPanel = () => {
-  const progress = 50;
+  const dispatch = useDispatch();
+
+  const progress = useSelector(selectPercentTodayWater);
+
+  console.log('Component progress (from Redux):', progress);
+
+  useEffect(() => {
+    console.log('useEffect triggered, fetching water data...');
+    dispatch(fetchWaterToday());
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log('Redux updated, component should re-render.');
+  }, [progress]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} key={progress}>
       <div className={styles.info}>
         <h3 className={styles.title}>Today</h3>
         <div className={styles.progressContainer}>
@@ -21,7 +38,7 @@ const WaterRatioPanel = () => {
           <div className={styles.progressLabels}>
             <span
               className={`${styles.label} ${styles.leftLabel} ${
-                progress >= 0 && progress < 25 ? styles.active : ''
+                progress < 25 ? styles.active : ''
               }`}
             >
               0%

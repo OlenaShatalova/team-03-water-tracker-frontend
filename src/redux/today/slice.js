@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchWaterToday, deleteWater } from './operations';
-import { logout } from '../auth/operations'; 
+import { logout } from '../auth/operations';
 
 const initialState = {
   data: {
@@ -11,12 +11,12 @@ const initialState = {
 };
 
 const todaySlice = createSlice({
-  name: 'today', 
+  name: 'today',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchWaterToday.pending, (state) => {
+      .addCase(fetchWaterToday.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -28,23 +28,23 @@ const todaySlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(deleteWater.pending, (state) => {
+      .addCase(deleteWater.pending, state => {
         state.loading = true;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
         state.data.todayRecord = state.data.todayRecord.filter(
-          (record) => record._id !== action.payload._id
+          record => record._id !== action.payload._id
         );
       })
       .addCase(deleteWater.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(logout.fulfilled, (state) => { 
-        state.data.todayRecord = []; 
+      .addCase(logout.fulfilled, state => {
+        state.data.todayRecord = [];
       });
   },
 });
 
-export const todayReducer = todaySlice.reducer; 
+export const todayReducer = todaySlice.reducer;
