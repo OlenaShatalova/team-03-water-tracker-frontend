@@ -11,6 +11,9 @@ import css from './MonthStatsTable.module.css';
 
 const MonthStatsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const wasOpenedByClick = useRef(false);
+  const modalRef = useRef();
 
   const activeDay = useSelector(state => state.water.activeDay);
   const waterPerMonth = useSelector(
@@ -18,9 +21,7 @@ const MonthStatsTable = () => {
   );
   const { dailyNorm } = useSelector(selectUser);
 
-  const modalRef = useRef(null);
-
-  const [day, month] = activeDay ? activeDay.split('.') : [null, null, null];
+  const [day, month] = activeDay ? activeDay.split('.') : [null, null];
 
   const monthNames = [
     'January',
@@ -51,8 +52,21 @@ const MonthStatsTable = () => {
         ) || { dailyNorm: '0', percentage: '0%', consumptionCount: 0 }
       : { dailyNorm: '0', percentage: '0%', consumptionCount: 0 };
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+    wasOpenedByClick.current = isMobile; // Запам'ятовуємо, чи було відкриття через клік
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    wasOpenedByClick.current = false;
+  };
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleEscPress = event => {
@@ -65,6 +79,21 @@ const MonthStatsTable = () => {
     return () => document.removeEventListener('keydown', handleEscPress);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isModalOpen]);
+
   return (
     <div className={css.container}>
       <div className={css.containerPag}>
@@ -72,16 +101,24 @@ const MonthStatsTable = () => {
         <CalendarPagination />
       </div>
 
-      {isModalOpen && (
-        <div ref={modalRef} className={css.modalWrapper}>
+      <div
+        ref={modalRef}
+        className={css.modalWrapper}
+        onMouseEnter={!isMobile ? openModal : undefined}
+        onMouseLeave={
+          !isMobile && !wasOpenedByClick.current ? closeModal : undefined
+        }
+        onClick={isMobile ? () => setIsModalOpen(prev => !prev) : undefined}
+      >
+        {isModalOpen && (
           <DaysGeneralStats
             date={activeDay}
             dailyNorm={dailyNorm}
             percent={activeDayData.percentage}
             portions={activeDayData.consumptionCount}
           />
-        </div>
-      )}
+        )}
+      </div>
 
       <Calendar openModal={openModal} />
     </div>

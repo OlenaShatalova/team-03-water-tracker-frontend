@@ -1,7 +1,6 @@
 .container {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-8px, -200px);
   width: 280px;
   height: 188px;
   padding: 24px 13px;

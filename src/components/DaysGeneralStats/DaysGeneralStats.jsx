@@ -1,5 +1,16 @@
 import css from './DaysGeneralStats.module.css';
 
+const formatLiters = value => {
+  return `${(value / 1000).toFixed(1)} L`;
+};
+
+const modalPosition = day => {
+  const top = -200 + 66 * (Math.ceil(+day / 5) - 1);
+  return {
+    transform: `translate(-8px, ${top}px)`,
+  };
+};
+
 const DaysGeneralStats = ({ date, dailyNorm, percent, portions }) => {
   const formatDate = dateString => {
     const [day, month, year] = dateString.split('.');
@@ -11,12 +22,10 @@ const DaysGeneralStats = ({ date, dailyNorm, percent, portions }) => {
     return `${dayNumber}, ${monthName}`;
   };
 
-  const formatLiters = value => {
-    return `${(value / 1000).toFixed(1)} L`;
-  };
+  const [dayNumber] = date.split('.');
 
   return (
-    <div className={css.container}>
+    <div className={css.container} style={modalPosition(dayNumber)}>
       <div className={css.date}>
         <p>{formatDate(date)}</p>
       </div>
