@@ -1,9 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from './CalendarPagination.module.css';
+
+import { setCurrentDate } from '../../../redux/water/waterSlice';
+// import { fetchWaterPerMonth } from '../../../redux/water/waterOperations';
+
 import left from '../../../assets/icons/left.svg';
 import right from '../../../assets/icons/right.svg';
-import { setCurrentDate } from '../../../redux/water/waterSlice';
-import { fetchWaterPerMonth } from '../../../redux/water/waterOperations';
+
+import css from './CalendarPagination.module.css';
+
 const months = [
   'January',
   'February',
@@ -23,9 +27,9 @@ const CalendarPagination = () => {
   const dispatch = useDispatch();
 
   const fetchAndSetDate = newDate => {
-    const localDate = newDate.toLocaleDateString();
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth() + 1;
+    // const localDate = newDate.toLocaleDateString();
+    // const year = newDate.getFullYear();
+    // const month = newDate.getMonth() + 1;
     dispatch(setCurrentDate(newDate.getTime()));
     // dispatch(fetchWaterPerMonth({ month, year }));
   };
