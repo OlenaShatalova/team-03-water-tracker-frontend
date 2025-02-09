@@ -10,7 +10,7 @@ import { SuccessToast } from '../../utils/successToast';
 
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
-import register from '../../redux/auth/operations';
+import { register } from '../../redux/auth/operations';
 import { selectAuthError, selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const SignupPage = () => {
@@ -20,11 +20,11 @@ const SignupPage = () => {
   const authError = useSelector(selectAuthError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    if (authError) {
-      ErrorToast('Registration error: ' + authError);
-    }
-  }, [authError]);
+  // useEffect(() => {
+  //   if (authError) {
+  //     ErrorToast('Registration error: ' + authError);
+  //   }
+  // }, [authError]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -32,11 +32,8 @@ const SignupPage = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleSubmit = (formValues, formActions) => {
+  const handleSubmit = async (formValues, formActions) => {
     const userData = { email: formValues.email, password: formValues.password };
-
-    // console.log('Data sent to server:', userData);
-    // Додано для діагностики
 
     dispatch(register(userData))
       .unwrap()

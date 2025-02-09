@@ -10,8 +10,8 @@ const initialState = {
   error: null,
 };
 
-const waterSlice = createSlice({
-  name: 'water',
+const todaySlice = createSlice({
+  name: 'today', 
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -47,4 +47,4 @@ const waterSlice = createSlice({
   },
 });
 
-export const waterReducer = waterSlice.reducer;
+export const todayReducer = todaySlice.reducer; 

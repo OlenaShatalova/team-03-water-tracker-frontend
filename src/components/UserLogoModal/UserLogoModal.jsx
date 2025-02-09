@@ -36,7 +36,11 @@ export default function UserLogoModal({ children }) {
                   flexDirection: 'column',
                   gap: '16px',
                   backgroundColor: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#fff',
+                  },
                 },
+
                 '& .MuiButtonBase-root': {
                   padding: '0px',
                   backgroundColor: '#fff',
