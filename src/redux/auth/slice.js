@@ -4,6 +4,7 @@ import {
   logout,
   refreshUser,
   register,
+  setToken,
   updateAvatar,
   updateUser,
 } from './operations';
@@ -113,11 +114,11 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.loading = false;
         state.error = null;
-        state.user = action.payload.user;
+        state.user = action.payload.data;
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
@@ -132,7 +133,7 @@ const authSlice = createSlice({
 
         state.loading = false;
         state.error = null;
-        state.user.avatar = action.payload.user.avatar;
+        state.user.avatar = action.payload.avatarUrl;
       })
       .addCase(updateAvatar.rejected, (state, action) => {
         state.loading = false;

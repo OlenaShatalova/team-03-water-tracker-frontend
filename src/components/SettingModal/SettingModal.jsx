@@ -13,8 +13,11 @@ import PwdSection from './PwdSection/PwdSection';
 import Input from '../Input/Input';
 import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
 
-import { selectUser } from '../../redux/auth/selectors';
+import { selectLoading, selectUser } from '../../redux/auth/selectors';
 import { updateAvatar, updateUser } from '../../redux/auth/operations';
+import { SuccessToast } from '../../utils/successToast';
+import { ErrorToast } from '../../utils/errorToast';
+import { Loader } from '../Loader/Loader';
 
 const SettingModal = ({ closeSettingModal }) => {
   const user = useSelector(selectUser);
@@ -22,6 +25,7 @@ const SettingModal = ({ closeSettingModal }) => {
   const avatarRef = useRef(null);
   const [avatar, setAvatar] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState(null);
+  const loading = useSelector(selectLoading);
 
   useEffect(() => {
     const onKeyDown = evt => {
@@ -29,6 +33,7 @@ const SettingModal = ({ closeSettingModal }) => {
         closeSettingModal();
       }
     };
+
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
@@ -46,70 +51,101 @@ const SettingModal = ({ closeSettingModal }) => {
     avatarRef.current.click(); // Відкриваємо файловий діалог
   };
 
-  const handleChangeAvatar = e => {
+  const handleChangeAvatar = (e, setFieldValue) => {
     const file = e.target.files[0];
-    setAvatar(file);
+
+    if (file.size > 5 * 1024 * 1024) {
+      ErrorToast('File size exceeds 5MB');
+      return;
+    }
+    setAvatar(file); //// Оновлюємо локальний стан аватарки
     const tempUrl = URL.createObjectURL(file); //Створення тимчасового url файлу для відображення в img
-    setAvatarUrl(tempUrl);
+    setAvatarUrl(tempUrl); // Оновлюємо URL для відображення аватарки
+
+    setFieldValue('avatar', file); // Оновлює значення поля 'avatar'
   };
 
-  const handleSubmit = (values, actions) => {
-    // console.log(avatar);
-    dispatch(updateUser(values));
-    // console.log('Was dispatched');
+  const handleSubmit = async values => {
+    const { avatar, repeatPassword, ...otherValues } = values;
+    // console.log('Values:', values);
 
-    // dispatch(updateAvatar(avatar));
-    // console.log(user);
-    actions.resetForm();
+    const isDataUnchanged =
+      user.gender === otherValues.gender &&
+      user.name === otherValues.name &&
+      user.email === otherValues.email &&
+      user.oldPassword === otherValues.oldPassword &&
+      user.newPassword === otherValues.newPassword &&
+      !avatar;
+
+    if (isDataUnchanged) {
+      closeSettingModal();
+      return;
+    }
+
+    try {
+      await dispatch(updateUser(otherValues)).unwrap();
+
+      if (avatar) {
+        const uploadedAvatar = await dispatch(updateAvatar(avatar)).unwrap();
+        setAvatarUrl(uploadedAvatar.avatarUrl);
+        // user.avatar = uploadedAvatar.avatarUrl;
+      }
+      SuccessToast('Your changes is successfully saved!');
+      closeSettingModal();
+    } catch (error) {
+      ErrorToast(error.message || 'Update failed!');
+    }
   };
 
   return (
     <Formik
       initialValues={{
         gender: user.gender,
-        name: user.name || '',
+        name: user.name,
         email: user.email,
-        avatar: user.avatarUrlgit,
+        avatar: user.avatar,
       }}
       validationSchema={UserInfoSchema}
       onSubmit={handleSubmit}
     >
-      <div className={css.backdrop} onClick={onBackdropClick}>
-        <Form className={css.modal}>
-          <div className={css.titleWrapper}>
-            <h2 className={css.mainTtl}>Setting</h2>
-            <button
-              type="button"
-              className={css.closeBtn}
-              onClick={closeSettingModal}
-            >
-              <ReactSVG src={close} className={css.closeIcon} />
-            </button>
-          </div>
-
-          <UserAvatar
-            avatarUrl={avatarUrl}
-            avatarRef={avatarRef}
-            onUploadClick={onUploadClick}
-            handleChangeAvatar={handleChangeAvatar}
-          />
-
-          <div className={css.userDetailsAndPwd}>
-            <div className={css.userDetailsWrapper}>
-              <GenderIdentity />
-              <Input name="name" label="Your name" placeholder="Name" />
-              <Input name="email" label="Email" placeholder="Email" />
+      {({ setFieldValue }) => (
+        <div className={css.backdrop} onClick={onBackdropClick}>
+          <Form className={css.modal}>
+            <div className={css.titleWrapper}>
+              <h2 className={css.mainTtl}>Setting</h2>
+              <button
+                type="button"
+                className={css.closeBtn}
+                onClick={closeSettingModal}
+              >
+                <ReactSVG src={close} className={css.closeIcon} />
+              </button>
             </div>
-            <PwdSection />
-          </div>
 
-          <div className={css.saveBtnWrpr}>
-            <button type="submit" className={css.saveBtn}>
-              Save
-            </button>
-          </div>
-        </Form>
-      </div>
+            <UserAvatar
+              avatarUrl={avatarUrl} // Використовуємо state avatarUrl для відображення
+              avatarRef={avatarRef}
+              onUploadClick={onUploadClick}
+              handleChangeAvatar={e => handleChangeAvatar(e, setFieldValue)}
+            />
+
+            <div className={css.userDetailsAndPwd}>
+              <div className={css.userDetailsWrapper}>
+                <GenderIdentity />
+                <Input name="name" label="Your name" placeholder="Name" />
+                <Input name="email" label="Email" placeholder="Email" />
+              </div>
+              <PwdSection />
+            </div>
+            <div className={css.saveBtnWrpr}>
+              {loading && <Loader />}
+              <button type="submit" className={css.saveBtn}>
+                Save
+              </button>
+            </div>
+          </Form>
+        </div>
+      )}
     </Formik>
   );
 };

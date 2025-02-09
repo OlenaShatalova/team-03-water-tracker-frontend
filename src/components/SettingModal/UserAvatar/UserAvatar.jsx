@@ -10,6 +10,7 @@ const UserAvatar = ({
   avatarUrl,
   avatarRef,
   handleChangeAvatar,
+  setFieldValue,
   onUploadClick,
 }) => {
   const user = useSelector(selectUser);
@@ -23,6 +24,7 @@ const UserAvatar = ({
       <h3 className={css.photoTtl}>Your photo</h3>
       <div className={css.photoWrapper}>
         <div className={css.userAvatar}>
+          {/* {user.avatar ? ( */}
           {avatarUrl ? (
             <img
               src={avatarUrl}
@@ -38,7 +40,7 @@ const UserAvatar = ({
           type="file"
           accept="image/*"
           style={{ display: 'none' }}
-          onChange={handleChangeAvatar}
+          onChange={e => handleChangeAvatar(e, setFieldValue)}
         />
         <a className={css.uploadLink}>
           <ReactSVG src={upload} className={css.uploadIcon} />

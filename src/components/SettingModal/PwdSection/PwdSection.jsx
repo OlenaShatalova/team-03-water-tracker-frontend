@@ -8,21 +8,21 @@ const PwdSection = ({ handleInputChange }) => {
       <h3 className={css.pwdTtl}>Password</h3>
       <Input
         type="password"
-        name="outdatedPwd"
+        name="oldPassword"
         label="Outdated password"
         placeholder="Password"
         onChange={handleInputChange}
       />
       <Input
         type="password"
-        name="newPwd"
+        name="newPassword"
         label="New password"
         placeholder="Password"
         onChange={handleInputChange}
       />
       <Input
         type="password"
-        name="repeatPwd"
+        name="repeatPassword"
         label="Repeat new password"
         placeholder="Password"
         onChange={handleInputChange}
