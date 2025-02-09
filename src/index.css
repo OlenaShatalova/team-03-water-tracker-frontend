@@ -84,8 +84,8 @@ button {
 
 @media screen and (min-width: 768px) {
   .signInUpPages {
-    background: var(--bg-bottle-tablet-home) no-repeat bottom left,
-      var(--bg-image-tablet-home) no-repeat bottom right;
+    background: var(--bg-bottle-tablet-home) no-repeat bottom right,
+      var(--bg-image-tablet-home) no-repeat bottom left;
     padding-top: 40px;
     padding-bottom: 248px;
   }
