@@ -13,13 +13,17 @@
 .blueContainer {
   border-radius: 10px;
   padding: 24px 8px;
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
-  background-color: #ecf2ff;
+  box-shadow: var(--shadow-secondary);
+  background-color: var(--color-secondary-1);
   margin-top: 560px;
   margin-left: auto;
   margin-right: auto;
   width: 280px;
   height: 836px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .ratioAndButtonContainer {
@@ -92,19 +96,6 @@
     background-size: 738px 548px, contain;
     background-position: 82px 32px, 0 0;
     max-width: 1440px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  /* .mainContainer {
-    background-image: url(../../assets/images/desk-botleHomeScreen@2x.png),
-      url(../../assets/images/desk-backgroundElementMainPage@2x.png);
-  } */
-
-  .blueContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
   }
 
   .ratioAndButtonContainer {
