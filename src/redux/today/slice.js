@@ -20,11 +20,26 @@ const todaySlice = createSlice({
         state.loading = true;
         state.error = null;
       })
+      // .addCase(fetchWaterToday.fulfilled, (state, action) => {
+      //   console.log('Action fulfilled:', action);
+      //   console.log('Payload:', action.payload); // Логування payload
+      //   state.loading = false;
+      //   // state.data.todayRecord = action.payload.todayRecord;
+      //   state.data.todayRecord = action.payload.data.todayRecord;
+      // })
+
       .addCase(fetchWaterToday.fulfilled, (state, action) => {
+        console.log('Action fulfilled:', action);
         state.loading = false;
-        state.data.todayRecord = action.payload.todayRecord;
+        state.data = {
+          ...state.data,
+          todayRecord: action.payload.data?.todayRecord || [],
+        }; // Копія об'єкта
       })
+
       .addCase(fetchWaterToday.rejected, (state, action) => {
+        console.error('Fetch water today failed:', action.error.message);
+
         state.loading = false;
         state.error = action.error.message;
       })
