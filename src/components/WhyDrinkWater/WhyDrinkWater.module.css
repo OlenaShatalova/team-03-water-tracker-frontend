@@ -65,6 +65,9 @@
     gap: 16px;
     list-style: none;
   }
+  .whyDrinkItem {
+    width: 446px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -76,5 +79,8 @@
   }
   .whyDrinkContainer {
     margin-top: 34px;
+  }
+  .whyDrinkItem {
+    width: 446px;
   }
 }

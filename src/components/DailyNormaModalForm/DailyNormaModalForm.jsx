@@ -31,6 +31,7 @@ const DailyNormaModalForm = () => {
 
     const handleSubmit = async (values) => {
         try {
+            console.log("dailyNorm:", values.dailyNorm)
             await dispatch(fetchWaterRate(values.dailyNorm)).unwrap();
             dispatch(closeModal("isWaterRateOpen"));
             SuccessToast("Successfully set your water rate!");

@@ -9,19 +9,29 @@ import * as Yup from "yup";
 import Icon from "../Icon/Icon.jsx";
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
+import { addWater } from "../../redux/today/operations.js";
+import { SuccessToast } from "../../utils/successToast.js";
+import { ErrorToast } from "../../utils/errorToast.js";
 
 const validationSchema = Yup.object({
     time: Yup.string().required("Required"),
-    water: Yup.number().min(50, "Minimum 50 ml").required("Required"),
+    water: Yup.number().min(10, "Minimum 10 ml").required("Required"),
 });
 
-const initialValues = {
-    time: "",
-    water: 0,
-};
+
 
 const AddWaterModal = () => {
     const currentTime = useSelector(selectCurrentDate);
+    const formattedTime = new Date(currentTime).toLocaleTimeString("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    const initialValues = {
+        time: formattedTime,
+        water: 0,
+    }
+
     const time = useId();
     const water = useId();
 
@@ -31,10 +41,46 @@ const AddWaterModal = () => {
         dispatch(closeModal("isAddWaterOpen"));
     }, [dispatch]);
 
-    const handleSubmit = (values) => {
-        console.log(values.water);
-        dispatch(closeModal("isAddWaterOpen"));
+    const handleSubmit = async (values, actions) => {
+        try {
+            // поточна дата
+            const now = new Date();
+
+            // Розділяємо "HH:mm" (наприклад, "17:45") на години та хвилини
+            const [hours, minutes] = values.time.split(':');
+
+            // Створюємо дату у форматі ISO 8601 (YYYY-MM-DDTHH:mm:ss.SSSZ)
+            const formattedTime = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                hours,
+                minutes
+            ).toISOString();
+
+            const waterData = {
+                waterVolume: values.water,
+                time: formattedTime, // Оновлений формат часу
+            };
+
+            console.log("waterData:", waterData);
+            await dispatch(addWater(waterData)).unwrap();
+
+            actions.resetForm();
+            dispatch(closeModal("isWaterRateOpen"));
+            SuccessToast("Successfully added water record!");
+        } catch {
+            ErrorToast("Failed to add water record. Please try again.");
+        }
     };
+
+    // const onAddWater = (waterData) => {
+    //     const water = {
+    //         ...waterData,
+    //     }
+    //     const action = addWater(water);
+    //     dispatch(action)
+    // }
 
     // закриття модалки на esc
     useEffect(() => {
@@ -81,8 +127,8 @@ const AddWaterModal = () => {
                                     <button
                                         type="button"
                                         onClick={() => {
-                                            if (values.water > 50) {
-                                                setFieldValue("water", values.water - 50);  // Обновляем значение воды через Formik
+                                            if (values.water > 0) {
+                                                setFieldValue("water", values.water - 50);
                                             }
                                         }}
                                         className={css.roundButtons}
@@ -115,7 +161,7 @@ const AddWaterModal = () => {
                                     placeholder="07:00"
                                     type="text"
                                     name="time"
-                                    id="time"
+                                    id={time}
                                 />
                             </div>
 
@@ -130,7 +176,7 @@ const AddWaterModal = () => {
                                     placeholder="50"
                                     type="number"
                                     name="water"
-                                    id="water"
+                                    id={water}
                                 />
                             </div>
 
