@@ -33,7 +33,7 @@ const DeleteWaterModal = ({ isOpen, onRequestClose, _id }) => {
                 
             <p className={css.text}>Are you sure you want to delete entry?</p>
             </div>
-            <div className={css.btnWrapper}>
+            <div className={css.btnsWrapper}>
             <button className={css.deleteBtn} onClick={handleDelete}>Delete</button>
             <button className={css.cancelBtn} onClick={onRequestClose}>Cancel</button>
             </div>
