@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDate, selectIsAddWaterModalOpen } from "../../redux/water/waterSelectors";
 import { closeModal } from "../../redux/water/waterSlice";
 import { Field, Form, Formik } from "formik";
-import { useCallback, useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId } from "react";
 import css from "./AddWaterModal.module.css";
 import Input from "../Input/Input";
 import * as Yup from "yup";
@@ -17,8 +17,6 @@ const validationSchema = Yup.object({
     time: Yup.string().required("Required"),
     water: Yup.number().min(10, "Minimum 10 ml").required("Required"),
 });
-
-
 
 const AddWaterModal = () => {
     const currentTime = useSelector(selectCurrentDate);
@@ -43,37 +41,32 @@ const AddWaterModal = () => {
 
     const handleSubmit = async (values, actions) => {
         try {
-            // поточна дата
             const now = new Date();
-
-            // Розділяємо "HH:mm" (наприклад, "17:45") на години та хвилини
             const [hours, minutes] = values.time.split(':');
 
-            // Створюємо дату у форматі ISO 8601 (YYYY-MM-DDTHH:mm:ss.SSSZ)
             const formattedTime = new Date(
                 now.getFullYear(),
                 now.getMonth(),
                 now.getDate(),
                 hours,
                 minutes
-            ).toISOString();
+            ).toISOString(); // Генерує ISO 8601
 
             const waterData = {
                 waterVolume: values.water,
-                time: formattedTime, // Оновлений формат часу
+                date: formattedTime, // Правильний формат для Joi
             };
 
             console.log("waterData:", waterData);
             await dispatch(addWater(waterData)).unwrap();
 
             actions.resetForm();
-            dispatch(closeModal("isWaterRateOpen"));
+            onModalClose();
             SuccessToast("Successfully added water record!");
         } catch {
             ErrorToast("Failed to add water record. Please try again.");
         }
     };
-
     // const onAddWater = (waterData) => {
     //     const water = {
     //         ...waterData,

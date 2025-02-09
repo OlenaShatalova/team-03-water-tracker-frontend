@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+// import axios from 'axios';
 import api from '../../api/api';
 
 export const fetchWaterPerMonth = createAsyncThunk(
@@ -12,7 +12,7 @@ export const fetchWaterPerMonth = createAsyncThunk(
           year,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -28,7 +28,7 @@ export const fetchWaterRate = createAsyncThunk(
       if (waterRate === 0) return;
 
       const response = await api.patch('/water/water-rate', { waterRate });
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -46,7 +46,7 @@ export const fetchWaterPerDay = createAsyncThunk(
           year,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
