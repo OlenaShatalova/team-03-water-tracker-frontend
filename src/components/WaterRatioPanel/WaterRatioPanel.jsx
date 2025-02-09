@@ -7,7 +7,8 @@ import { selectPercentTodayWater } from '../../redux/water/waterSelectors';
 const WaterRatioPanel = () => {
   const dispatch = useDispatch();
 
-  const progress = useSelector(selectPercentTodayWater);
+  let progress = useSelector(selectPercentTodayWater);
+  progress = Math.min(progress, 100);
 
   console.log('Component progress (from Redux):', progress);
 
