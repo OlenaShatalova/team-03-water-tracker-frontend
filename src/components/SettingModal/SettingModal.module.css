@@ -41,41 +41,6 @@
   color: var(--color-primary);
 }
 
-.photoTtl {
-  margin-bottom: 8px;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 111%;
-}
-
-.photoWrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.uploadLink {
-  display: flex;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 129%;
-  gap: 8px;
-}
-
-.uploadLink:hover {
-  color: var(--color-primary);
-}
-
-.uploadIcon svg:hover {
-  stroke: var(--color-primary);
-}
-
-.uploadText {
-  font-weight: 500;
-  line-height: 129%;
-}
-
 .userDetailsWrapper > label {
   font-weight: 500;
   line-height: 1.11;

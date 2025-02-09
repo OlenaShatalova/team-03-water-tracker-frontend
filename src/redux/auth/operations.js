@@ -113,3 +113,41 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (formData, thunkAPI) => {
+    try {
+      const { data } = await api.patch('/user', formData);
+      return data;
+    } catch (error) {
+      console.error(
+        'Error response from server:',
+        error.response?.data || error.message
+      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+  async (avatar, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', avatar);
+
+      const { data } = await api.patch('user/avatar', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error(
+        'Error response from server:',
+        error.response?.data || error.message
+      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
