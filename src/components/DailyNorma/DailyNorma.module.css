@@ -5,8 +5,8 @@
     padding: 8px 20px;
     max-width: 124px;
     /* height: 76px; */
-    box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
-    background-color: #FFFFFFFF;
+    box-shadow: var(--shadow-secondary);
+    background-color: var(--color-secondary-1);
     /* margin-top: 112px;
     margin-left: 112px; */
     /* z-index: 10; */

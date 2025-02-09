@@ -12,12 +12,12 @@
   margin-right: 8px;
 }
 
-/* .avatar {
+.avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   object-fit: cover;
-} */
+}
 
 .avatarPlaceholder {
   width: 28px;

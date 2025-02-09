@@ -1,6 +1,58 @@
+.photoTtl {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+}
+
+.photoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.uploadLink {
+  display: flex;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.uploadLink:hover {
+  color: var(--color-primary);
+}
+
+.uploadIcon svg:hover {
+  stroke: var(--color-primary);
+}
+
+.uploadText {
+  font-weight: 500;
+  line-height: 129%;
+}
+
 .userAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  background-color: aqua;
+  background-color: #b3e5fc;
+}
+
+.userInitial {
+  font-size: 30px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.avatarImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
 }

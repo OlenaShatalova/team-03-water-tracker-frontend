@@ -83,7 +83,9 @@ export default function UserLogoModal({ children }) {
           </>
         )}
       </PopupState>
-      {isSettingModalOpen && <SettingModal onCloseModal={closeSettingModal} />}
+      {isSettingModalOpen && (
+        <SettingModal closeSettingModal={closeSettingModal} />
+      )}
 
       {isLogoutModalOpen && <UserLogoutModal onClose={closeLogoutModal} />}
     </>

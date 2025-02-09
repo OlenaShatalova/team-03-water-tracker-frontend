@@ -30,6 +30,8 @@
 .ratioAndButtonContainer {
   position: absolute;
   top: 386px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 /* .mainContainer::after {
@@ -66,7 +68,7 @@
   }
 
   .ratioAndButtonContainer {
-    top: 506px;
+    top: 418px;
     margin-left: 32px;
     margin-right: 32px;
     display: flex;
@@ -100,7 +102,7 @@
   }
 
   .ratioAndButtonContainer {
-    top: 654px;
+    top: 594px;
     margin-left: 112px;
     margin-right: 32px;
     gap: 23px;
