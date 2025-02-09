@@ -11,23 +11,26 @@ export const clearToken = () => {
   api.defaults.headers.common.Authorization = '';
 };
 
-export default createAsyncThunk('auth/register', async (formData, thunkAPI) => {
-  try {
-    const {
-      data: { data },
-    } = await api.post('/auth/register', formData);
-    console.log('Data received from server:', data);
-    setToken(data.token);
-    // Токен зберігається в LocalStorage інтерсептором в API
-    return data;
-  } catch (error) {
-    console.error(
-      'Error response from server:',
-      error.response?.data || error.message
-    );
-    return thunkAPI.rejectWithValue(error.response?.data || error.message);
+export const register = createAsyncThunk(
+  'auth/register',
+  async (formData, thunkAPI) => {
+    try {
+      const {
+        data: { data },
+      } = await api.post('/auth/register', formData);
+      console.log('Data received from server:', data);
+      setToken(data.token);
+      // Токен зберігається в LocalStorage інтерсептором в API
+      return data;
+    } catch (error) {
+      console.error(
+        'Error response from server:',
+        error.response?.data || error.message
+      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
   }
-});
+);
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -92,7 +95,8 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
     console.log({ persistedToken });
 
-    if (persistedToken === null) {
+    if (!persistedToken) {
+       console.warn('No token found');
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }

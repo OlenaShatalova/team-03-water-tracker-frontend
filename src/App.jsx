@@ -9,6 +9,8 @@ import RestrictedRoute from './components/RestrictedRoute';
 import PrivateRoute from './components/PrivateRoute';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
+import LoaderFallback from './components/LoaderFallback/LoaderFallback';
+import { Loader } from './components/Loader/Loader';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
@@ -23,46 +25,35 @@ const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <p>Refreshing...</p>
-  ) : (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Navigate to="/welcome" />} />
-        <Route
-          path="welcome"
-          element={
-            <Suspense fallback={<div>Add LOADER...</div>}>
-              <MainPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="signup"
-          element={
-            <Suspense fallback={<div>Add LOADER...</div>}>
+  if (isRefreshing) <LoaderFallback />;
+
+  return (
+    <Suspense fallback={<LoaderFallback />}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Navigate to="/welcome" />} />
+          <Route path="welcome" element={<MainPage />} />
+          <Route
+            path="signup"
+            element={
               <RestrictedRoute redirectTo="/home" component={<SignupPage />} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="signin"
-          element={
-            <Suspense fallback={<div>Add LOADER...</div>}>
+            }
+          />
+          <Route
+            path="signin"
+            element={
               <RestrictedRoute redirectTo="/home" component={<SigninPage />} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="home"
-          element={
-            <Suspense fallback={<div>Add LOADER...</div>}>
+            }
+          />
+          <Route
+            path="home"
+            element={
               <PrivateRoute redirectTo="/signin" component={<HomePage />} />
-            </Suspense>
-          }
-        />
-      </Route>
-    </Routes>
+            }
+          />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
 
