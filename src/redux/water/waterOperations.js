@@ -12,7 +12,7 @@ export const fetchWaterPerMonth = createAsyncThunk(
           year,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -43,7 +43,7 @@ export const fetchWaterPerDay = createAsyncThunk(
           year,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
