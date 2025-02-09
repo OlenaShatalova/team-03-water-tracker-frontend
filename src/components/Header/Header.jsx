@@ -11,7 +11,6 @@ import logo from '../../assets/icons/logo.svg';
 import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
 
 import css from './Header.module.css';
-import SettingModal from '../SettingModal/SettingModal';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn); // Отримуємо юзера з Redux
@@ -24,7 +23,6 @@ const Header = () => {
           <Link to={isLoggedIn ? '/home' : '/welcome'}>
             <ReactSVG src={logo} className={css.logo} />
           </Link>
-          <SettingModal />
           {isLoggedIn ? <UserLogo user={user} /> : <UserAuth />}
         </nav>
       </Container>

@@ -2,52 +2,52 @@ import css from './UserAvatar.module.css';
 import { useSelector } from 'react-redux';
 
 import { selectUser } from '../../../redux/auth/selectors';
-import { useEffect, useState } from 'react';
+import { ReactSVG } from 'react-svg';
 
-const UserAvatar = ({ avatarUrl }) => {
+import upload from '../../../assets/icons/upload.svg';
+
+const UserAvatar = ({
+  avatarUrl,
+  avatarRef,
+  handleChangeAvatar,
+  onUploadClick,
+}) => {
   const user = useSelector(selectUser);
-  const [bgColor, setBgColor] = useState(getRandomColor());
 
   const getInitial = () => {
-    if (user && user.name) {
-      return user.name[0].toUpperCase() || user.email[0].toUpperCase();
-    } else {
-      return '';
-    }
+    return user.name ? user.name[0].toUpperCase() : user.email[0].toUpperCase();
   };
-  // user && user.name
-  //   ? user.name[0].toUpperCase()
-  //   : user.email[0].toUpperCase();
-
-  function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-  }
-
-  useEffect(() => {
-    if (!user.avatarUrl) {
-      const storedColor = localStorage.getItem(`avatarColor-${user._id}`);
-      if (storedColor) {
-        setBgColor(storedColor);
-      } else {
-        const newColor = getRandomColor();
-        localStorage.setItem(`avatarColor-${user._id}`, newColor);
-        setBgColor(newColor);
-      }
-    }
-  }, [user]);
 
   return (
-    <div className={css.userAvatar} style={{ backgroundColor: bgColor }}>
-      {avatarUrl ? (
-        <img
-          src={avatarUrl}
-          alt={`${user.name || 'User'}'s avatar`}
-          className={css.avatarImg}
+    <>
+      <h3 className={css.photoTtl}>Your photo</h3>
+      <div className={css.photoWrapper}>
+        <div className={css.userAvatar}>
+          {avatarUrl ? (
+            <img
+              src={avatarUrl}
+              alt={`${user.name || 'User'}'s avatar`}
+              className={css.avatarImg}
+            />
+          ) : (
+            <span className={css.userInitial}>{getInitial()}</span>
+          )}
+        </div>
+        <input
+          ref={avatarRef} // Привʼязуємо ref до input
+          type="file"
+          accept="image/*"
+          style={{ display: 'none' }}
+          onChange={handleChangeAvatar}
         />
-      ) : (
-        <span className={css.userInitial}>{getInitial()}</span>
-      )}
-    </div>
+        <a className={css.uploadLink}>
+          <ReactSVG src={upload} className={css.uploadIcon} />
+          <span className={css.uploadText} onClick={onUploadClick}>
+            Upload a photo
+          </span>
+        </a>
+      </div>
+    </>
   );
 };
 

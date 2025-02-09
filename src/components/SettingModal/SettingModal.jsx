@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import close from '../../assets/icons/close.svg';
-import upload from '../../assets/icons/upload.svg';
 
 import UserAvatar from './UserAvatar/UserAvatar';
 import GenderIdentity from './GenderIdentity/GenderIdentity';
@@ -16,37 +15,18 @@ import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
 
 import { selectUser } from '../../redux/auth/selectors';
 import { updateAvatar, updateUser } from '../../redux/auth/operations';
-import { ErrorToast } from '../../utils/errorToast';
-// import toast from 'react-hot-toast';
 
-// const [isModalOpen, setIsModalOpen] = useState(false);
-
-// const onOpenModal = () => {
-//   setIsModalOpen(true);
-//   document.body.style.overflow = 'hidden';
-// };
-
-// const onCloseModal = () => {
-//   setIsModalOpen(false);
-//   document.body.style.overflow = 'auto';
-// };
-
-// <button type="button" onClick={onOpenModal}></button>;
-// {
-//   isModalOpen && <SettingModal onCloseModal={onCloseModal} />;
-// }
-
-const SettingModal = ({ onCloseModal }) => {
+const SettingModal = ({ closeSettingModal }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const avatarRef = useRef(null);
-  const [avatar, setAvatar] = useState();
-  const [avatarUrl, setAvatarUrl] = useState();
+  const [avatar, setAvatar] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
 
   useEffect(() => {
     const onKeyDown = evt => {
       if (evt.code === 'Escape') {
-        onCloseModal();
+        closeSettingModal();
       }
     };
     window.addEventListener('keydown', onKeyDown);
@@ -54,48 +34,42 @@ const SettingModal = ({ onCloseModal }) => {
     return () => {
       window.removeEventListener('keydown', onKeyDown);
     };
-  }, [onCloseModal]);
+  }, [closeSettingModal]);
 
   const onBackdropClick = evt => {
     if (evt.target === evt.currentTarget) {
-      onCloseModal();
+      closeSettingModal();
     }
   };
 
-  const onUploadCllick = () => {
+  const onUploadClick = () => {
     avatarRef.current.click(); // Відкриваємо файловий діалог
   };
 
   const handleChangeAvatar = e => {
     const file = e.target.files[0];
-    const maxFileSize = 5 * 1024 * 1024;
-    if (file) {
-      if (file.size > maxFileSize) {
-        ErrorToast('Please choose a file less than 5MB');
-      } else {
-        setAvatar(file);
-        const tempUrl = URL.createObjectURL(file); //Створення тимчасового url файлу для відображення в img
-        setAvatarUrl(tempUrl);
-      }
-    }
+    setAvatar(file);
+    const tempUrl = URL.createObjectURL(file); //Створення тимчасового url файлу для відображення в img
+    setAvatarUrl(tempUrl);
   };
 
-  const handleSubmit = () => {
-    // console.log(user);
+  const handleSubmit = (values, actions) => {
     // console.log(avatar);
-    dispatch(updateUser(user));
-    dispatch(updateAvatar(avatar));
+    dispatch(updateUser(values));
+    // console.log('Was dispatched');
+
+    // dispatch(updateAvatar(avatar));
     // console.log(user);
-    // actions.resetForm();
+    actions.resetForm();
   };
 
   return (
     <Formik
       initialValues={{
         gender: user.gender,
-        name: user.name,
+        name: user.name || '',
         email: user.email,
-        avatar: user.avatarUrl,
+        avatar: user.avatarUrlgit,
       }}
       validationSchema={UserInfoSchema}
       onSubmit={handleSubmit}
@@ -107,29 +81,18 @@ const SettingModal = ({ onCloseModal }) => {
             <button
               type="button"
               className={css.closeBtn}
-              onClick={onCloseModal}
+              onClick={closeSettingModal}
             >
               <ReactSVG src={close} className={css.closeIcon} />
             </button>
           </div>
 
-          <h3 className={css.photoTtl}>Your photo</h3>
-          <div className={css.photoWrapper}>
-            <UserAvatar avatarUrl={avatarUrl} />
-            <input
-              ref={avatarRef} // Привʼязуємо ref до input
-              type="file"
-              accept="avatar/*"
-              style={{ display: 'none' }}
-              onChange={handleChangeAvatar}
-            />
-            <a className={css.uploadLink}>
-              <ReactSVG src={upload} className={css.uploadIcon} />
-              <span className={css.uploadText} onClick={onUploadCllick}>
-                Upload a photo
-              </span>
-            </a>
-          </div>
+          <UserAvatar
+            avatarUrl={avatarUrl}
+            avatarRef={avatarRef}
+            onUploadClick={onUploadClick}
+            handleChangeAvatar={handleChangeAvatar}
+          />
 
           <div className={css.userDetailsAndPwd}>
             <div className={css.userDetailsWrapper}>
@@ -137,7 +100,7 @@ const SettingModal = ({ onCloseModal }) => {
               <Input name="name" label="Your name" placeholder="Name" />
               <Input name="email" label="Email" placeholder="Email" />
             </div>
-            <PwdSection className={css.pwdWrapper} />
+            <PwdSection />
           </div>
 
           <div className={css.saveBtnWrpr}>

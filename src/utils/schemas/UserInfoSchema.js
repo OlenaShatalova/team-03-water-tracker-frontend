@@ -14,15 +14,11 @@ export const UserInfoSchema = Yup.object({
   password: Yup.string()
     .min(8, 'Password must be at least 8 symbols')
     .max(64, 'Password must be at most 64 symbols'),
-  // repeatPassword: Yup.string().when('password', {
-  //   is: password => password && password.length > 0, // Якщо поле password заповнене
-  //   then: Yup.string()
-  //     .required('Repeat password is required')
-  //     .test('passwords-match', 'Passwords must match', function (value) {
-  //       return value === this.parent.password; // Порівнюємо значення repeatPassword з password
-  //     }),
-  //   otherwise: Yup.string().notRequired(), // Якщо password не заповнене — поле repeatPassword не є обов'язковим
-  // }),
+  repeatPassword: Yup.string().oneOf(
+    [Yup.ref('password'), null],
+    'Passwords must match'
+  ),
+  // .required('Repeat password is required'),
 });
 
 // Поля для логіну
