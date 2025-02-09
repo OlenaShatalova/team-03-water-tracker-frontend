@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
       const {
         data: { data },
       } = await api.post('/auth/register', formData);
-      console.log('Data received from server:', data);
+      // console.log('Data received from server:', data);
       setToken(data.token);
       // Токен зберігається в LocalStorage інтерсептором в API
       return data;
@@ -43,7 +43,7 @@ export const login = createAsyncThunk(
       const {
         data: { data },
       } = await api.post('/auth/login', formData);
-      console.log('Login successful, data:', data);
+      // console.log('Login successful, data:', data);
 
       setToken(data.accessToken);
       // Токен зберігається в LocalStorage інтерсептором в API
@@ -87,16 +87,16 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
-    console.log('start refresh');
+    // console.log('start refresh');
 
     const state = thunkAPI.getState();
-    console.log({ state });
+    // console.log({ state });
 
     const persistedToken = state.auth.token;
-    console.log({ persistedToken });
+    // console.log({ persistedToken });
 
     if (!persistedToken) {
-       console.warn('No token found');
+      // console.warn('No token found');
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
@@ -105,7 +105,7 @@ export const refreshUser = createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       setToken(persistedToken);
       const { data } = await api.get('/users/current');
-      console.log(data);
+      // console.log(data);
 
       return data.data;
     } catch (e) {

@@ -86,7 +86,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        console.log('ref.ful', action.payload);
+        // console.log('ref.ful', action.payload);
 
         state.isRefreshing = false;
         state.loading = false;
@@ -94,7 +94,7 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.isRefreshing = false;
         state.loading = false;
