@@ -5,18 +5,25 @@ const DaysGeneralStats = ({ date, dailyNorm, percent, portions }) => {
     const [day, month, year] = dateString.split('.');
     const date = new Date(`${year}-${month}-${day}`);
 
-    return date.toLocaleDateString('en-US', { day: 'numeric', month: 'long' });
+    const dayNumber = date.getDate();
+    const monthName = date.toLocaleString('en-US', { month: 'long' });
+
+    return `${dayNumber}, ${monthName}`;
+  };
+
+  const formatLiters = value => {
+    return `${(value / 1000).toFixed(1)} L`;
   };
 
   return (
     <div className={css.container}>
       <div className={css.date}>
-        <p className={css.statsData}>{formatDate(date)}</p>
+        <p>{formatDate(date)}</p>
       </div>
 
       <div className={css.stats}>
         <p>Daily norma:</p>
-        <p className={css.statsData}>{dailyNorm} </p>
+        <p className={css.statsData}>{formatLiters(dailyNorm)} </p>
       </div>
 
       <div className={css.stats}>
