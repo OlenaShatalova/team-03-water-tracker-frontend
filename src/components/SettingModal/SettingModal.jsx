@@ -85,6 +85,24 @@ const SettingModal = ({ closeSettingModal }) => {
       return;
     }
 
+    if (otherValues.oldPassword && !otherValues.newPassword) {
+      ErrorToast('New password is required to change current password!');
+      return;
+    } else if (
+      otherValues.oldPassword &&
+      otherValues.newPassword &&
+      !repeatPassword
+    ) {
+      ErrorToast('Repeat new password!');
+      return;
+    } else if (
+      (otherValues.newPassword && !otherValues.oldPassword) ||
+      !repeatPassword
+    ) {
+      ErrorToast('Current password is required to change your password!');
+      return;
+    }
+
     try {
       if (otherValues) {
         await dispatch(updateUser(otherValues)).unwrap();
