@@ -30,10 +30,14 @@ const ForgotPassword = () => {
     try {
       await dispatch(sendResetEmail(formValue.email)).unwrap();
       SuccessToast('Password reset instructions sent to your email');
-      resetForm(); // Очищаємо форму
-      navigate('/signin'); // Перенаправляємо на сторінку входу
+      resetForm();
+      navigate('/signin');
     } catch (error) {
-      ErrorToast(error?.message || 'Failed to send reset instructions');
+      if (error.status === 404) {
+        ErrorToast('User with this email is not registered');
+      } else {
+        ErrorToast(error?.message || 'Failed to send reset instructions');
+      }
     }
   };
 

@@ -167,17 +167,12 @@ export const sendResetEmail = createAsyncThunk(
 
 export const resetPassword = createAsyncThunk(
   'auth/resetPassword',
-  async ({ password, token }, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
-      const { data } = await api.post('/auth/reset-pwd', {
-        password,
-        token,
-      });
+      const { data } = await api.post('/auth/reset-pwd', credentials);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || 'Failed to reset password'
-      );
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

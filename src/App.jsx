@@ -19,6 +19,9 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ForgotPassword = lazy(() =>
   import('./pages/ForgotPassword/ForgotPassword')
 );
+const ResetPasswordPage = lazy(() =>
+  import('./pages/ResetPasswordPage/ResetPasswordPage')
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -63,6 +66,7 @@ const App = () => {
               />
             }
           />
+          <Route path="reset-password/:token" element={<ResetPasswordPage />} />
         </Route>
       </Routes>
     </Suspense>
