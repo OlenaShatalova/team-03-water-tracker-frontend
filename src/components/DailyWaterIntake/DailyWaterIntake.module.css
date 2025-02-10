@@ -12,6 +12,7 @@
   text-align: right;
   color: var(--color-primary);
   margin-right: 12px;
+  min-width: 60px;
 }
 
 .dailyWaterTime {
@@ -99,7 +100,7 @@
 
 @media (min-width: 1440px) {
   .dailyWaterWrapper {
-    gap: 278px;
+    gap: 276px;
     width: 534px;
   }
 }
