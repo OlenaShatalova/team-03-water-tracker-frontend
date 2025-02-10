@@ -66,7 +66,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.waters.waterPerMonth = action.payload.data;
-        console.log('per month:', action.payload.data);
+        // console.log('per month:', action.payload.data);
       })
       .addCase(fetchWaterPerMonth.rejected, handleError)
       .addCase(fetchWaterRate.pending, handleLoading)
@@ -79,11 +79,9 @@ const waterSlice = createSlice({
       })
       .addCase(fetchWaterToday.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(
-          'Redux обновился с percentTodayWater:',
-          action.payload.percentTodayWater
-        );
+        console.log('Redux обновился с percentTodayWater:', action.payload);
         state.percentTodayWater = action.payload.percentTodayWater || 0;
+        state.waters.waterPerDay.waterRecord = action.payload.todayRecord;
       })
       .addCase(fetchWaterToday.rejected, (state, action) => {
         state.loading = false;
