@@ -72,8 +72,7 @@
 //   );
 // };
 
-// export default Input;
-
+// export default Input;import { useState } from 'react';import { useState } from 'react';
 import { useState } from 'react';
 import { useField } from 'formik';
 import { ReactSVG } from 'react-svg';
@@ -100,16 +99,14 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
             {...field}
             type={type === 'password' && showPassword ? 'text' : type}
             placeholder={placeholder}
-            className={css.input}
+            className={`${css.input} ${
+              meta.touched && meta.error ? css.inputError : ''
+            }`}
             autoFocus={autoFocus}
           />
-          {/* Іконка для перемикання видимості пароля */}
           {type === 'password' && (
             <span onClick={togglePasswordVisibility} className={css.iconEye}>
-              <ReactSVG
-                style={{ height: '20px' }}
-                src={showPassword ? eye : eyeSlash}
-              />
+              <ReactSVG src={showPassword ? eye : eyeSlash} />
             </span>
           )}
         </div>
