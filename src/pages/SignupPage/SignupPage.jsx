@@ -11,13 +11,13 @@ import { SuccessToast } from '../../utils/successToast';
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { register } from '../../redux/auth/operations';
-import { selectAuthError, selectIsLoggedIn } from '../../redux/auth/selectors';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const SignupPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const authError = useSelector(selectAuthError);
+  // const authError = useSelector(selectAuthError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   // useEffect(() => {
