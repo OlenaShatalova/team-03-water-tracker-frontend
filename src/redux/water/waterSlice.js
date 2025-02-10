@@ -85,7 +85,7 @@ const waterSlice = createSlice({
       .addCase(fetchWaterToday.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log('Redux обновился с percentTodayWater:', action.payload);
+        // console.log('Redux обновился с percentTodayWater:', action.payload);
         state.percentTodayWater = action.payload.percentTodayWater || 0;
         state.waters.waterPerDay.waterRecord = action.payload.todayRecord;
       })

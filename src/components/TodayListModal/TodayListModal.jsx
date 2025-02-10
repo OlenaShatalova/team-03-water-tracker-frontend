@@ -10,11 +10,9 @@ import * as Yup from 'yup';
 import Icon from '../Icon/Icon.jsx';
 import { SuccessToast } from '../../utils/successToast.js';
 import { ErrorToast } from '../../utils/errorToast.js';
-import {
-  addWater,
-  fetchWaterToday,
-  updateWaterVolume,
-} from '../../redux/water/waterOperations.js';
+
+import { updateWaterVolume } from '../../redux/water/waterOperations.js';
+
 import { ReactSVG } from 'react-svg';
 
 const validationSchema = Yup.object({
@@ -22,20 +20,28 @@ const validationSchema = Yup.object({
   water: Yup.number().min(10, 'Minimum 10 ml').required('Required'),
 });
 
+const now = new Date().toLocaleTimeString('uk-UA', {
+  timeZone: 'Europe/Kyiv',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+});
+
 const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
+  const dispatch = useDispatch();
+
   const initialValues = {
-    time: time || '07:00',
+    time: now,
     water: waterVolume || 0,
   };
 
   const timeId = useId();
   const waterId = useId();
 
-  const dispatch = useDispatch();
-
   const handleSubmit = async (values, actions) => {
+    console.log({ values });
+
     try {
-      const now = new Date();
       const [hours, minutes] = values.time.split(':');
 
       const formattedTime = new Date(

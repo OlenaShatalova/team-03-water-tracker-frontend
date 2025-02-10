@@ -15,9 +15,9 @@ const TodayWaterList = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsAddWaterModalOpen);
   const todayRecord = useSelector(selectWaterToday);
-  console.log('todayRecord from useSelector:', todayRecord);
+  // console.log('todayRecord from useSelector:', todayRecord);
 
-  console.log({ isOpen, todayRecord });
+  // console.log({ isOpen, todayRecord });
 
   const onAddWaterButton = () => {
     dispatch(openModal('isAddWaterOpen'));

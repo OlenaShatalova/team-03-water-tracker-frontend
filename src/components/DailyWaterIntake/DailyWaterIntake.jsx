@@ -10,6 +10,8 @@ import pencilsquare from '../../assets/icons/pencilsquare.svg';
 import trash from '../../assets/icons/trash.svg';
 
 const DailyWaterIntake = ({ _id, waterVolume, time }) => {
+  console.log(time);
+
   const [isTodayListModalOpen, setIsTodayListModalOpen] = useState(false);
   const [isDeleteWaterModalOpen, setIsDeleteWaterModalOpen] = useState(false);
 

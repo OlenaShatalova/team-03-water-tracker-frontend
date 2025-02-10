@@ -10,7 +10,7 @@ const WaterRatioPanel = () => {
   let progress = useSelector(selectPercentTodayWater);
   progress = Math.min(progress, 100);
 
-  console.log('Component progress (from Redux):', progress);
+  // console.log('Component progress (from Redux):', progress);
 
   // useEffect(() => {
   //   console.log('useEffect triggered, fetching water data...');
@@ -18,7 +18,7 @@ const WaterRatioPanel = () => {
   // }, [dispatch]);
 
   useEffect(() => {
-    console.log('Redux updated, component should re-render.');
+    // console.log('Redux updated, component should re-render.');
   }, [progress]);
 
   return (
