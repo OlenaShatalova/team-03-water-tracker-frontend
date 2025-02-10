@@ -1,3 +1,4 @@
-export const selectWaterRecordsToday = (state) => state.water?.data?.todayRecord || [];
-export const selectWaterLoading = (state) => state.water.loading;
-export const selectWaterError = (state) => state.water.error;
+export const selectWaterRecordsToday = state =>
+  state.today?.data?.todayRecord || [];
+export const selectWaterLoading = state => state.today.loading;
+export const selectWaterError = state => state.today.error;

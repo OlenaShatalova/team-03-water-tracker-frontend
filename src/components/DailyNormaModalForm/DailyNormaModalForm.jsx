@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId, useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../redux/water/waterSlice";
-import { validationSchema } from "../../utils/validationSchemaWaterRate";
+import { validationSchema } from "../../utils/schemas/WaterRateSchema";
 import { SuccessToast } from "../../utils/successToast";
 import { fetchWaterRate } from "../../redux/water/waterOperations";
 import { ErrorToast } from "../../utils/errorToast";
@@ -14,7 +14,7 @@ const initialValues = {
     gender: "",
     weight: "",
     sportTimes: "",
-    finalNumber: "",
+    dailyNorm: "",
 }
 
 const DailyNormaModalForm = () => {
@@ -31,10 +31,14 @@ const DailyNormaModalForm = () => {
 
     const handleSubmit = async (values) => {
         try {
-            await dispatch(fetchWaterRate(values.finalNumber)).unwrap();
+            // Debugging: Log the values to ensure they are correct
+            console.log("Submitting values:", values);
+            await dispatch(fetchWaterRate(values.dailyNorm)).unwrap();
             dispatch(closeModal("isWaterRateOpen"));
             SuccessToast("Successfully set your water rate!");
-        } catch {
+        } catch (error) {
+            // Debugging: Log the error to understand the issue
+            console.error("Error submitting form:", error);
             ErrorToast("Failed to set water rate. Please try again.");
         }
     };
@@ -44,7 +48,6 @@ const DailyNormaModalForm = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
-            // Handle form value changes
             validateOnChange={true}
             validate={values => {
                 setFormValues(values);
@@ -118,8 +121,9 @@ const DailyNormaModalForm = () => {
                             placeholder={0}
                             step="0.1"
                             type="number"
-                            name="finalNumber"
+                            name="dailyNorm"
                             id={finalNumberId}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -130,4 +134,4 @@ const DailyNormaModalForm = () => {
     )
 }
 
-export default DailyNormaModalForm;
+export default DailyNormaModalForm

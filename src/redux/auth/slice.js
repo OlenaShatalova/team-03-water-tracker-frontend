@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import register, { login, logout, refreshUser } from './operations';
+import {
+  login,
+  logout,
+  refreshUser,
+  register,
+  setToken,
+  updateAvatar,
+  updateUser,
+} from './operations';
 
 const initialState = {
   user: {
@@ -27,13 +35,18 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.loading = false;
         state.isLoggedIn = true;
         state.error = null;
-        state.token = action.payload.accessToken;
+        state.token = action.payload.token || action.payload.accessToken;
         state.user = action.payload.user;
+
+        if (action.payload.accessToken) {
+          setToken(action.payload.accessToken);
+          localStorage.setItem('token', action.payload.accessToken);
+        }
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
@@ -44,13 +57,18 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log('login', action.payload);
+        // console.log('login', action.payload);
 
         state.loading = false;
         state.error = null;
         state.isLoggedIn = true;
         state.token = action.payload.accessToken;
         state.user = action.payload.user;
+
+        if (action.payload.accessToken) {
+          setToken(action.payload.accessToken);
+          localStorage.setItem('token', action.payload.accessToken);
+        }
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -75,7 +93,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        console.log('ref.ful', action.payload);
+        // console.log('ref.ful', action.payload);
 
         state.isRefreshing = false;
         state.loading = false;
@@ -83,13 +101,43 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.isRefreshing = false;
         state.loading = false;
         state.error = action.payload;
         state.token = null;
         state.isLoggedIn = false;
+      })
+      .addCase(updateUser.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        // console.log(action.payload);
+
+        state.loading = false;
+        state.error = null;
+        state.user = action.payload.data;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateAvatar.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        console.log(action.payload);
+
+        state.loading = false;
+        state.error = null;
+        state.user.avatar = action.payload.avatarUrl;
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

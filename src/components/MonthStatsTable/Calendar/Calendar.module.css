@@ -1,51 +1,21 @@
 .list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 auto;
-  gap: 12px;
-  padding: 24px 0;
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  border-radius: 30px;
-  max-width: 34%; /* Ограничение максимальной ширины на всех экранах */
-}
-
-/* Для мобильных (до 768px) - 6 колонок */
-@media screen and (max-width: 767px) {
-  .list {
-    justify-content: flex-start;
-    width: 100%;
-    gap: 12px;
-  }
-  .item {
-    width: calc((100% - 5 * 12px) / 6); /* 6 колонок */
-  }
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px 26px;
 }
 
 /* Для планшетов (768px+) - 10 колонок */
 @media screen and (min-width: 768px) {
   .list {
-    justify-content: flex-start;
-    width: 100%;
-    gap: 18px;
-  }
-  .item {
-    width: calc((100% - 9 * 18px) / 10); /* 10 колонок */
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px 34px;
   }
 }
 
 /* Для десктопов (1024px+) - 10 колонок */
 @media screen and (min-width: 1024px) {
   .list {
-    gap: 18px;
-  }
-  .item {
-    width: calc((100% - 9 * 18px) / 10); /* 10 колонок */
+    column-gap: 22px;
   }
 }

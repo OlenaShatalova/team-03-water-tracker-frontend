@@ -12,9 +12,11 @@ const DailyNorma = () => {
   const isOpen = useSelector(selectIsWaterRateModalOpen);
   const waterRate = useSelector(selectWaterRateNumber);
 
+
   const onOpenModal = () => {
     dispatch(openModal('isWaterRateOpen'));
   };
+
 
   return (
     <div className={css.container}>

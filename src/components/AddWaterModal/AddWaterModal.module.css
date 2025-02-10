@@ -115,6 +115,10 @@
         justify-content: flex-end;
     }
 
+    .subTitle {
+        max-width: 100%;
+    }
+
     .button {
         margin-top: 0;
         width: 160px;

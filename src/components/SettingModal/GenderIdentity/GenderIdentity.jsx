@@ -5,13 +5,13 @@ const GenderIdentity = () => {
   return (
     <div>
       <h3 className={css.genderTtl}>Your gender identity</h3>
-      <label>
-        <Field type="radio" name="gender" value="woman" />
-        <span className={css.spanGender}>Woman</span>
+      <label style={{ cursor: 'pointer' }}>
+        <Field type="radio" name="gender" value="female" />
+        <span className={css.spanGender}>Female</span>
       </label>
-      <label style={{ marginLeft: '24px' }}>
-        <Field type="radio" name="gender" value="man" />
-        <span className={css.spanGender}>Man</span>
+      <label style={{ marginLeft: '24px', cursor: 'pointer' }}>
+        <Field type="radio" name="gender" value="male" />
+        <span className={css.spanGender}>Male</span>
       </label>
     </div>
   );

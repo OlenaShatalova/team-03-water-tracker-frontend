@@ -1,30 +1,37 @@
+.mainContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--bg-bottle-mobile-home), var(--bg-image-mobile-home);
+  /* max-width: 320px; */
+  /* background-size: 280px 208px, cover; */
+  background-repeat: no-repeat, no-repeat;
+  background-position: 20px 162px, 0 0;
+  /* background-size: auto; */
+}
+
 .blueContainer {
   border-radius: 10px;
   padding: 24px 8px;
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
-  background-color: #ecf2ff;
+  box-shadow: var(--shadow-secondary);
+  background-color: var(--color-secondary-1);
   margin-top: 560px;
   margin-left: auto;
   margin-right: auto;
   width: 280px;
   height: 836px;
-}
 
-.mainContainer {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-image: url(../../assets/images/mob-bottleHomeScreen.png),
-    url(../../assets/images/mob-backgroundElementHomeScreen.png);
-  /* max-width: 320px; */
-  background-size: 280px 208px, cover;
-  background-repeat: no-repeat, no-repeat;
-  background-position: 20px 162px, 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-between;
 }
 
 .ratioAndButtonContainer {
   position: absolute;
   top: 386px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 /* .mainContainer::after {
@@ -39,19 +46,19 @@
     background-repeat: no-repeat;
 } */
 
-@media screen and (min-resolution: 192dpi) {
+/* @media screen and (min-resolution: 192dpi) {
   .mainContainer {
     background-image: url(../../assets/images/mob-bottleHomeScreen@2x.png),
       url(../../assets/images/mob-backgroundElementHomeScreen@2x.png);
   }
-}
+} */
 
 @media (min-width: 768px) {
   .mainContainer {
-    background-image: url(../../assets/images/tab-bottleHomeScreen.png),
-      url(../../assets/images/tab-backgroundElementHomeScreen.png);
+    background-image: var(--bg-bottle-tablet-home), var(--bg-image-tablet-home);
     background-size: 518px 386px, cover;
-    background-position: center center, 0 0;
+    background-position: center 40px, 0 0;
+    max-width: 786px;
   }
 
   .blueContainer {
@@ -61,7 +68,7 @@
   }
 
   .ratioAndButtonContainer {
-    top: 506px;
+    top: 418px;
     margin-left: 32px;
     margin-right: 32px;
     display: flex;
@@ -69,12 +76,12 @@
   }
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+/* @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
   .mainContainer {
     background-image: url(../../assets/images/tab-bottleHomeScreen@2x.png),
       url(../../assets/images/tab-backgroundElementHomeScreen@2x.png);
   }
-}
+} */
 
 @media (min-width: 1440px) {
   .blueContainer {
@@ -87,21 +94,15 @@
   }
 
   .mainContainer {
-    background-image: url(../../assets/images/desk-botleHomeScreen.png),
-      url(../../assets/images/desk-backgroundElementMainPage.png);
+    background-image: var(--bg-bottle-desktop-home),
+      var(--bg-image-desktop-home);
     background-size: 738px 548px, contain;
     background-position: 82px 32px, 0 0;
-  }
-}
-
-@media screen and (min-width: 1440px) and (min-resolution: 192dpi) {
-  .mainContainer {
-    background-image: url(../../assets/images/desk-botleHomeScreen@2x.png),
-      url(../../assets/images/desk-backgroundElementMainPage@2x.png);
+    max-width: 1440px;
   }
 
   .ratioAndButtonContainer {
-    top: 654px;
+    top: 594px;
     margin-left: 112px;
     margin-right: 32px;
     gap: 23px;

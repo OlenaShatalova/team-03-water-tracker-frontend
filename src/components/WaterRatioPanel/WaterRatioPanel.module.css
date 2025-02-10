@@ -3,7 +3,7 @@
   font-size: 18px;
   line-height: 1.33;
   text-align: left;
-  color: #407bff;
+  color: var(--color-primary-light);
   margin-bottom: 10px;
 }
 
@@ -31,13 +31,13 @@
 .progressBar {
   position: relative;
   height: 8px;
-  background: #d7e3ff;
+  background: var(--color-accent-light-blue);
   border-radius: 10px;
 }
 
 .progressFill {
   height: 100%;
-  background: #9ebbff;
+  background: var(--color-secondary-light-3);
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
 }
@@ -48,7 +48,7 @@
   transform: translate(-50%, -50%);
   width: 14px;
   height: 14px;
-  background: #ffffff;
+  background: var(--color-bg-light);
   border: 1px solid #407bff;
   border-radius: 50%;
 }
@@ -69,7 +69,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
-  color: #407bff;
+  color: var(--color-primary-light);
   transition: color 0.3s, font-weight 0.3s;
 }
 
@@ -81,14 +81,14 @@
   transform: translateX(-50%);
   width: 1px;
   height: 8px;
-  background-color: #d7e3ff;
+  background-color: var(--color-accent-light-blue);
 }
 
 .label.active {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #407bff;
+  color: var(--color-primary-light);
 }
 
 .label.active::before {

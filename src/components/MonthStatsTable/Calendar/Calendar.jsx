@@ -1,100 +1,115 @@
-import React, { useEffect } from "react";
-import css from "./Calendar.module.css"; // Подключение стилей (если они есть)
-import CalendarItem from "../CalendarItem/CalendarItem";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentDate, selectWaterPerMonth, selectWaterRateNumber } from "../../../redux/water/waterSelectors";
-import { fetchWaterPerMonth } from "../../../redux/water/waterOperations";
-import { setActiveDay } from "../../../redux/water/waterSlice";
-import DaysGeneralStats from "../../DaysGeneralStats/DaysGeneralStats";
-import { selectUser } from "../../../redux/auth/selectors";
-import { use } from "react";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { fetchWaterPerMonth } from '../../../redux/water/waterOperations';
+import { setActiveDay } from '../../../redux/water/waterSlice';
+import {
+  selectCurrentDate,
+  selectWaterPerMonth,
+  // selectWaterRateNumber,
+} from '../../../redux/water/waterSelectors';
+// import { selectUser } from '../../../redux/auth/selectors';
 
+import CalendarItem from '../CalendarItem/CalendarItem';
 
+import css from './Calendar.module.css'; // Подключение стилей (если они есть)
 
 const daysInMonth = (month, year) => {
-    return new Date(year, month + 1, 0).getDate();
+  return new Date(year, month + 1, 0).getDate();
 };
 
-const Calendar = ({openModal}) => {
-    const dispatch = useDispatch();
-    const currentDate = useSelector(selectCurrentDate);
-    const dateObj = new Date(currentDate)
-    const month = dateObj.getMonth();
-    const year = dateObj.getFullYear();
+const Calendar = ({ openModal }) => {
+  const dispatch = useDispatch();
+  const currentDate = useSelector(selectCurrentDate);
+  const dateObj = new Date(currentDate);
+  const month = dateObj.getMonth();
+  const year = dateObj.getFullYear();
 
+  // const user = useSelector(selectUser);
+  // const waterRate = useSelector(selectWaterRateNumber);
+  const waterPerMonth = useSelector(selectWaterPerMonth);
 
-    const user = useSelector(selectUser);
-    console.log(user)
-    const waterRate = useSelector(selectWaterRateNumber);
-    const waterPerMonth = useSelector(selectWaterPerMonth);
+  const activeDay = useSelector(state => state.water.activeDay);
 
-    const activeDay = useSelector(state => state.water.activeDay)
+  // const calculateFeasibility = (dayData, user) => {
+  //   if (!dayData || !dayData.length) return 0;
 
+  //   const totalPortions = dayData.reduce(
+  //     (sum, record) => sum + (record.consumptionCount || 0),
+  //     0
+  //   );
 
+  //   const userWaterRateInMl = user.dailyNorm * 1000;
 
+  //   const totalWaterConsumed = totalPortions * 250;
 
-    const calculateFeasibility = (dayData) => {
-        if (!dayData?.length) return 0;
+  //   const percentage =
+  //     totalWaterConsumed >= userWaterRateInMl
+  //       ? 100
+  //       : Math.round((totalWaterConsumed / userWaterRateInMl) * 100);
 
-        const totalValue = dayData.reduce((sum, record) => sum + (record.waterValue || 0), 0);
-        const userWaterRate = Number(user.dailyNorm) * 1000;
+  //   return percentage;
+  // };
 
-        return totalValue >= userWaterRate ? 100 : Math.round((totalValue / userWaterRate) * 100);
+  const handleDayClick = day => {
+    const formattedDay = `${String(day).padStart(2, '0')}.${String(
+      month + 1
+    ).padStart(2, '0')}.${year}`;
+    openModal();
+    dispatch(setActiveDay(formattedDay));
+    // dispatch(fetchWaterPerDay(formattedDay));
+  };
+
+  // Массив дней месяца
+  const arrayOfDays = Array.from(
+    { length: daysInMonth(month, year) },
+    (_, index) => index + 1
+  );
+  // console.log(arrayOfDays.length);
+
+  useEffect(() => {
+    const date = new Date(currentDate);
+    const formattedDate = {
+      month: date.getMonth() + 1,
+      year: date.getFullYear(),
     };
-    const handleDayClick = (day) => {
-        
-        const formattedDay = `${String(day).padStart(2, '0')}.${String(month + 1).padStart(2, '0')}.${year}`;
-        openModal();
-        dispatch(setActiveDay(formattedDay));
-        dispatch(fetchWaterPerDay(formattedDay));
-        
-    };
-    const arrayOfDays = Array.from({ length: daysInMonth(month, year) }, (_, index) => index + 1);
-    useEffect(() => {
-        const date = new Date(currentDate);
-        const formattedDate = {
-            month: String(date.getMonth() + 1).padStart(2, '0'),
-            year: String(date.getFullYear()),
-        };
 
-        console.log(formattedDate); // { month: "02", year: "2024" }
-        dispatch(fetchWaterPerMonth({ month: formattedDate.month, year: formattedDate.year }));
-
-    }, [dispatch, currentDate]);
-
-
-    return (
-        <div>
-            <ul className={css.list}>
-                {arrayOfDays.map((day) => {
-                    const dayKey = `${String(day).padStart(2, '0')}.${String(month + 1).padStart(2, '0')}.${year}`;
-                    const dayData = waterPerMonth[dayKey] || [];
-                    const feasibility = calculateFeasibility(dayData);
-
-                    return (
-                        <li className={css.item} key={day}>
-                            <CalendarItem
-                                day={day}
-                                waterData={dayData}
-                                feasibility={feasibility}
-                                onClick={() => handleDayClick(day)}
-                                isActive={day === activeDay}
-                            />
-
-                        </li>
-
-                    );
-                })}
-            </ul>
-            {/* Отображение компонента с деталями для активного дня */}
-
-
-        </div>
-
-
-
+    dispatch(
+      fetchWaterPerMonth({
+        month: formattedDate.month,
+        year: formattedDate.year,
+      })
     );
+  }, [dispatch, currentDate]);
+
+  return (
+    <div>
+      <ul className={css.list}>
+        {arrayOfDays.map(day => {
+          const dayString = String(day - 1);
+          const activeDayString = `${String(day).padStart(2, '0')}.${String(
+            month + 1
+          ).padStart(2, '0')}.${year}`;
+          const dayData = waterPerMonth[dayString];
+          // console.log(`Day: ${day}, Data:`, dayData);
+          const percentage =
+            dayData && dayData.percentage ? dayData.percentage : '0%';
+
+          return (
+            <li className={css.item} key={dayString}>
+              <CalendarItem
+                day={day}
+                waterData={dayData}
+                percentage={percentage}
+                onClick={() => handleDayClick(day)}
+                isActive={activeDay === activeDayString}
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };
 
 export default Calendar;
