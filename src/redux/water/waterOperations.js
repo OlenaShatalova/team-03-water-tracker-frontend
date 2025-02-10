@@ -58,11 +58,11 @@ export const addWater = createAsyncThunk('today/addWater', async waterData => {
   try {
     console.log('waterData:', waterData);
 
-    const res = await api.post('/water/', waterData);
-    console.log(res);
+    await api.post('/water/', waterData);
+    // console.log(res);
 
     const { data } = await api.get('/water/today');
-    console.log(data.data);
+    // console.log(data.data);
 
     return data.data;
   } catch (error) {
@@ -87,11 +87,16 @@ export const addWater = createAsyncThunk('today/addWater', async waterData => {
 // );
 
 ///// DELETE WATER
-export const deleteWater = createAsyncThunk('today/deleteWater', async id => {
-  try {
-    const response = await api.delete(`/water/${id}`);
-    return response.data;
-  } catch (error) {
-    throw new Error(error.message);
+export const deleteWater = createAsyncThunk(
+  'today/deleteWater',
+  async (id, thunkAPI) => {
+    console.log(id);
+
+    try {
+      const response = await api.delete(`/water/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
