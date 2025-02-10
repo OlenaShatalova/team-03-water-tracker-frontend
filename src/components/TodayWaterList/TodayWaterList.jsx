@@ -9,15 +9,16 @@ import { selectWaterToday } from '../../redux/water/waterSelectors';
 
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
+
 import css from './TodayWaterList.module.css';
 
 const TodayWaterList = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsAddWaterModalOpen);
   const todayRecord = useSelector(selectWaterToday);
-  console.log('todayRecord from useSelector:', todayRecord);
+  // console.log('todayRecord from useSelector:', todayRecord);
 
-  console.log({ isOpen, todayRecord });
+  // console.log({ isOpen, todayRecord });
 
   const onAddWaterButton = () => {
     dispatch(openModal('isAddWaterOpen'));

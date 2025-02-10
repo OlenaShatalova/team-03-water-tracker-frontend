@@ -21,7 +21,6 @@
 
 .todayWaterListBtn {
   height: 20px;
-  width: 97px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -91,6 +90,14 @@
   .scrollableList {
     max-height: 176px;
   }
+
+  .plusIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (min-width: 1440px) {
   .plusIcon {
     width: 24px;
     height: 24px;
@@ -101,7 +108,4 @@
     font-size: 18px;
     line-height: 1.33;
   }
-}
-
-@media (min-width: 1440px) {
 }

@@ -43,6 +43,7 @@ const DailyWaterIntake = ({ _id, waterVolume, time }) => {
         onRequestClose={() => closeTodayListModal()}
         waterVolume={waterVolume}
         time={time}
+        id={_id}
       />
 
       <DeleteWaterModal

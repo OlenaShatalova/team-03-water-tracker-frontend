@@ -11,11 +11,9 @@ import * as Yup from 'yup';
 import Icon from '../Icon/Icon.jsx';
 import { SuccessToast } from '../../utils/successToast.js';
 import { ErrorToast } from '../../utils/errorToast.js';
-import {
-  addWater,
-  fetchWaterToday,
-  updateWaterVolume,
-} from '../../redux/water/waterOperations.js';
+
+import { updateWaterVolume } from '../../redux/water/waterOperations.js';
+
 import { ReactSVG } from 'react-svg';
 
 const validationSchema = Yup.object({
@@ -23,7 +21,9 @@ const validationSchema = Yup.object({
   water: Yup.number().min(10, 'Minimum 10 ml').required('Required'),
 });
 
-const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
+const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
+  const dispatch = useDispatch();
+
   const initialValues = {
     time: time || '07:00',
     water: waterVolume || 0,
@@ -32,9 +32,9 @@ const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
   const timeId = useId();
   const waterId = useId();
 
-  const dispatch = useDispatch();
-
   const handleSubmit = async (values, actions) => {
+    // console.log({ values });
+
     try {
       const now = new Date();
       const [hours, minutes] = values.time.split(':');
@@ -52,12 +52,10 @@ const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
         date: formattedTime,
       };
 
-      console.log('waterData:', waterData);
-      await dispatch(updateWaterVolume(waterData)).unwrap();
+      await dispatch(updateWaterVolume({ id, waterData })).unwrap();
 
-      actions.resetForm();
-      onRequestClose();
       SuccessToast('Successfully edited water record!');
+      onRequestClose();
     } catch {
       ErrorToast('Failed to edit water record. Please try again.');
       onRequestClose();
@@ -87,11 +85,13 @@ const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
             <ReactSVG src={close} className={css.icon} />
           </button>
         </div>
+
         <div className={css.dailyWaterDataWrapper}>
           <ReactSVG src={cup} className={css.cupIcon} />
           <p className={css.dailyWaterVolume}>{waterVolume} ml</p>
           <p className={css.dailyWaterTime}>{time} </p>
         </div>
+
         <p className={css.subTitle}>Correct entered data:</p>
 
         <Formik
