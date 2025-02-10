@@ -21,8 +21,10 @@ const AuthForm = ({
       <Title>{title}</Title>
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
         validationSchema={validationSchema}
+        onSubmit={(values, actions) => {
+          onSubmit(values, actions);
+        }}
       >
         <Form className={css.form}>
           {fields.map(field => (
