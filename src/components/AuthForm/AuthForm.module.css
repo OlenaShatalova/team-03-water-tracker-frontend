@@ -23,6 +23,20 @@
   background: #407bff;
 }
 
+.forgotLink {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-secondary-3);
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.forgotLink:hover {
+  color: var(--color-primary);
+}
+
 @media screen and (min-width: 768px) {
   .signContainer {
     width: 336px;

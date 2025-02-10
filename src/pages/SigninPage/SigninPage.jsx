@@ -31,6 +31,7 @@ const SigninPage = () => {
           btnText={'Sign In'}
           linkTo={'/signup'}
           linkText={'Sing Up'}
+          showForgotPassword={true} //додав
         ></AuthForm>
       </Container>
     </main>

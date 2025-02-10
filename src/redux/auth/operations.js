@@ -151,3 +151,34 @@ export const updateAvatar = createAsyncThunk(
     }
   }
 );
+
+export const sendResetEmail = createAsyncThunk(
+  'auth/sendResetEmail',
+  async (email, thunkAPI) => {
+    try {
+      const { data } = await api.post('/auth/send-reset-email', { email });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Failed to send reset email'
+      );
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ password, token }, thunkAPI) => {
+    try {
+      const { data } = await api.post('/auth/reset-pwd', {
+        password,
+        token,
+      });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Failed to reset password'
+      );
+    }
+  }
+);

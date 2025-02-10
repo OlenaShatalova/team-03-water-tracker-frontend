@@ -7,6 +7,8 @@ import {
   setToken,
   updateAvatar,
   updateUser,
+  sendResetEmail,
+  resetPassword,
 } from './operations';
 
 const initialState = {
@@ -136,6 +138,30 @@ const authSlice = createSlice({
         state.user.avatar = action.payload.avatarUrl;
       })
       .addCase(updateAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(sendResetEmail.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(sendResetEmail.fulfilled, state => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(sendResetEmail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(resetPassword.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(resetPassword.fulfilled, state => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
