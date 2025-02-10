@@ -42,14 +42,17 @@ const SignupPage = () => {
         navigate('/signin'); // Перенаправлення на сторінку входу
       })
       .catch(error => {
-        if (error.message.includes('User with this email already exists')) {
-          formActions.setFieldError(
-            'email',
-            'Користувач з таким email вже існує'
-          );
-        } else {
-          ErrorToast('Registration failed: ' + error);
-        }
+        ErrorToast(
+          error.message || 'Registration failed! Please try again later'
+        );
+        // if (error.message.includes('User with this email already exists')) {
+        //   formActions.setFieldError(
+        //     'email',
+        //     'Користувач з таким email вже існує'
+        //   );
+        // } else {
+        //   ErrorToast('Registration failed: ' + error);
+        // }
       })
       .finally(() => formActions.setSubmitting(false));
   };

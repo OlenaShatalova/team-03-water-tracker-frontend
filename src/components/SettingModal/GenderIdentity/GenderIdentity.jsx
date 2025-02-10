@@ -6,11 +6,21 @@ const GenderIdentity = () => {
     <div>
       <h3 className={css.genderTtl}>Your gender identity</h3>
       <label style={{ cursor: 'pointer' }}>
-        <Field type="radio" name="gender" value="female" />
+        <Field
+          type="radio"
+          name="gender"
+          value="female"
+          style={{ cursor: 'pointer' }}
+        />
         <span className={css.spanGender}>Female</span>
       </label>
       <label style={{ marginLeft: '24px', cursor: 'pointer' }}>
-        <Field type="radio" name="gender" value="male" />
+        <Field
+          type="radio"
+          name="gender"
+          value="male"
+          style={{ cursor: 'pointer' }}
+        />
         <span className={css.spanGender}>Male</span>
       </label>
     </div>
