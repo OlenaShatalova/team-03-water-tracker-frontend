@@ -53,7 +53,19 @@
   font-size: 16px;
   line-height: 1.25;
   font-weight: 500;
+  box-shadow: var(--shadow-secondary);
+  transition: box-shadow 0.3s ease-in-out, fill 0.3s ease-in-out;
 }
+.tryTrackerBtn:hover {
+  box-shadow: var(--shadow-primary);
+  cursor: var(--cursor-hover);
+}
+
+.tryTrackerBtn:active {
+  box-shadow: none;
+  cursor: var(--cursor-active);
+}
+
 .waterTrackerContainer {
   margin-bottom: 0;
 }
