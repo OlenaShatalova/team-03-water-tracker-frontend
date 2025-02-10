@@ -5,7 +5,7 @@
   height: 188px;
   padding: 24px 13px;
   border-radius: 10px;
-  box-shadow: 0 4px 4px 0 var(--shadow-primary);
+  box-shadow: var(--shadow-primary);
   background: var(--color-bg);
   display: flex;
   flex-direction: column;
