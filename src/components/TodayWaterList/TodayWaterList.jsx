@@ -47,7 +47,7 @@ const TodayWaterList = () => {
             ))}
           </ul>
         ) : (
-          <p>No records today.</p>
+          <p className={css.noRecords}>No records today</p>
         )}
       </div>
 
