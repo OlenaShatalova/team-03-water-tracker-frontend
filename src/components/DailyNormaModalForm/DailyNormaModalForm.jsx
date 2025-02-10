@@ -31,14 +31,11 @@ const DailyNormaModalForm = () => {
 
     const handleSubmit = async (values) => {
         try {
-            // Debugging: Log the values to ensure they are correct
-            console.log("Submitting values:", values);
+            console.log("dailyNorm:", values.dailyNorm)
             await dispatch(fetchWaterRate(values.dailyNorm)).unwrap();
             dispatch(closeModal("isWaterRateOpen"));
             SuccessToast("Successfully set your water rate!");
-        } catch (error) {
-            // Debugging: Log the error to understand the issue
-            console.error("Error submitting form:", error);
+        } catch {
             ErrorToast("Failed to set water rate. Please try again.");
         }
     };
@@ -48,6 +45,7 @@ const DailyNormaModalForm = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
+            // Handle form value changes
             validateOnChange={true}
             validate={values => {
                 setFormValues(values);
@@ -123,7 +121,6 @@ const DailyNormaModalForm = () => {
                             type="number"
                             name="dailyNorm"
                             id={finalNumberId}
-                            onChange={handleChange}
                         />
                     </div>
 
