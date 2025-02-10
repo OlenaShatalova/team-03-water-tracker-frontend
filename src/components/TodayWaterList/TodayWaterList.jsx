@@ -9,6 +9,7 @@ import { selectWaterToday } from '../../redux/water/waterSelectors';
 
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
+
 import css from './TodayWaterList.module.css';
 
 const TodayWaterList = () => {

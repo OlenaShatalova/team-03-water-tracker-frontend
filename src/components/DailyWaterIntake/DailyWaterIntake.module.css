@@ -2,7 +2,7 @@
   height: 50px;
   display: flex;
   align-items: center;
-  gap: 38px;
+  justify-content: space-between;
   border-bottom: 1px solid var(--color-accent-blue);
 }
 
@@ -33,6 +33,7 @@
   align-items: flex-end;
   margin-right: 0;
   gap: 18px;
+  height: 36px;
 }
 
 .dailyWaterEditBtn {
@@ -68,6 +69,7 @@
 .dailyWaterDeleteBtn:hover {
   border-bottom: 1px solid var(--color-secondary-2);
 }
+
 .cupIcon {
   width: 26px;
   height: 26px;
@@ -80,10 +82,9 @@
 @media (min-width: 768px) {
   .dailyWaterWrapper {
     height: 60px;
-    gap: 390px;
   }
   .dailyWaterDataWrapper {
-    width: 206px;
+    /* width: 206px; */
   }
   .dailyWaterTime {
     width: 82px;
@@ -99,7 +100,6 @@
 
 @media (min-width: 1440px) {
   .dailyWaterWrapper {
-    gap: 278px;
     width: 534px;
   }
 }

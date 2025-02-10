@@ -21,18 +21,11 @@ const validationSchema = Yup.object({
   water: Yup.number().min(10, 'Minimum 10 ml').required('Required'),
 });
 
-const now = new Date().toLocaleTimeString('uk-UA', {
-  timeZone: 'Europe/Kyiv',
-  hour: '2-digit',
-  minute: '2-digit',
-  hour12: false,
-});
-
-const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
+const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
   const dispatch = useDispatch();
 
   const initialValues = {
-    time: now,
+    time: time || '07:00',
     water: waterVolume || 0,
   };
 
@@ -40,9 +33,10 @@ const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
   const waterId = useId();
 
   const handleSubmit = async (values, actions) => {
-    console.log({ values });
+    // console.log({ values });
 
     try {
+      const now = new Date();
       const [hours, minutes] = values.time.split(':');
 
       const formattedTime = new Date(
@@ -58,12 +52,10 @@ const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
         date: formattedTime,
       };
 
-      console.log('waterData:', waterData);
-      await dispatch(updateWaterVolume(waterData)).unwrap();
+      await dispatch(updateWaterVolume({ id, waterData })).unwrap();
 
-      actions.resetForm();
-      onRequestClose();
       SuccessToast('Successfully edited water record!');
+      onRequestClose();
     } catch {
       ErrorToast('Failed to edit water record. Please try again.');
       onRequestClose();
@@ -93,11 +85,13 @@ const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
             <ReactSVG src={close} className={css.icon} />
           </button>
         </div>
+
         <div className={css.dailyWaterDataWrapper}>
           <ReactSVG src={cup} className={css.cupIcon} />
           <p className={css.dailyWaterVolume}>{waterVolume} ml</p>
           <p className={css.dailyWaterTime}>{time} </p>
         </div>
+
         <p className={css.subTitle}>Correct entered data:</p>
 
         <Formik
