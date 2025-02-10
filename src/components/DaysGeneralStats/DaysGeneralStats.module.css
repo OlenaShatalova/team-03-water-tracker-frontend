@@ -1,31 +1,36 @@
 .container {
-  border-radius: 10px;
-  padding: 24px 16px;
+  position: absolute;
+  transform: translate(-8px, -200px);
   width: 280px;
   height: 188px;
-  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
-  background: #ffffff;
+  padding: 24px 13px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-primary);
+  background: var(--color-bg);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  color: #2f2f2f;
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  opacity: 1;
 }
 
-.title {
+.stats {
   display: flex;
   gap: 6px;
 }
 
+.date {
+  color: var(--color-primary);
+}
+
 .statsData {
-  color: #407bff;
+  color: var(--color-primary);
 }
 
 @media screen and (min-width: 768px) {
   .container {
     width: 292px;
+    padding-inline: 16px;
   }
 }
