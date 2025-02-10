@@ -117,7 +117,7 @@ const waterSlice = createSlice({
 
         state.waters.waterPerDay.waterRecord =
           state.waters.waterPerDay.waterRecord.filter(
-            record => record._id !== action.payload._id
+            record => record._id !== action.payload
           );
       })
       .addCase(deleteWater.rejected, (state, action) => {

@@ -1,16 +1,20 @@
-import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
-import css from './DeleteWaterModal.module.css';
+import Modal from 'react-modal';
+
+import { deleteWater } from '../../redux/water/waterOperations';
 
 import { ReactSVG } from 'react-svg';
 import closes from '../../assets/icons/closes.svg';
-import { deleteWater } from '../../redux/water/waterOperations';
 
-const DeleteWaterModal = ({ isOpen, onRequestClose, _id }) => {
+import css from './DeleteWaterModal.module.css';
+
+Modal.setAppElement('#root'); // Додаємо цей рядок
+
+const DeleteWaterModal = ({ isOpen, onRequestClose, id }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteWater(_id));
+    dispatch(deleteWater(id));
     onRequestClose();
   };
 
