@@ -1,13 +1,12 @@
 .mainContainer {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   background-image: var(--bg-bottle-mobile-home), var(--bg-image-mobile-home);
   /* max-width: 320px; */
-  /* background-size: 280px 208px, cover; */
   background-repeat: no-repeat, no-repeat;
   background-position: 20px 162px, 0 0;
-  /* background-size: auto; */
+  padding: 0 20px 40px 20px;
 }
 
 .blueContainer {
@@ -15,7 +14,7 @@
   padding: 24px 8px;
   box-shadow: var(--shadow-secondary);
   background-color: var(--color-secondary-1);
-  margin-top: 560px;
+  margin-top: 550px;
   margin-left: auto;
   margin-right: auto;
   width: 280px;
@@ -30,28 +29,7 @@
 .ratioAndButtonContainer {
   position: absolute;
   top: 386px;
-  margin-left: 20px;
-  margin-right: 20px;
 }
-
-/* .mainContainer::after {
-    content: "";
-    position: absolute;
-    width: 200px;
-    height: auto;
-    top: 20px;
-    left: 20px;
-    background-image: url(../../assets/images/mob-bottleHomeScreen.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-} */
-
-/* @media screen and (min-resolution: 192dpi) {
-  .mainContainer {
-    background-image: url(../../assets/images/mob-bottleHomeScreen@2x.png),
-      url(../../assets/images/mob-backgroundElementHomeScreen@2x.png);
-  }
-} */
 
 @media (min-width: 768px) {
   .mainContainer {
@@ -59,37 +37,30 @@
     background-size: 518px 386px, cover;
     background-position: center 40px, 0 0;
     max-width: 786px;
+    padding: 0 32px 40px 32px;
   }
 
   .blueContainer {
     padding: 32px 24px;
     width: 704px;
     height: 688px;
+    margin-top: 540px;
   }
 
   .ratioAndButtonContainer {
     top: 418px;
-    margin-left: 32px;
-    margin-right: 32px;
     display: flex;
     gap: 12px;
   }
 }
-
-/* @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-  .mainContainer {
-    background-image: url(../../assets/images/tab-bottleHomeScreen@2x.png),
-      url(../../assets/images/tab-backgroundElementHomeScreen@2x.png);
-  }
-} */
 
 @media (min-width: 1440px) {
   .blueContainer {
     padding: 32px 24px;
     width: 592px;
     height: 680px;
-    margin-top: 20px;
-    margin-right: 112px;
+    margin-top: 0;
+    margin-right: 0;
     margin-left: auto;
   }
 
@@ -99,12 +70,11 @@
     background-size: 738px 548px, contain;
     background-position: 82px 32px, 0 0;
     max-width: 1440px;
+    padding: 20px 112px 40px 112px;
   }
 
   .ratioAndButtonContainer {
     top: 594px;
-    margin-left: 112px;
-    margin-right: 32px;
     gap: 23px;
   }
 }
