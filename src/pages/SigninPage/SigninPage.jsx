@@ -15,7 +15,7 @@ const SigninPage = () => {
       await dispatch(login(formValue)).unwrap();
       SuccessToast('Successfully signed in!');
     } catch (error) {
-      ErrorToast(error.message || 'Login failed!');
+      ErrorToast(error.message || 'Email or password is wrong!');
     }
   };
 

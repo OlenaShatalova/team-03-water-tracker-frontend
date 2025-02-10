@@ -13,7 +13,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('APP useEffect triggered, fetching water data...');
+    // console.log('APP useEffect triggered, fetching water data...');
     dispatch(fetchWaterToday());
   }, [dispatch]);
 
