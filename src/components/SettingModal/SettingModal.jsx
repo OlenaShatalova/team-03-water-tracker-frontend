@@ -23,9 +23,14 @@ const SettingModal = ({ closeSettingModal }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const avatarRef = useRef(null);
-  const [avatar, setAvatar] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState(null);
   const loading = useSelector(selectLoading);
+  const [avatarFile, setAvatarFile] = useState(null);
+
+  useEffect(() => {
+    // Оновлюємо avatarUrl при зміні user.avatar
+    setAvatarUrl(user.avatarUrl);
+  }, [user.avatarUrl]);
 
   useEffect(() => {
     const onKeyDown = evt => {
@@ -58,16 +63,14 @@ const SettingModal = ({ closeSettingModal }) => {
       ErrorToast('File size exceeds 5MB');
       return;
     }
-    setAvatar(file); //// Оновлюємо локальний стан аватарки
     const tempUrl = URL.createObjectURL(file); //Створення тимчасового url файлу для відображення в img
     setAvatarUrl(tempUrl); // Оновлюємо URL для відображення аватарки
-
-    setFieldValue('avatar', file); // Оновлює значення поля 'avatar'
+    setAvatarFile(file);
+    setFieldValue('avatarUrl', file); // Оновлює значення поля 'avatar'
   };
 
   const handleSubmit = async values => {
-    const { avatar, repeatPassword, ...otherValues } = values;
-    // console.log('Values:', values);
+    const { avatarUrl, repeatPassword, ...otherValues } = values;
 
     const isDataUnchanged =
       user.gender === otherValues.gender &&
@@ -75,7 +78,7 @@ const SettingModal = ({ closeSettingModal }) => {
       user.email === otherValues.email &&
       user.oldPassword === otherValues.oldPassword &&
       user.newPassword === otherValues.newPassword &&
-      !avatar;
+      !avatarFile;
 
     if (isDataUnchanged) {
       closeSettingModal();
@@ -83,12 +86,12 @@ const SettingModal = ({ closeSettingModal }) => {
     }
 
     try {
-      await dispatch(updateUser(otherValues)).unwrap();
+      if (otherValues) {
+        await dispatch(updateUser(otherValues)).unwrap();
+      }
 
-      if (avatar) {
-        const uploadedAvatar = await dispatch(updateAvatar(avatar)).unwrap();
-        setAvatarUrl(uploadedAvatar.avatarUrl);
-        // user.avatar = uploadedAvatar.avatarUrl;
+      if (avatarFile) {
+        await dispatch(updateAvatar(avatarFile)).unwrap();
       }
       SuccessToast('Your changes is successfully saved!');
       closeSettingModal();
@@ -103,7 +106,7 @@ const SettingModal = ({ closeSettingModal }) => {
         gender: user.gender,
         name: user.name,
         email: user.email,
-        avatar: user.avatar,
+        avatarUrl: user.avatarUrl,
       }}
       validationSchema={UserInfoSchema}
       onSubmit={handleSubmit}

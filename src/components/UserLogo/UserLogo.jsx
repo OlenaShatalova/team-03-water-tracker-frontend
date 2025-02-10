@@ -12,8 +12,10 @@ const UserLogo = () => {
   const user = useSelector(selectUser);
 
   const getUserAvatar = () => {
-    if (user && user.avatar) {
-      return <img src={user.avatar} alt="User avatar" className={css.avatar} />;
+    if (user && user.avatarUrl) {
+      return (
+        <img src={user.avatarUrl} alt="User avatar" className={css.avatar} />
+      );
     }
     const letter = user?.name
       ? user.name[0].toUpperCase()
