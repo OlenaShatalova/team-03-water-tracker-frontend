@@ -72,7 +72,7 @@
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
     background-color: #407BFF;
     border: none;
-    color: #FFFFFFFF;
+    color: var(--color-bg);
     margin-top: 24px;
 }
 

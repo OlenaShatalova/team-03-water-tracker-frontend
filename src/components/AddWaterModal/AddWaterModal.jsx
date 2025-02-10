@@ -13,6 +13,8 @@ import Icon from '../Icon/Icon.jsx';
 import { SuccessToast } from '../../utils/successToast.js';
 import { ErrorToast } from '../../utils/errorToast.js';
 import { addWater } from '../../redux/water/waterOperations.js';
+import { ReactSVG } from 'react-svg';
+import plus from '../../assets/icons/plus.svg';
 
 const validationSchema = Yup.object({
   time: Yup.string().required('Required'),
@@ -142,15 +144,13 @@ const AddWaterModal = () => {
                     onClick={() => setFieldValue('water', values.water + 50)} // Обновляем значение воды через Formik
                     className={css.roundButtons}
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M12 5.25C12.1989 5.25 12.3897 5.32902 12.5303 5.46967C12.671 5.61032 12.75 5.80109 12.75 6V11.25H18C18.1989 11.25 18.3897 11.329 18.5303 11.4697C18.671 11.6103 18.75 11.8011 18.75 12C18.75 12.1989 18.671 12.3897 18.5303 12.5303C18.3897 12.671 18.1989 12.75 18 12.75H12.75V18C12.75 18.1989 12.671 18.3897 12.5303 18.5303C12.3897 18.671 12.1989 18.75 12 18.75C11.8011 18.75 11.6103 18.671 11.4697 18.5303C11.329 18.3897 11.25 18.1989 11.25 18V12.75H6C5.80109 12.75 5.61032 12.671 5.46967 12.5303C5.32902 12.3897 5.25 12.1989 5.25 12C5.25 11.8011 5.32902 11.6103 5.46967 11.4697C5.61032 11.329 5.80109 11.25 6 11.25H11.25V6C11.25 5.80109 11.329 5.61032 11.4697 5.46967C11.6103 5.32902 11.8011 5.25 12 5.25Z" fill="#407BFF" />
-                    </svg>
+                    <ReactSVG src={plus} className={css.plusIcon} />
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className={css.text} htmlFor="time">
+                <label className={css.text} htmlFor={time}>
                   Recording time:
                 </label>
                 <Field
@@ -163,7 +163,7 @@ const AddWaterModal = () => {
               </div>
 
               <div className={css.containerBeforeValue}>
-                <label htmlFor="water">
+                <label htmlFor={water}>
                   <p className={css.subTitle}>
                     Enter the value of the water used:
                   </p>

@@ -6,7 +6,6 @@ import DailyNormaModalForm from "../DailyNormaModalForm/DailyNormaModalForm";
 import css from "./DailyNormaModal.module.css"
 import Icon from "../Icon/Icon.jsx";
 
-
 const DailyNormaModal = () => {
     const dispatch = useDispatch();
     const isOpen = useSelector(selectIsWaterRateModalOpen);

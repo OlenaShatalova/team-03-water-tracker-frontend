@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useId, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../redux/water/waterSlice";
 import { validationSchema } from "../../utils/schemas/WaterRateSchema";
@@ -19,11 +19,11 @@ const initialValues = {
 
 const DailyNormaModalForm = () => {
     const dispatch = useDispatch();
-    const womanBtnId = useId();
-    const manBtnId = useId();
-    const weightId = useId();
-    const sportTimesId = useId();
-    const finalNumberId = useId();
+    // const womanBtnId = useId();
+    // const manBtnId = useId();
+    // const weightId = useId();
+    // const sportTimesId = useId();
+    // const finalNumberId = useId();
 
     const [formValues, setFormValues] = useState(initialValues);
 
@@ -62,10 +62,10 @@ const DailyNormaModalForm = () => {
                                     type="radio"
                                     name="gender"
                                     value="For woman"
-                                    id={womanBtnId}
+                                    id="womanBtnId"
                                     onChange={handleChange}
                                 />
-                                <label htmlFor={womanBtnId}>For woman</label>
+                                <label htmlFor="womanBtnId">For woman</label>
                             </div>
 
                             <div className={css.radio}>
@@ -74,35 +74,35 @@ const DailyNormaModalForm = () => {
                                     type="radio"
                                     name="gender"
                                     value="For man"
-                                    id={manBtnId}
+                                    id="manBtnId"
                                     onChange={handleChange}
                                 />
-                                <label htmlFor={manBtnId}>For man</label>
+                                <label htmlFor="manBtnId">For man</label>
                             </div>
                         </div>
                         <ErrorMessage name="gender" component="span" className={css.errorMessage} />
                     </div>
 
                     <div className={css.containerForQuestion}>
-                        <label htmlFor={weightId}>Your weight in kilograms:</label>
+                        <label htmlFor="weightId">Your weight in kilograms:</label>
                         <Field
                             as={Input}
                             placeholder={0}
                             type="number"
                             name="weight"
-                            id={weightId}
+                            id="weightId"
                             onChange={handleChange}
                         />
                     </div>
 
                     <div className={css.containerForQuestion}>
-                        <label htmlFor={sportTimesId}>The time of active participation in sports or other activities with a high physical. Load in hours:</label>
+                        <label htmlFor="sportTimesId">The time of active participation in sports or other activities with a high physical. Load in hours:</label>
                         <Field
                             as={Input}
                             placeholder={0}
                             type="number"
                             name="sportTimes"
-                            id={sportTimesId}
+                            id="sportTimesId"
                             onChange={handleChange}
                         />
                     </div>
@@ -113,14 +113,14 @@ const DailyNormaModalForm = () => {
                     </div>
 
                     <div>
-                        <label className={css.subTitle} htmlFor={finalNumberId}>Write down how much water you will drink:</label>
+                        <label className={css.subTitle} htmlFor="finalNumberId">Write down how much water you will drink:</label>
                         <Field
                             as={Input}
                             placeholder={0}
                             step="0.1"
                             type="number"
                             name="dailyNorm"
-                            id={finalNumberId}
+                            id="finalNumberId"
                         />
                     </div>
 
