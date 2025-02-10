@@ -1,19 +1,22 @@
 import { useDispatch } from 'react-redux';
+
 import { setActiveDay } from '../../../redux/water/waterSlice';
+
 import css from './CalendarItem.module.css';
 
 const CalendarItem = ({ percentage = 0, day, isActive, onClick }) => {
-  const numericPercentage = parseFloat(percentage);
-  const containerStyle = {
-    backgroundColor: isActive
-      ? '#323f47'
-      : numericPercentage < 100
-      ? '#fff'
-      : '#FFFFFF',
-    color: isActive ? '#FFFFFF' : '#000000',
-    border: numericPercentage < 100 ? '1px solid #ff9d43' : 'none',
-  };
   const dispatch = useDispatch();
+
+  const numericPercentage = parseFloat(percentage);
+
+  const containerStyle = {
+    backgroundColor: isActive ? 'var(--color-primary)' : 'var(--color-bg)',
+    color: isActive ? 'var(--color-bg)' : 'var(--color-text)',
+    border:
+      numericPercentage < 100
+        ? '1px solid var(--color-accent-dark-orange)'
+        : 'none',
+  };
 
   // console.log(percentage);
   const handleClick = () => {

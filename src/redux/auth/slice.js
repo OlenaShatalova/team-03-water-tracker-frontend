@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  register,
   login,
   logout,
   refreshUser,
+  register,
+  setToken,
+  updateAvatar,
+  updateUser,
   sendResetEmail,
   resetPassword,
 } from './operations';
-import { setToken } from './operations'; // Adjust the import path as necessary
 
 const initialState = {
   user: {
@@ -35,7 +37,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.loading = false;
         state.isLoggedIn = true;
@@ -57,7 +59,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log('login', action.payload);
+        // console.log('login', action.payload);
 
         state.loading = false;
         state.error = null;
@@ -109,7 +111,36 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      // Додаємо обробку відправки email для скидання паролю
+      .addCase(updateUser.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        // console.log(action.payload);
+
+        state.loading = false;
+        state.error = null;
+        state.user = action.payload.data;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateAvatar.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        console.log(action.payload);
+
+        state.loading = false;
+        state.error = null;
+        state.user.avatar = action.payload.avatarUrl;
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(sendResetEmail.pending, state => {
         state.loading = true;
         state.error = null;
@@ -122,8 +153,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
-      // Додаємо обробку скидання паролю
       .addCase(resetPassword.pending, state => {
         state.loading = true;
         state.error = null;

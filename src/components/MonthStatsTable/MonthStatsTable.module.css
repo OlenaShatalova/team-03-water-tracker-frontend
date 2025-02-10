@@ -1,10 +1,28 @@
-.title {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 125%;
-}
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  height: 506px;
+}
+
+.containerPag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 125%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    height: 331.98px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 123%;
+  }
 }

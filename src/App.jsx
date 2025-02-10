@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import LoaderFallback from './components/LoaderFallback/LoaderFallback';
 import { Loader } from './components/Loader/Loader';
+import { fetchWaterToday } from './redux/water/waterOperations';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
@@ -30,6 +31,11 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log('APP useEffect triggered, fetching water data...');
+    dispatch(fetchWaterToday());
   }, [dispatch]);
 
   if (isRefreshing) <LoaderFallback />;
