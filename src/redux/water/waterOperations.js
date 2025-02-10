@@ -58,11 +58,11 @@ export const addWater = createAsyncThunk('today/addWater', async waterData => {
   try {
     console.log('waterData:', waterData);
 
-    const res = await api.post('/water/', waterData);
-    console.log(res);
+    await api.post('/water/', waterData);
+    // console.log(res);
 
     const { data } = await api.get('/water/today');
-    console.log(data.data);
+    // console.log(data.data);
 
     return data.data;
   } catch (error) {

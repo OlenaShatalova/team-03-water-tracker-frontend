@@ -6,7 +6,6 @@ import {
   fetchWaterRate,
   fetchWaterToday,
 } from './waterOperations';
-import { act } from 'react';
 
 const localDate = () => {
   const milliseconds = Date.now();
