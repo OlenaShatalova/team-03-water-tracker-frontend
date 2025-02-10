@@ -1,0 +1,193 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.modal {
+  margin: 40px 20px;
+  border-radius: 10px;
+  padding: 24px 12px;
+  background-color: var(--color-bg);
+}
+
+.containerForTitleAndButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 123%;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text);
+}
+
+.icon:hover {
+  color: #407bff;
+}
+
+.subTitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  max-width: 240px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  margin-bottom: 12px;
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 24px;
+}
+
+.roundButtons {
+  border-radius: 30px;
+  border: 1px solid #9ebbff;
+  padding: 10px;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.2);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.containerBeforeValue {
+  margin-bottom: 24px;
+}
+
+.valueOfWater {
+  border-radius: 40px;
+  padding: 6px 10px;
+  width: 92px;
+  height: 36px;
+  background-color: var(--color-accent-blue);
+}
+
+.valueNumber {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  text-align: center;
+  color: #407bff;
+}
+
+.button {
+  border-radius: 10px;
+  padding: 8px 30px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background-color: var(--color-primary);
+  border: none;
+  /* margin-top: 16px; */
+}
+
+.button:hover {
+  box-shadow: var(--shadow-light-primary);
+}
+
+.dailyWaterVolume {
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: right;
+  color: var(--color-primary);
+  margin-right: 12px;
+}
+
+.dailyWaterTime {
+  line-height: 2;
+  font-size: 12px;
+  color: var(--color-text);
+  width: 56px;
+  margin-left: 16px;
+}
+
+.cupIcon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.dailyWaterDataWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  margin-top: 24px;
+  background-color: var(--color-secondary-1);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.buttonAndNumberContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    margin: 40px 32px;
+    padding: 32px 24px;
+    min-width: 704px;
+  }
+
+  .buttonAndNumberContainer {
+    flex-direction: row;
+    gap: 24px;
+    justify-content: flex-end;
+  }
+
+  .subTitle {
+    max-width: 100%;
+  }
+
+  .dailyWaterDataWrapper {
+    width: 254px;
+  }
+
+  .button {
+    margin-top: 0;
+    width: 160px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .modal {
+    margin: 44px 424px;
+    min-width: 592px;
+    /* max-width: 592px; */
+  }
+}

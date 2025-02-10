@@ -21,7 +21,6 @@
 
 .todayWaterListBtn {
   height: 20px;
-  width: 97px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,17 +37,21 @@
 
 .plusIcon {
   stroke: var(--color-primary);
-  fill: currentColor;
+  color: var(--color-primary);
+  fill: var(--color-primary);
   transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out;
   width: 16px;
   height: 16px;
 }
 
-.todayWaterListBtn:hover {
+.todayWaterListBtn:hover,
+.plusIcon:hover {
   color: var(--color-accent-orange);
+  stroke: var(--color-accent-orange);
+  fill: var(--color-accent-orange);
 }
 
-.todayWaterListBtn:hover .plusIcon {
+.todayWaterListBtn .plusIcon:hover {
   stroke: var(--color-accent-orange);
 }
 
@@ -60,6 +63,7 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-secondary-3) transparent;
+  overflow-x: hidden;
 }
 
 .scrollableList::-webkit-scrollbar {
@@ -75,15 +79,33 @@
   background: 2px solid var(--color-accent-blue);
 }
 
+.noRecords {
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
 @media (min-width: 768px) {
   .scrollableList {
     max-height: 176px;
   }
+
   .plusIcon {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
   }
 }
 
 @media (min-width: 1440px) {
+  .plusIcon {
+    width: 24px;
+    height: 24px;
+  }
+  .todayWaterListBtn {
+    height: 24px;
+    width: 114px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
 }

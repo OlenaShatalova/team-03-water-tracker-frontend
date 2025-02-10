@@ -73,7 +73,7 @@
 // };
 
 // export default Input;import { useState } from 'react';import { useState } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useField } from 'formik';
 import { ReactSVG } from 'react-svg';
 
@@ -83,8 +83,16 @@ import eyeSlash from '../../assets/icons/eyeSlash.svg';
 import css from './Input.module.css';
 
 const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
-  const [field, meta] = useField(name);
+  const [field, meta, helpers] = useField(name);
+  const { setTouched } = helpers;
   const [showPassword, setShowPassword] = useState(false);
+  const [wasFocused, setWasFocused] = useState(false);
+
+  useEffect(() => {
+    if (autoFocus) {
+      setWasFocused(true);
+    }
+  }, [autoFocus]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(prev => !prev);
@@ -99,10 +107,18 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
             {...field}
             type={type === 'password' && showPassword ? 'text' : type}
             placeholder={placeholder}
+            autoFocus={autoFocus}
+            onFocus={() => setWasFocused(true)}
+            onBlur={() => {
+              if (wasFocused && field.value.trim() === '') {
+                setTouched(false); // Не показуємо помилку, якщо користувач не вводив нічого
+              } else {
+                setTouched(true);
+              }
+            }}
             className={`${css.input} ${
               meta.touched && meta.error ? css.inputError : ''
             }`}
-            autoFocus={autoFocus}
           />
           {type === 'password' && (
             <span onClick={togglePasswordVisibility} className={css.iconEye}>

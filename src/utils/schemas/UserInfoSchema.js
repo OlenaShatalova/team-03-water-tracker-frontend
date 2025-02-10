@@ -58,6 +58,7 @@ export const registerFields = [
     type: 'email',
     label: 'Email',
     placeholder: 'E-mail',
+    autoFocus: 'autoFocus',
   },
   {
     name: 'password',
@@ -77,9 +78,12 @@ export const registerFields = [
 export const registerSchema = Yup.object({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
+    .min(8, 'Password must be at least 8 symbols')
+    .max(64, 'Password must be at most 64 symbols')
     .required('Password is required'),
   repeatPassword: Yup.string()
+    .min(8, 'Password must be at least 8 symbols')
+    .max(64, 'Password must be at most 64 symbols')
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Repeat password is required'),
 });
