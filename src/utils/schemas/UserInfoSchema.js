@@ -14,14 +14,10 @@ export const UserInfoSchema = Yup.object({
   newPassword: Yup.string()
     .min(8, 'Password must be at least 8 symbols')
     .max(64, 'Password must be at most 64 symbols'),
-  repeatPassword: Yup.string().when('newPassword', {
-    is: newPassword => Boolean(newPassword),
-    then: schema =>
-      schema
-        .required('Repeat password is required')
-        .oneOf([Yup.ref('newPassword')], 'Passwords must match'),
-    otherwise: schema => schema.notRequired(),
-  }),
+  repeatPassword: Yup.string()
+    .min(8, 'Password must be at least 8 symbols')
+    .max(64, 'Password must be at most 64 symbols')
+    .oneOf([Yup.ref('newPassword'), null], 'Passwords must match'),
 });
 
 // Поля для логіну
