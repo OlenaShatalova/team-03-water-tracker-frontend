@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  addWater,
+  deleteWater,
   fetchWaterPerMonth,
   fetchWaterRate,
   fetchWaterToday,
 } from './waterOperations';
+import { act } from 'react';
 
 const localDate = () => {
   const milliseconds = Date.now();
@@ -18,8 +21,9 @@ function handleLoading(state) {
 }
 
 function handleError(state, action) {
-  state.error = action.payload;
   state.loading = false;
+  state.error = action.payload;
+  // state.error = action.error.message;
 }
 
 const waterSlice = createSlice({
@@ -61,6 +65,7 @@ const waterSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      /// FETCH WATER PER MONTH
       .addCase(fetchWaterPerMonth.pending, handleLoading)
       .addCase(fetchWaterPerMonth.fulfilled, (state, action) => {
         state.loading = false;
@@ -69,16 +74,17 @@ const waterSlice = createSlice({
         // console.log('per month:', action.payload.data);
       })
       .addCase(fetchWaterPerMonth.rejected, handleError)
+      /// FETCH WATER RATE
       .addCase(fetchWaterRate.pending, handleLoading)
       .addCase(fetchWaterRate.fulfilled, (state, action) => {
         state.dailyNorm = action.payload;
       })
       .addCase(fetchWaterRate.rejected, handleError)
-      .addCase(fetchWaterToday.pending, state => {
-        state.loading = true;
-      })
+      ////FETCH WATER TODAY
+      .addCase(fetchWaterToday.pending, handleLoading)
       .addCase(fetchWaterToday.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = null;
         console.log('Redux обновился с percentTodayWater:', action.payload);
         state.percentTodayWater = action.payload.percentTodayWater || 0;
         state.waters.waterPerDay.waterRecord = action.payload.todayRecord;
@@ -86,6 +92,37 @@ const waterSlice = createSlice({
       .addCase(fetchWaterToday.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      ////ADD WATER
+      .addCase(addWater.pending, handleLoading)
+      .addCase(addWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        console.log(action.payload);
+
+        state.waters.waterPerDay.waterRecord = action.payload.todayRecord;
+        state.percentTodayWater = action.payload.percentTodayWater;
+      })
+      .addCase(addWater.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      ////  DELETE WATER
+      .addCase(deleteWater.pending, handleLoading)
+      .addCase(deleteWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+
+        console.log(action.payload);
+
+        state.waters.waterPerDay.waterRecord =
+          state.waters.waterPerDay.waterRecord.filter(
+            record => record._id !== action.payload._id
+          );
+      })
+      .addCase(deleteWater.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });

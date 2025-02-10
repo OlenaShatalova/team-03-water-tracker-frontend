@@ -11,13 +11,13 @@ import { SuccessToast } from '../../utils/successToast';
 import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { register } from '../../redux/auth/operations';
-import { selectAuthError, selectIsLoggedIn } from '../../redux/auth/selectors';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const SignupPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const authError = useSelector(selectAuthError);
+  // const authError = useSelector(selectAuthError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   // useEffect(() => {
@@ -32,7 +32,10 @@ const SignupPage = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleSubmit = async (formValues, formActions) => {
+  const handleSubmit = async (formValues, { setSubmitting }) => {
+    // ✅ Використовуємо деструктуризацію
+    setSubmitting(true);
+
     const userData = { email: formValues.email, password: formValues.password };
 
     dispatch(register(userData))
@@ -44,7 +47,7 @@ const SignupPage = () => {
       .catch(error => {
         ErrorToast('Registration failed: ' + error);
       })
-      .finally(() => formActions.setSubmitting(false));
+      .finally(() => setSubmitting(false));
   };
 
   return (
