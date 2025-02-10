@@ -19,6 +19,25 @@ export const fetchWaterToday = createAsyncThunk(
   }
 );
 
+export const updateWaterVolume = createAsyncThunk(
+  'water/updateWaterVolume',
+  async ({ waterId, waterVolume, time }, thunkAPI) => {
+    try {
+      const payload = { waterVolume, time };
+
+      const response = await api.patch(`/water/${waterId}`, payload);
+
+      console.log('Updated Water Response:', response.data.data);
+
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Error updating water data'
+      );
+    }
+  }
+);
+
 export const fetchWaterPerMonth = createAsyncThunk(
   'water/fetchWater',
   async ({ month, year }, thunkAPI) => {
