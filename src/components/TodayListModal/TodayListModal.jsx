@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import { Field, Form, Formik } from 'formik';
 import { useEffect, useId } from 'react';
+import close from '../../assets/icons/close.svg';
 import cup from '../../assets/icons/cup.svg';
 
 import css from './TodayListModal.module.css';
@@ -89,13 +90,7 @@ const TodayListModal = ({ isOpen, onRequestClose, waterVolume, time }) => {
           <h2 className={css.title}>Edit the entered amount of water</h2>
 
           <button className={css.closeButton} onClick={onRequestClose}>
-            <Icon
-              name="icon-cross"
-              width={24}
-              height={24}
-              color="#407BFF"
-              className={css.icon}
-            />
+            <ReactSVG src={close} className={css.icon} />
           </button>
         </div>
         <div className={css.dailyWaterDataWrapper}>
