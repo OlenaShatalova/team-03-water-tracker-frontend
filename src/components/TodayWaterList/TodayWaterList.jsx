@@ -46,8 +46,13 @@ const TodayWaterList = () => {
           <ul className={css.scrollableList}>
             {todayRecord.map(({ _id, waterVolume, time }) => (
               <li className={css.waterRecordDataWrapper} key={_id}>
-                <DailyWaterIntake
+                {/* <DailyWaterIntake
                   record={{ id: _id, volume: waterVolume, time: time }}
+                /> */}
+                <DailyWaterIntake
+                  _id={_id}
+                  waterVolume={waterVolume}
+                  time={time}
                 />
               </li>
             ))}

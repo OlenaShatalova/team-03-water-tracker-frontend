@@ -40,6 +40,8 @@
   stroke: var(--color-primary);
   fill: currentColor;
   transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out;
+  width: 16px;
+  height: 16px;
 }
 
 .todayWaterListBtn:hover {
@@ -76,6 +78,10 @@
 @media (min-width: 768px) {
   .scrollableList {
     max-height: 176px;
+  }
+  .plusIcon {
+    width: 24px;
+    height: 24px;
   }
 }
 

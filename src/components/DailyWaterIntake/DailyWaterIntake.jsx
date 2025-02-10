@@ -23,8 +23,8 @@ const DailyWaterIntake = ({ _id, waterVolume, time }) => {
     <div className={css.dailyWaterWrapper}>
       <div className={css.dailyWaterDataWrapper}>
         <ReactSVG src={cup} className={css.cupIcon} />
-        <p className={css.dailyWaterVolume}>{waterVolume}</p>
-        <p className={css.dailyWaterTime}>{time}</p>
+        <p className={css.dailyWaterVolume}>{waterVolume} ml</p>
+        <p className={css.dailyWaterTime}>{time} time</p>
       </div>
       <div className={css.dailyWaterBtnWrapper}>
         <button className={css.dailyWaterEditBtn} onClick={openTodayListModal}>
