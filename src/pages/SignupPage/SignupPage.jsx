@@ -32,24 +32,27 @@ const SignupPage = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleSubmit = async (formValues, { setSubmitting }) => {
-    // ✅ Використовуємо деструктуризацію
-    setSubmitting(true);
-
+  const handleSubmit = async (formValues, formActions) => {
     const userData = { email: formValues.email, password: formValues.password };
 
     dispatch(register(userData))
       .unwrap()
       .then(() => {
         SuccessToast('Registration successful!');
-        navigate('/signin'); // Переадресація на сторінку входу
+        navigate('/signin'); // Перенаправлення на сторінку входу
       })
       .catch(error => {
-        ErrorToast('Registration failed: ' + error);
+        if (error.message.includes('User with this email already exists')) {
+          formActions.setFieldError(
+            'email',
+            'Користувач з таким email вже існує'
+          );
+        } else {
+          ErrorToast('Registration failed: ' + error);
+        }
       })
-      .finally(() => setSubmitting(false));
+      .finally(() => formActions.setSubmitting(false));
   };
-
   return (
     <main className="signInUpPages">
       <Container>
