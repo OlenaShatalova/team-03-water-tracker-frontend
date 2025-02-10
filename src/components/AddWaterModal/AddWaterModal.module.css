@@ -15,7 +15,7 @@
     margin: 40px 20px;
     border-radius: 10px;
     padding: 24px 12px;
-    background-color: white;
+    background-color: var(--color-bg);
 }
 
 .containerForTitleAndButton {
@@ -69,6 +69,15 @@
     cursor: pointer;
 }
 
+.plusIcon {
+    stroke: var(--color-primary);
+    fill: currentColor;
+    /* transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out; */
+    width: 16px;
+    height: 16px;
+    margin: auto;
+}
+
 .containerBeforeValue {
     margin-bottom: 24px;
 }
@@ -78,7 +87,7 @@
     padding: 6px 10px;
     width: 92px;
     height: 36px;
-    background-color: #D7E3FF;
+    background-color: var(--color-accent-blue);
 }
 
 .valueNumber {
@@ -97,7 +106,7 @@
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
     background-color: #407BFF;
     border: none;
-    color: #FFFFFFFF;
+    color: var(--color-bg);
     margin-top: 16px;
 }
 
