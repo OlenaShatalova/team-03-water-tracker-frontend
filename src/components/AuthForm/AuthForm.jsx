@@ -15,6 +15,7 @@ const AuthForm = ({
   btnText,
   linkTo,
   linkText,
+  showForgotPassword = false,
 }) => {
   return (
     <div className={css.signContainer}>
@@ -33,6 +34,11 @@ const AuthForm = ({
           </button>
         </Form>
       </Formik>
+      {showForgotPassword && (
+        <LinkButton to="/forgot-password" className={css.forgotLink}>
+          Forgot password?
+        </LinkButton>
+      )}
       <LinkButton to={linkTo}>{linkText}</LinkButton>
     </div>
   );

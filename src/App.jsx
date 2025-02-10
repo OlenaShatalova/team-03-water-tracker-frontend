@@ -16,6 +16,13 @@ const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('./pages/SigninPage/SigninPage'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const ForgotPassword = lazy(() =>
+  import('./pages/ForgotPassword/ForgotPassword')
+);
+const ResetPassword = lazy(() => import('./pages/ResetPassword/ResetPassword'));
+const NewPasswordPage = lazy(() =>
+  import('./pages/NewPasswordPage/NewPasswordPage')
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -51,6 +58,25 @@ const App = () => {
               <PrivateRoute redirectTo="/signin" component={<HomePage />} />
             }
           />
+          <Route
+            path="forgot-password"
+            element={
+              <RestrictedRoute
+                redirectTo="/home"
+                component={<ForgotPassword />}
+              />
+            }
+          />
+          <Route
+            path="reset-password"
+            element={
+              <RestrictedRoute
+                redirectTo="/home"
+                component={<ResetPassword />}
+              />
+            }
+          />
+          <Route path="/reset-password" element={<NewPasswordPage />} />
         </Route>
       </Routes>
     </Suspense>

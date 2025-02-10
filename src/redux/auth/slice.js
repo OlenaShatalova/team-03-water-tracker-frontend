@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, refreshUser } from './operations';
+import {
+  register,
+  login,
+  logout,
+  refreshUser,
+  sendResetEmail,
+  resetPassword,
+} from './operations';
 import { setToken } from './operations'; // Adjust the import path as necessary
 
 const initialState = {
@@ -101,6 +108,33 @@ const authSlice = createSlice({
         state.error = action.payload;
         state.token = null;
         state.isLoggedIn = false;
+      })
+      // Додаємо обробку відправки email для скидання паролю
+      .addCase(sendResetEmail.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(sendResetEmail.fulfilled, state => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(sendResetEmail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // Додаємо обробку скидання паролю
+      .addCase(resetPassword.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(resetPassword.fulfilled, state => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
