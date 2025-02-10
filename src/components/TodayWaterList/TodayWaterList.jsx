@@ -49,24 +49,26 @@
 
 // export default TodayWaterList;
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsAddWaterModalOpen } from '../../redux/water/waterSelectors';
-import { openModal } from '../../redux/water/waterSlice';
-import { fetchWaterToday } from '../../redux/today/operations';
+
 import DailyWaterIntake from '../DailyWaterIntake/DailyWaterIntake';
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
-import { selectWaterRecordsToday } from '../../redux/today/selectors';
+
+import { fetchWaterToday } from '../../redux/today/operations';
+import { openModal } from '../../redux/water/waterSlice';
+import { selectIsAddWaterModalOpen } from '../../redux/water/waterSelectors';
+import { selectWaterToday } from '../../redux/water/waterSelectors';
 
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
 import css from './TodayWaterList.module.css';
 
-import { useEffect } from 'react';
-
 const TodayWaterList = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsAddWaterModalOpen);
-  const todayRecord = useSelector(selectWaterRecordsToday);
+  const todayRecord = useSelector(selectWaterToday);
   console.log('todayRecord from useSelector:', todayRecord);
+
+  console.log({ isOpen, todayRecord });
 
   // useEffect(() => {
   //   console.log('Dispatching fetchWaterToday...');
@@ -74,13 +76,13 @@ const TodayWaterList = () => {
   // }, [dispatch]);
   // console.log('todayRecord:', todayRecord);
 
-  useEffect(() => {
-    if (todayRecord.length === 0) {
-      // Тільки якщо немає даних, відправляти запит
-      console.log('Dispatching fetchWaterToday...');
-      dispatch(fetchWaterToday());
-    }
-  }, [dispatch, todayRecord.length]);
+  // useEffect(() => {
+  //   if (todayRecord.length === 0) {
+  //     // Тільки якщо немає даних, відправляти запит
+  //     console.log('Dispatching fetchWaterToday...');
+  //     dispatch(fetchWaterToday());
+  //   }
+  // }, [dispatch, todayRecord.length]);
 
   const onAddWaterButton = () => {
     dispatch(openModal('isAddWaterOpen'));

@@ -1,21 +1,21 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './WaterRatioPanel.module.css';
-import { fetchWaterToday } from '../../redux/water/waterOperations';
+// import { fetchWaterToday } from '../../redux/water/waterOperations';
 import { selectPercentTodayWater } from '../../redux/water/waterSelectors';
 
 const WaterRatioPanel = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   let progress = useSelector(selectPercentTodayWater);
   progress = Math.min(progress, 100);
 
   console.log('Component progress (from Redux):', progress);
 
-  useEffect(() => {
-    console.log('useEffect triggered, fetching water data...');
-    dispatch(fetchWaterToday());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   console.log('useEffect triggered, fetching water data...');
+  //   dispatch(fetchWaterToday());
+  // }, [dispatch]);
 
   useEffect(() => {
     console.log('Redux updated, component should re-render.');

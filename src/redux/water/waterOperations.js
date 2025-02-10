@@ -6,9 +6,9 @@ export const fetchWaterToday = createAsyncThunk(
   'water/fetchWaterToday',
   async (_, thunkAPI) => {
     try {
-      const response = await api.get('/water/today', {});
+      const response = await api.get('/water/today');
 
-      console.log('API Response:', response.data);
+      console.log('API Response:', response.data.data);
 
       return response.data.data;
     } catch (error) {
