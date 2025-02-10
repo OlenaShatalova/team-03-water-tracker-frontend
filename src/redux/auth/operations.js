@@ -140,7 +140,6 @@ export const updateAvatar = createAsyncThunk(
       const { data } = await api.patch('user/avatar', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log(data);
       return data;
     } catch (error) {
       console.error(

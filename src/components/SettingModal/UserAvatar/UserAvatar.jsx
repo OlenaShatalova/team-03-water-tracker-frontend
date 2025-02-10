@@ -24,7 +24,6 @@ const UserAvatar = ({
       <h3 className={css.photoTtl}>Your photo</h3>
       <div className={css.photoWrapper}>
         <div className={css.userAvatar}>
-          {/* {user.avatar ? ( */}
           {avatarUrl ? (
             <img
               src={avatarUrl}

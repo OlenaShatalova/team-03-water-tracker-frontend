@@ -17,7 +17,7 @@ const initialState = {
     email: null,
     dailyNorm: 1500,
     gender: 'female',
-    avatar: null,
+    avatarUrl: null,
   },
   token: null, // Отримуємо токен із localStorage
   isLoggedIn: false,
@@ -131,11 +131,11 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(updateAvatar.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.loading = false;
         state.error = null;
-        state.user.avatar = action.payload.avatarUrl;
+        state.user.avatarUrl = action.payload.avatarUrl;
       })
       .addCase(updateAvatar.rejected, (state, action) => {
         state.loading = false;
