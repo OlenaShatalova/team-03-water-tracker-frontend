@@ -41,7 +41,7 @@ const waterSlice = createSlice({
     currentDate: Date.now(),
 
     isWaterRateOpen: false,
-    dailyNorm: 0,
+    dailyNorm: null,
     isAddWaterOpen: false,
     percentTodayWater: 0,
   },
@@ -76,7 +76,7 @@ const waterSlice = createSlice({
       /// FETCH WATER RATE
       .addCase(fetchWaterRate.pending, handleLoading)
       .addCase(fetchWaterRate.fulfilled, (state, action) => {
-        state.dailyNorm = action.payload;
+        state.dailyNorm = action.payload.data.dailyNorm;
       })
       .addCase(fetchWaterRate.rejected, handleError)
       ////FETCH WATER TODAY
