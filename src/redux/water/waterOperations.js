@@ -60,7 +60,7 @@ export const fetchWaterRate = createAsyncThunk(
 
       const response = await api.patch('/water/water-rate', { dailyNorm });
       console.log('Response from API:', response.data.data);
-      // return response.data.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

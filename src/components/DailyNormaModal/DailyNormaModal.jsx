@@ -5,7 +5,7 @@ import { useCallback, useEffect } from "react";
 import DailyNormaModalForm from "../DailyNormaModalForm/DailyNormaModalForm";
 import css from "./DailyNormaModal.module.css"
 import Icon from "../Icon/Icon.jsx";
-import Submit from "../DailyNormaModalForm/Submit.jsx";
+// import Submit from "../DailyNormaModalForm/Submit.jsx";
 
 const DailyNormaModal = () => {
     const dispatch = useDispatch();

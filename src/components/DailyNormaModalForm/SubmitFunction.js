@@ -9,8 +9,9 @@ const handleSubmit = async (values, dispatch) => {
     console.log('dailyNorm:', dailyNorm);
 
     await dispatch(fetchWaterRate(dailyNorm)).unwrap();
-    SuccessToast('Successfully set your water rate!');
+    SuccessToast('Successfully set your water rate! Please, reload the page');
   } catch {
+    // console.log(error.message);
     ErrorToast('Failed to set water rate. Please try again.');
   } finally {
     dispatch(closeModal('isWaterRateOpen'));

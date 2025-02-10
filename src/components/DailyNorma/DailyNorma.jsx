@@ -6,15 +6,24 @@ import {
 } from '../../redux/water/waterSelectors';
 import DailyNormaModal from '../DailyNormaModal/DailyNormaModal';
 import css from './DailyNorma.module.css';
+import { selectUser } from '../../redux/auth/selectors';
+import { useEffect } from 'react';
+import { fetchWaterRate } from '../../redux/water/waterOperations';
 
 const DailyNorma = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsWaterRateModalOpen);
   const waterRate = useSelector(selectWaterRateNumber);
-  // якщо немає значення, використовуємо 1500
-  const dailyNorma = waterRate ?? 1500;
-  // const dailyNorma = response?.data?.dailyNorm ?? 1500;
-  const waterInLiters = dailyNorma / 1000;
+  console.log("waterRate:", waterRate)
+  const user = useSelector(selectUser);
+  console.log("from user:", user.dailyNorm)
+
+  useEffect(() => {
+    if (user.dailyNorm) {
+      dispatch(fetchWaterRate(user.dailyNorm)).unwrap(); // Оновлюємо waterRate після зміни user.dailyNorm
+    }
+  }, [user.dailyNorm, dispatch]);
+  const waterInLiters = user.dailyNorm / 1000;
 
   const onOpenModal = () => {
     dispatch(openModal('isWaterRateOpen'));
