@@ -32,7 +32,10 @@ const SignupPage = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleSubmit = async (formValues, formActions) => {
+  const handleSubmit = async (formValues, { setSubmitting }) => {
+    // ✅ Використовуємо деструктуризацію
+    setSubmitting(true);
+
     const userData = { email: formValues.email, password: formValues.password };
 
     dispatch(register(userData))
@@ -44,7 +47,7 @@ const SignupPage = () => {
       .catch(error => {
         ErrorToast('Registration failed: ' + error);
       })
-      .finally(() => formActions.setSubmitting(false));
+      .finally(() => setSubmitting(false));
   };
 
   return (

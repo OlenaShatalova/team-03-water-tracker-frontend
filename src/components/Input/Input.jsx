@@ -75,7 +75,7 @@
 // export default Input;
 
 import { useState } from 'react';
-import { ErrorMessage, Field } from 'formik';
+import { useField } from 'formik';
 import { ReactSVG } from 'react-svg';
 
 import eye from '../../assets/icons/eye.svg';
@@ -84,26 +84,24 @@ import eyeSlash from '../../assets/icons/eyeSlash.svg';
 import css from './Input.module.css';
 
 const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
+  const [field, meta] = useField(name);
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword(prev => !prev);
   };
-
-  const inputType = type === 'password' && showPassword ? 'text' : type;
 
   return (
     <>
       <label className={css.label}>
         <span>{label}</span>
         <div style={{ position: 'relative', width: '100%' }}>
-          <Field
-            type={inputType}
-            name={name}
-            className={css.input}
+          <input
+            {...field}
+            type={type === 'password' && showPassword ? 'text' : type}
             placeholder={placeholder}
+            className={css.input}
             autoFocus={autoFocus}
-            // autoComplete={name}
           />
           {/* Іконка для перемикання видимості пароля */}
           {type === 'password' && (
@@ -115,7 +113,9 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
             </span>
           )}
         </div>
-        <ErrorMessage name={name} component="span" className={css.error} />
+        {meta.touched && meta.error && (
+          <span className={css.error}>{meta.error}</span>
+        )}
       </label>
     </>
   );
