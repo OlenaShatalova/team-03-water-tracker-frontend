@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from './WaterRatioPanel.module.css';
 // import { fetchWaterToday } from '../../redux/water/waterOperations';
 import { selectPercentTodayWater } from '../../redux/water/waterSelectors';
