@@ -5,6 +5,7 @@ import {
   fetchWaterPerMonth,
   fetchWaterRate,
   fetchWaterToday,
+  updateWaterVolume,
 } from './waterOperations';
 
 const localDate = () => {
@@ -122,6 +123,25 @@ const waterSlice = createSlice({
       .addCase(deleteWater.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      //// UPDATE WATER VOLUME
+      .addCase(updateWaterVolume.pending, handleLoading)
+      .addCase(updateWaterVolume.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+
+        // Обновляем запись в массиве
+        const index = state.waters.waterPerDay.waterRecord.findIndex(
+          record => record._id === action.payload._id
+        );
+
+        if (index !== -1) {
+          state.waters.waterPerDay.waterRecord[index] = action.payload;
+        }
+      })
+      .addCase(updateWaterVolume.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
