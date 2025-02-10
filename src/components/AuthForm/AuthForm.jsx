@@ -3,6 +3,7 @@ import { Formik, Form } from 'formik';
 import Title from '../Title/Title';
 import Input from '../Input/Input';
 import LinkButton from '../LinkButton/LinkButton';
+import { Link } from 'react-router-dom';
 
 import css from './AuthForm.module.css';
 
@@ -29,16 +30,18 @@ const AuthForm = ({
           {fields.map(field => (
             <Input key={field.name} {...field} />
           ))}
+
           <button type="submit" className={css.submitBtn}>
             {btnText}
           </button>
         </Form>
       </Formik>
       {showForgotPassword && (
-        <LinkButton to="/forgot-password" className={css.forgotLink}>
+        <Link to="/forgot-password" className={css.forgotLink}>
           Forgot password?
-        </LinkButton>
+        </Link>
       )}
+
       <LinkButton to={linkTo}>{linkText}</LinkButton>
     </div>
   );

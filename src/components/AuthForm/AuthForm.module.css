@@ -28,16 +28,13 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  color: #9ebbff;
-  margin-bottom: -8px;
+  color: var(--color-secondary-3);
+  text-decoration: none;
+  align-self: flex-start;
 }
 
-.subtitle {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--color-text);
-  margin-bottom: 24px;
-  text-align: center;
+.forgotLink:hover {
+  color: var(--color-primary);
 }
 
 @media screen and (min-width: 768px) {

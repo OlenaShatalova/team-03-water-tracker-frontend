@@ -20,10 +20,6 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ForgotPassword = lazy(() =>
   import('./pages/ForgotPassword/ForgotPassword')
 );
-const ResetPassword = lazy(() => import('./pages/ResetPassword/ResetPassword'));
-const NewPasswordPage = lazy(() =>
-  import('./pages/NewPasswordPage/NewPasswordPage')
-);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -73,16 +69,6 @@ const App = () => {
               />
             }
           />
-          <Route
-            path="reset-password"
-            element={
-              <RestrictedRoute
-                redirectTo="/home"
-                component={<ResetPassword />}
-              />
-            }
-          />
-          <Route path="/reset-password" element={<NewPasswordPage />} />
         </Route>
       </Routes>
     </Suspense>

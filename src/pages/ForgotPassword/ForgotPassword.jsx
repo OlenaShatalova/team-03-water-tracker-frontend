@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { sendResetEmail } from '../../redux/auth/operations';
 import * as Yup from 'yup';
 import Container from '../../components/Container/Container';
@@ -23,12 +24,14 @@ const forgotPasswordFields = [
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (formValue, { resetForm }) => {
     try {
       await dispatch(sendResetEmail(formValue.email)).unwrap();
       SuccessToast('Password reset instructions sent to your email');
-      resetForm(); // Очищаємо форму після успішної відправки
+      resetForm(); // Очищаємо форму
+      navigate('/signin'); // Перенаправляємо на сторінку входу
     } catch (error) {
       ErrorToast(error?.message || 'Failed to send reset instructions');
     }
