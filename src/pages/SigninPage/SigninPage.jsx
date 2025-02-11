@@ -30,7 +30,7 @@ const SigninPage = () => {
           fields={loginFields}
           btnText={'Sign In'}
           linkTo={'/signup'}
-          linkText={'Sing Up'}
+          linkText={'Sign Up'}
           showForgotPassword={true} //додав
         ></AuthForm>
       </Container>
