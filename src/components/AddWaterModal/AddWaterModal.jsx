@@ -15,6 +15,7 @@ import { ErrorToast } from '../../utils/errorToast.js';
 import { addWater } from '../../redux/water/waterOperations.js';
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
+import close from '../../assets/icons/close.svg';
 
 const validationSchema = Yup.object({
   time: Yup.string().required('Required'),
@@ -98,13 +99,7 @@ const AddWaterModal = () => {
         <div className={css.containerForTitleAndButton}>
           <h2 className={css.title}>Add water</h2>
           <button className={css.closeButton} onClick={onModalClose}>
-            <Icon
-              name="icon-cross"
-              width={24}
-              height={24}
-              color="#407BFF"
-              className={css.icon}
-            />
+            <ReactSVG src={close} className={css.closeIcon} />
           </button>
         </div>
         <p className={css.subTitle}>Choose a value:</p>
