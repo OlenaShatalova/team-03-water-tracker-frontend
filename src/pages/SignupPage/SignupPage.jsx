@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import css from './AuthPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import {
@@ -57,18 +58,20 @@ const SignupPage = () => {
       .finally(() => formActions.setSubmitting(false));
   };
   return (
-    <main className="signInUpPages">
-      <Container>
-        <AuthForm
-          title={'Sign Up'}
-          initialValues={{ email: '', password: '', repeatPassword: '' }}
-          onSubmit={handleSubmit}
-          validationSchema={registerSchema}
-          fields={registerFields}
-          btnText={'Sign Up'}
-          linkTo={'/signin'}
-          linkText={'Already have an account? Sign In'}
-        />
+    <main>
+      <Container className={css.mycontainer}>
+        <div className={css.background}>
+          <AuthForm
+            title={'Sign Up'}
+            initialValues={{ email: '', password: '', repeatPassword: '' }}
+            onSubmit={handleSubmit}
+            validationSchema={registerSchema}
+            fields={registerFields}
+            btnText={'Sign Up'}
+            linkTo={'/signin'}
+            linkText={'Already have an account? Sign In'}
+          />
+        </div>
       </Container>
     </main>
   );
