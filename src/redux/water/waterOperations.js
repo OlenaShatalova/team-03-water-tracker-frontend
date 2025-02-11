@@ -6,6 +6,8 @@ export const updateWaterVolume = createAsyncThunk(
   async ({ id, waterData }, thunkAPI) => {
     try {
       const response = await api.patch(`/water/${id}`, waterData);
+      await thunkAPI.dispatch(fetchWaterToday());
+
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -58,7 +60,8 @@ export const fetchWaterRate = createAsyncThunk(
       if (dailyNorm === 0) return;
 
       const response = await api.patch('/water/water-rate', { dailyNorm });
-      console.log('Response from API:', response.data.data);
+
+      // console.log('Response from API:', response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
