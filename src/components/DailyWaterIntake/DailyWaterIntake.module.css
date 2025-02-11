@@ -31,7 +31,7 @@
 
 .dailyWaterBtnWrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin-right: 0;
   gap: 18px;
   height: 36px;
