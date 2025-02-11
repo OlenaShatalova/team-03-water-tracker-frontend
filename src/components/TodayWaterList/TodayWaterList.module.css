@@ -37,8 +37,6 @@
 
 .plusIcon {
   stroke: var(--color-primary);
-  color: var(--color-primary);
-  fill: var(--color-primary);
   transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out;
   width: 16px;
   height: 16px;
@@ -47,12 +45,6 @@
 .todayWaterListBtn:hover,
 .plusIcon:hover {
   color: var(--color-accent-orange);
-  stroke: var(--color-accent-orange);
-  fill: var(--color-accent-orange);
-}
-
-.todayWaterListBtn .plusIcon:hover {
-  stroke: var(--color-accent-orange);
 }
 
 .scrollableList {
