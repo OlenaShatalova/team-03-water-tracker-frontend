@@ -44,7 +44,9 @@ const AuthForm = ({
         </Link>
       )}
 
-      <LinkButton to={linkTo}>{linkText}</LinkButton>
+      <LinkButton to={linkTo} className={css.linkButton}>
+        {linkText}
+      </LinkButton>
     </div>
   );
 };

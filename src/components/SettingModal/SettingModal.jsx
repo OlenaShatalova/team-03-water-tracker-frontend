@@ -96,7 +96,8 @@ const SettingModal = ({ closeSettingModal }) => {
       ErrorToast('Repeat new password!');
       return;
     } else if (
-      (otherValues.newPassword && !otherValues.oldPassword) ||
+      otherValues.newPassword &&
+      !otherValues.oldPassword &&
       !repeatPassword
     ) {
       ErrorToast('Current password is required to change your password!');
