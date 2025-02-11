@@ -160,7 +160,7 @@ const AddWaterModal = () => {
                 <Field
                   as={Input}
                   placeholder="07:00"
-                  type="text"
+                  type="time"
                   name="time"
                   id={time}
                 />
