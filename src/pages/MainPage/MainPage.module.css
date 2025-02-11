@@ -8,10 +8,11 @@
 .welcomeContainer {
   margin-top: 24px;
   max-width: 280px;
-  height: 840px;
+  /* height: 840px; */
   display: flex;
   flex-direction: column;
   gap: 40px;
+  padding-bottom: 40px;
 }
 
 @media screen and (min-width: 768px) {
@@ -23,7 +24,7 @@
   .welcomeContainer {
     margin-top: 40px;
     max-width: 704px;
-    height: 646px;
+    /* height: 646px; */
     gap: 60px;
   }
 }
@@ -37,7 +38,7 @@
   .welcomeContainer {
     margin: 80px 98px 294px 104px;
     max-width: 1014px;
-    height: 366px;
+    /* height: 366px; */
     flex-direction: row;
     gap: 81px;
   }
