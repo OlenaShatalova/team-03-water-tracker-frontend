@@ -158,6 +158,13 @@ export const sendResetEmail = createAsyncThunk(
       const { data } = await api.post('/auth/send-reset-email', { email });
       return data;
     } catch (error) {
+      if (error.response?.status === 404) {
+        return thunkAPI.rejectWithValue({
+          status: 404,
+          message: 'User with this email is not registered',
+        });
+      }
+
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || 'Failed to send reset email'
       );
