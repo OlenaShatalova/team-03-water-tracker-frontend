@@ -1,14 +1,15 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../redux/water/waterSlice";
-import { validationSchema } from "../../utils/schemas/WaterRateSchema";
-import { SuccessToast } from "../../utils/successToast";
-import { fetchWaterRate } from "../../redux/water/waterOperations";
-import { ErrorToast } from "../../utils/errorToast";
+// import { closeModal } from "../../redux/water/waterSlice";
+// import { SuccessToast } from "../../utils/successToast";
+// import { fetchWaterRate } from "../../redux/water/waterOperations";
+// import { ErrorToast } from "../../utils/errorToast";
 import Input from "../Input/Input";
 import css from "./DailyNormaModalForm.module.css";
 import useCalculateWaterRate from "../../utils/useCalculateWaterRate";
+import { validationSchema } from "../../utils/schemas/WaterRateSchema";
+import { handleSubmit } from "./SubmitFunction";
 
 const initialValues = {
     gender: "",
@@ -29,22 +30,22 @@ const DailyNormaModalForm = () => {
 
     const calculatedNumber = useCalculateWaterRate(formValues);
 
-    const handleSubmit = async (values) => {
-        try {
-            console.log("dailyNorm:", values.dailyNorm)
-            await dispatch(fetchWaterRate(values.dailyNorm)).unwrap();
-            dispatch(closeModal("isWaterRateOpen"));
-            SuccessToast("Successfully set your water rate!");
-        } catch {
-            ErrorToast("Failed to set water rate. Please try again.");
-        }
-    };
+    // const handleSubmit = async (values) => {
+    //     try {
+    //         console.log("dailyNorm:", values.dailyNorm)
+    //         await dispatch(fetchWaterRate(values.dailyNorm)).unwrap();
+    //         dispatch(closeModal("isWaterRateOpen"));
+    //         SuccessToast("Successfully set your water rate!");
+    //     } catch {
+    //         ErrorToast("Failed to set water rate. Please try again.");
+    //     }
+    // };
 
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+            onSubmit={(values) => handleSubmit(values, dispatch)}
             // Handle form value changes
             validateOnChange={true}
             validate={values => {
@@ -127,7 +128,7 @@ const DailyNormaModalForm = () => {
                     <button className={css.button} type="submit">Save</button>
                 </Form>
             )}
-        </Formik>
+        </Formik >
     )
 }
 

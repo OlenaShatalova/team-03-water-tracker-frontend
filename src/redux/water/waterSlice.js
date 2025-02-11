@@ -42,7 +42,7 @@ const waterSlice = createSlice({
     currentDate: Date.now(),
 
     isWaterRateOpen: false,
-    dailyNorm: 0,
+    dailyNorm: null,
     isAddWaterOpen: false,
     percentTodayWater: 0,
   },

@@ -53,14 +53,14 @@ export const fetchWaterPerMonth = createAsyncThunk(
 
 export const fetchWaterRate = createAsyncThunk(
   'water/fetchWaterRate',
-  async (waterRate, thunkAPI) => {
+  async (dailyNorm, thunkAPI) => {
     try {
-      console.log(waterRate);
-      if (waterRate === 0) return;
+      console.log(dailyNorm);
+      if (dailyNorm === 0) return;
 
-      const response = await api.patch('/water/water-rate', { waterRate });
-      // console.log(response.data);
-      return response.data;
+      const response = await api.patch('/water/water-rate', { dailyNorm });
+      console.log('Response from API:', response.data.data);
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

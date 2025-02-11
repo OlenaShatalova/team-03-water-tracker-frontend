@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const validationSchema = Yup.object({
-  gender: Yup.string().required('Required'),
+  gender: Yup.string(),
   weight: Yup.number()
     .typeError('Must be a number')
     .positive('Must be a positive number')
