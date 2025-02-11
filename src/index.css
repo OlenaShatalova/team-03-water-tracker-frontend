@@ -18,6 +18,7 @@ body {
 body.dark {
   background-color: var(--color-bg-dark) !important;
   color: var(--color-text-dark) !important;
+  --color-hover: var(--color-accent-orange) !important;
 }
 
 #root {
