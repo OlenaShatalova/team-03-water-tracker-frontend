@@ -24,16 +24,18 @@ const HomePage = () => {
   }, [dispatch, dailyNorm]);
 
   return (
-    <div className={css.mainContainer}>
-      <img src="" alt="" />
-      <DailyNorma />
-      <div className={css.ratioAndButtonContainer}>
-        <WaterRatioPanel />
-        <AddWaterButton />
-      </div>
-      <div className={css.blueContainer}>
-        <TodayWaterList />
-        <MonthStatsTable />
+    <div className={css.containerCenter}>
+      <div className={css.mainContainer}>
+        <img src="" alt="" />
+        <DailyNorma />
+        <div className={css.ratioAndButtonContainer}>
+          <WaterRatioPanel />
+          <AddWaterButton />
+        </div>
+        <div className={css.blueContainer}>
+          <TodayWaterList />
+          <MonthStatsTable />
+        </div>
       </div>
     </div>
   );
