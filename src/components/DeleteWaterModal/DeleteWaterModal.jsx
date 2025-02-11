@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import { deleteWater } from '../../redux/water/waterOperations';
 
 import { ReactSVG } from 'react-svg';
-import closes from '../../assets/icons/closes.svg';
+import close from '../../assets/icons/close.svg';
 
 import css from './DeleteWaterModal.module.css';
 
@@ -30,7 +30,11 @@ const DeleteWaterModal = ({ isOpen, onRequestClose, id }) => {
         <div className={css.deleteHeaderWrapper}>
           <h2 className={css.deleteHeader}>Delete entry</h2>
           <button className={css.closeBtn} onClick={onRequestClose}>
-            <ReactSVG src={closes} onClick={onRequestClose} />
+            <ReactSVG
+              src={close}
+              onClick={onRequestClose}
+              className={css.closeIcon}
+            />
           </button>
         </div>
 

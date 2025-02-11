@@ -19,6 +19,10 @@
   gap: 10px;
 }
 
+.button:hover {
+  box-shadow: var(--shadow-light-primary);
+}
+
 /* .plusIcon {
   margin-top: auto;
   margin-bottom: auto;

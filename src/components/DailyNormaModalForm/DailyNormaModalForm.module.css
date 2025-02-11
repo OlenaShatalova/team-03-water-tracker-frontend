@@ -1,102 +1,102 @@
 .subTitle {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 111%;
-    margin-top: 24px;
-    margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  margin-top: 24px;
+  margin-bottom: 16px;
 }
 
 .containerForQuestion {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .radioContainer {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  gap: 24px;
 }
 
 .radio {
-    display: flex;
-    gap: 9px;
-    align-items: center;
+  display: flex;
+  gap: 9px;
+  align-items: center;
 }
 
 .radioButton {
-    appearance: none;
-    height: 14px;
-    width: 14px;
-    border: 1px solid #407BFF;
-    border-radius: 50%;
-    background-color: white;
-    cursor: pointer;
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  cursor: pointer;
 }
 
 .radioButton::before {
-    content: "";
-    display: block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: transparent;
-    margin: 3px auto 3px;
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: transparent;
+  margin: 3px auto 3px;
 }
 
 .radioButton:checked::before {
-    background-color: #407BFF;
+  background-color: var(--color-primary);
 }
 
 .containerForWater {
-    display: flex;
-    align-items: center;
-    margin-top: 16px;
-    margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 24px;
 }
 
 .textWidth {
-    width: 190px;
+  width: 190px;
 }
 
 .valueOfWater {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 133%;
-    text-align: center;
-    color: #407BFF;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  text-align: center;
+  color: var(--color-primary);
 }
 
 .button {
-    border-radius: 10px;
-    padding: 8px 30px;
-    width: 256px;
-    height: 36px;
-    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    background-color: #407BFF;
-    border: none;
-    color: var(--color-bg);
-    margin-top: 24px;
+  border-radius: 10px;
+  padding: 8px 30px;
+  width: 256px;
+  height: 36px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background-color: var(--color-primary);
+  border: none;
+  color: var(--color-bg);
+  margin-top: 24px;
 }
 
 .errorMessage {
-    font-size: 14px;
-    line-height: 1.28571;
-    letter-spacing: -0.01em;
-    color: #ef5050;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--color-secondary-2);
 }
 
 @media (min-width: 768px) {
-    .containerForCalc {
-        display: flex;
-        gap: 24px;
-    }
+  .containerForCalc {
+    display: flex;
+    gap: 24px;
+  }
 
-    .textWidth {
-        width: auto;
-        margin-right: 6px;
-    }
+  .textWidth {
+    width: auto;
+    margin-right: 6px;
+  }
 
-    .button {
-        display: block;
-        width: 160px;
-        margin-left: auto;
-    }
+  .button {
+    display: block;
+    width: 160px;
+    margin-left: auto;
+  }
 }

@@ -1,20 +1,20 @@
 import { useDispatch } from 'react-redux';
-
 import { Field, Form, Formik } from 'formik';
 import { useEffect, useId } from 'react';
+import { ReactSVG } from 'react-svg';
+import * as Yup from 'yup';
+
 import close from '../../assets/icons/close.svg';
 import cup from '../../assets/icons/cup.svg';
+import minus from '../../assets/icons/solid.svg';
+import plus from '../../assets/icons/plus.svg';
 
 import css from './TodayListModal.module.css';
 import Input from '../Input/Input';
-import * as Yup from 'yup';
-import Icon from '../Icon/Icon.jsx';
 import { SuccessToast } from '../../utils/successToast.js';
 import { ErrorToast } from '../../utils/errorToast.js';
 
 import { updateWaterVolume } from '../../redux/water/waterOperations.js';
-
-import { ReactSVG } from 'react-svg';
 
 const validationSchema = Yup.object({
   time: Yup.string().required('Required'),
@@ -34,6 +34,13 @@ const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
 
   const handleSubmit = async (values, actions) => {
     // console.log({ values });
+    if (
+      values.time === initialValues.time &&
+      values.water === initialValues.water
+    ) {
+      onRequestClose();
+      return;
+    }
 
     try {
       const now = new Date();
@@ -56,8 +63,10 @@ const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
 
       SuccessToast('Successfully edited water record!');
       onRequestClose();
-    } catch {
-      ErrorToast('Failed to edit water record. Please try again.');
+    } catch (error) {
+      ErrorToast(
+        error.message || 'Failed to edit water record. Please try again.'
+      );
       onRequestClose();
     }
   };
@@ -113,13 +122,7 @@ const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
                     }}
                     className={css.roundButtons}
                   >
-                    <Icon
-                      name="icon-minus"
-                      width={24}
-                      height={24}
-                      color="#407BFF"
-                      className={css.icon}
-                    />
+                    <ReactSVG src={minus} className={css.minusIcon} />
                   </button>
                   <div className={css.valueOfWater}>
                     <p className={css.valueNumber}>{values.water} ml</p>
@@ -129,20 +132,7 @@ const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
                     onClick={() => setFieldValue('water', values.water + 50)}
                     className={css.roundButtons}
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M12 5.25C12.1989 5.25 12.3897 5.32902 12.5303 5.46967C12.671 5.61032 12.75 5.80109 12.75 6V11.25H18C18.1989 11.25 18.3897 11.329 18.5303 11.4697C18.671 11.6103 18.75 11.8011 18.75 12C18.75 12.1989 18.671 12.3897 18.5303 12.5303C18.3897 12.671 18.1989 12.75 18 12.75H12.75V18C12.75 18.1989 12.671 18.3897 12.5303 18.5303C12.3897 18.671 12.1989 18.75 12 18.75C11.8011 18.75 11.6103 18.671 11.4697 18.5303C11.329 18.3897 11.25 18.1989 11.25 18V12.75H6C5.80109 12.75 5.61032 12.671 5.46967 12.5303C5.32902 12.3897 5.25 12.1989 5.25 12C5.25 11.8011 5.32902 11.6103 5.46967 11.4697C5.61032 11.329 5.80109 11.25 6 11.25H11.25V6C11.25 5.80109 11.329 5.61032 11.4697 5.46967C11.6103 5.32902 11.8011 5.25 12 5.25Z"
-                        fill="#407BFF"
-                      />
-                    </svg>
+                    <ReactSVG src={plus} className={css.plusIcon} />
                   </button>
                 </div>
               </div>
