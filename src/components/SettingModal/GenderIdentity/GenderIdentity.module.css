@@ -5,6 +5,30 @@
   line-height: 111%;
 }
 
+.radioBtn {
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  cursor: pointer;
+}
+
+.radioBtn::before {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: transparent;
+  margin: 3px auto 3px;
+}
+
+.radioBtn:checked::before {
+  background-color: var(--color-primary);
+}
+
 .spanGender {
   margin-left: 8px;
   line-height: 125%;

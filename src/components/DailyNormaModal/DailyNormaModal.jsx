@@ -13,11 +13,22 @@ import css from './DailyNormaModal.module.css';
 
 const DailyNormaModal = () => {
   const dispatch = useDispatch();
-
   const isOpen = useSelector(selectIsWaterRateModalOpen);
   const onModalClose = useCallback(() => {
     dispatch(closeModal('isWaterRateOpen'));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   // для закриття модалки на esc
   useEffect(() => {
@@ -32,7 +43,7 @@ const DailyNormaModal = () => {
   }, [onModalClose]);
 
   if (!isOpen) return null;
-
+  
   return (
     <div onClick={onModalClose} className={css.modalOverlay}>
       <div onClick={e => e.stopPropagation()} className={css.modal}>
@@ -63,10 +74,11 @@ const DailyNormaModal = () => {
 
           <div className={css.containerForSmallText}>
             <p className={css.smallText}>
-              <span>*</span> V is the volume of the water norm in liters per
-              day, M is your body weight, T is the time of active sports, or
-              another type of activity commensurate in terms of loads (in the
-              absence of these, you must set 0)
+              <span style={{ color: 'var(--color-primary)' }}>*</span> V is the
+              volume of the water norm in liters per day, M is your body weight,
+              T is the time of active sports, or another type of activity
+              commensurate in terms of loads (in the absence of these, you must
+              set 0)
             </p>
           </div>
         </div>

@@ -78,7 +78,6 @@
 }
 
 .plusIcon {
-  /* stroke: var(--color-primary); */
   color: var(--color-primary);
   /* transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out; */
   width: 16px;

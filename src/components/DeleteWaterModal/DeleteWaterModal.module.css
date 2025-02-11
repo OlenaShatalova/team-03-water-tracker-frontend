@@ -8,7 +8,7 @@
   align-items: flex-start;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
+  z-index: 9;
 }
 
 .modalContent {
@@ -35,10 +35,13 @@
 }
 
 .closeBtn {
-  fill: none;
   border: none;
-  stroke: var(--color-primary);
+  color: var(--color-text);
   background-color: transparent;
+}
+
+.closeIcon:hover {
+  color: var(--color-primary);
 }
 
 .text {

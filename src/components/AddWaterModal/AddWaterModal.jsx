@@ -9,13 +9,13 @@ import { useCallback, useEffect, useId } from 'react';
 import css from './AddWaterModal.module.css';
 import Input from '../Input/Input';
 import * as Yup from 'yup';
-import Icon from '../Icon/Icon.jsx';
 import { SuccessToast } from '../../utils/successToast.js';
 import { ErrorToast } from '../../utils/errorToast.js';
 import { addWater } from '../../redux/water/waterOperations.js';
 import { ReactSVG } from 'react-svg';
 import plus from '../../assets/icons/plus.svg';
 import close from '../../assets/icons/close.svg';
+import minus from '../../assets/icons/solid.svg';
 
 const validationSchema = Yup.object({
   time: Yup.string().required('Required'),
@@ -24,6 +24,21 @@ const validationSchema = Yup.object({
 
 const AddWaterModal = () => {
   const currentTime = useSelector(selectCurrentDate);
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectIsAddWaterModalOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   const formattedTime = new Date(currentTime).toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
@@ -37,8 +52,6 @@ const AddWaterModal = () => {
   const time = useId();
   const water = useId();
 
-  const dispatch = useDispatch();
-  const isOpen = useSelector(selectIsAddWaterModalOpen);
   const onModalClose = useCallback(() => {
     dispatch(closeModal('isAddWaterOpen'));
   }, [dispatch]);
@@ -67,8 +80,10 @@ const AddWaterModal = () => {
       actions.resetForm();
       onModalClose();
       SuccessToast('Successfully added water record!');
-    } catch {
-      ErrorToast('Failed to add water record. Please try again.');
+    } catch (error) {
+      ErrorToast(
+        error.message || 'Failed to add water record. Please try again.'
+      );
     }
   };
   // const onAddWater = (waterData) => {
@@ -123,13 +138,7 @@ const AddWaterModal = () => {
                     }}
                     className={css.roundButtons}
                   >
-                    <Icon
-                      name="icon-minus"
-                      width={24}
-                      height={24}
-                      color="#407BFF"
-                      className={css.icon}
-                    />
+                    <ReactSVG src={minus} className={css.minusIcon} />
                   </button>
                   <div className={css.valueOfWater}>
                     <p className={css.valueNumber}>{values.water} ml</p>

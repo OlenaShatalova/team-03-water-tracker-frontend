@@ -3,8 +3,20 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
 import css from './UserLogoutModal.module.css';
 
-const UserLogoutModal = ({ onClose }) => {
+const UserLogoutModal = ({ onClose, isLogoutModalOpen }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLogoutModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isLogoutModalOpen]);
 
   useEffect(() => {
     const handleKeyDown = e => {

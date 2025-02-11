@@ -79,6 +79,13 @@
   cursor: pointer;
 }
 
+.plusIcon {
+  color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  margin: auto;
+}
+
 .containerBeforeValue {
   margin-bottom: 24px;
 }

@@ -22,6 +22,7 @@ export default function UserLogoModal({ children }) {
 
   const openSettingModal = () => setIsSettingModalOpen(true);
   const closeSettingModal = () => setIsSettingModalOpen(false);
+
   return (
     <>
       <PopupState variant="popover" popupId="user-menu">
@@ -109,10 +110,18 @@ export default function UserLogoModal({ children }) {
         )}
       </PopupState>
       {isSettingModalOpen && (
-        <SettingModal closeSettingModal={closeSettingModal} />
+        <SettingModal
+          closeSettingModal={closeSettingModal}
+          isSettingModalOpen={isSettingModalOpen}
+        />
       )}
 
-      {isLogoutModalOpen && <UserLogoutModal onClose={closeLogoutModal} />}
+      {isLogoutModalOpen && (
+        <UserLogoutModal
+          onClose={closeLogoutModal}
+          isLogoutModalOpen={isLogoutModalOpen}
+        />
+      )}
     </>
   );
 }
