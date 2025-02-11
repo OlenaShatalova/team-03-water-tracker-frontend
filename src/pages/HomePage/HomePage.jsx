@@ -1,21 +1,27 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchWaterToday } from '../../redux/water/waterOperations';
+
+import { selectDailyNorm } from '../../redux/auth/selectors';
+
 import AddWaterButton from '../../components/AddWaterButton/AddWaterButton';
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
-import css from './HomePage.module.css';
 
-import { fetchWaterToday } from '../../redux/water/waterOperations';
-import { useDispatch } from 'react-redux';
+import css from './HomePage.module.css';
 
 const HomePage = () => {
   const dispatch = useDispatch();
 
+  const dailyNorm = useSelector(selectDailyNorm);
+
   useEffect(() => {
     // console.log('APP useEffect triggered, fetching water data...');
     dispatch(fetchWaterToday());
-  }, [dispatch]);
+  }, [dispatch, dailyNorm]);
 
   return (
     <div className={css.mainContainer}>

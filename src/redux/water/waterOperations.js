@@ -1,6 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
 import api from '../../api/api';
+
+export const updateWaterVolume = createAsyncThunk(
+  'water/updateWaterVolume',
+  async ({ id, waterData }, thunkAPI) => {
+    try {
+      const response = await api.patch(`/water/${id}`, waterData);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Error updating water data'
+      );
+    }
+  }
+);
 
 export const fetchWaterToday = createAsyncThunk(
   'water/fetchWaterToday',
@@ -14,20 +27,6 @@ export const fetchWaterToday = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || 'Error fetching water data'
-      );
-    }
-  }
-);
-
-export const updateWaterVolume = createAsyncThunk(
-  'water/updateWaterVolume',
-  async ({ id, waterData }, thunkAPI) => {
-    try {
-      const response = await api.patch(`/water/${id}`, waterData);
-      return response.data.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || 'Error updating water data'
       );
     }
   }
@@ -84,22 +83,6 @@ export const addWater = createAsyncThunk('today/addWater', async waterData => {
   }
 });
 
-////   WATER TODAY
-// export const fetchWaterToday = createAsyncThunk(
-//   'today/fetchWaterToday',
-//   async () => {
-//     console.log('Dispatching fetchWaterToday...');
-
-//     try {
-//       const response = await api.get('/water/today/');
-//       console.log('API Response Data:', response.data); // Логування API відповіді
-//       return response.data.data;
-//     } catch (error) {
-//       throw new Error(error.message);
-//     }
-//   }
-// );
-
 ///// DELETE WATER
 export const deleteWater = createAsyncThunk(
   'today/deleteWater',
@@ -107,7 +90,7 @@ export const deleteWater = createAsyncThunk(
     console.log(id);
 
     try {
-      const response = await api.delete(`/water/${id}`);
+      await api.delete(`/water/${id}`);
       return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

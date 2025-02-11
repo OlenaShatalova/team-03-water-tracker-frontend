@@ -1,10 +1,14 @@
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { selectIsWaterRateModalOpen } from '../../redux/water/waterSelectors';
 import { closeModal } from '../../redux/water/waterSlice';
-import { useCallback, useEffect } from 'react';
+
 import DailyNormaModalForm from '../DailyNormaModalForm/DailyNormaModalForm';
-import css from './DailyNormaModal.module.css';
+
 import Icon from '../Icon/Icon.jsx';
+
+import css from './DailyNormaModal.module.css';
 // import Submit from "../DailyNormaModalForm/Submit.jsx";
 
 const DailyNormaModal = () => {
@@ -47,11 +51,11 @@ const DailyNormaModal = () => {
         <div className={css.explanation}>
           <div className={css.containerForCalc}>
             <p className={css.text}>
-              For girl:{' '}
+              For girl:
               <span className={css.blueText}>V=(M*0,03) + (T*0,4)</span>
             </p>
             <p className={css.text}>
-              For man:{' '}
+              For man:
               <span className={css.blueText}>V=(M*0,04) + (T*0,6)</span>
             </p>
           </div>
