@@ -1,0 +1,114 @@
+.mycontainer {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  background-color: var(--color-bg);
+  margin-top: 24px;
+  background-image: var(--home-dots-mobile-light);
+  background-repeat: no-repeat;
+  background-position: 0 -7%;
+  background-size: 100% auto;
+  width: 100vw; /* Забираємо обмеження ширини */
+  height: 100vh;
+  padding: 0 20px;
+  transform: translateX(-20px);
+}
+
+/* @media (min-resolution: 2dppx) {
+  .container {
+    background-image: var(--bg-image-mobile-home);
+  }
+}
+
+.background {
+  background-image: var(--bg-bottle-mobile-home), var(--bg-image-mobile-home);
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: contain;
+  height: 584px;
+  width: 100%;
+}
+
+@media (min-resolution: 2dppx) {
+  .background {
+    background-image: var(--bg-bottle-mobile-2x-home);
+  }
+} */
+
+@media screen and (min-width: 768px) {
+  .container {
+    margin-top: 0;
+    padding: 40px 32px 0 32px;
+    width: 768px;
+    align-items: baseline;
+    background-image: var(--bg-bottle-tablet-home), var(--bg-image-tablet-home);
+    background-repeat: no-repeat;
+    background-position: left -0px top -73px;
+    background-size: 100% auto;
+    transform: translateX(-32px);
+  }
+
+  /* @media (min-resolution: 2dppx) {
+    .container {
+      background-image: var(--bg-image-tablet-2x-sign);
+    }
+  } */
+
+  .background {
+    background-image: var(--bg-bottle-tablet-home);
+    background-repeat: no-repeat;
+    background-position: top right -100px;
+    background-size: 100% auto;
+    width: 100%;
+  }
+
+  /* @media (min-resolution: 2dppx) {
+    .background {
+      background-image: var(--bg-bottle-tablet-2x-home);
+    }
+  } */
+}
+
+/*<----------1440px--------->*/
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1440px;
+    padding: 0 18px;
+    align-items: end;
+    background-image: var(--bg-bottle-desktop-home),
+      var(--bg-image-desktop-home);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 100% auto;
+    transform: translateX(-112px);
+  }
+
+  /* @media (min-resolution: 2dppx) {
+    .container {
+      background-image: var(--bg-image-desktop-2x-sign);
+    }
+  } */
+
+  .background {
+    background-image: var(--bg-bottle-desktop-home);
+    background-repeat: no-repeat;
+    background-position: left -350px top -10px;
+    background-size: 100% auto;
+    background-position: left -100px top;
+    background-size: contain;
+    width: 100%;
+    padding-left: 822px;
+    padding-top: 140px;
+    height: 736px;
+  }
+
+  /* @media (min-resolution: 2dppx) {
+    .background {
+      background-image: var(--bg-bottle-desktop-2x-home);
+    }
+  } */
+}

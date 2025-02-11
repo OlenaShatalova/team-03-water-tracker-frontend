@@ -2,7 +2,7 @@
   /* LIGHT BASE VARIABLES */
   --welcome-element-mobile-light: url(../assets/images/welcome/welcome-element-mobile-light@1x.png);
   --welcome-background-mobile-light: url(../assets/images/welcome/welcome-background-mobile-light@1x.png);
-  --welcome-element-tablet-light: url(/..assets/images/welcome/welcome-element-tablet-light@1x.png);
+  --welcome-element-tablet-light: url(..assets/images/welcome/welcome-element-tablet-light@1x.png);
   --welcome-background-tablet-light: url(../assets/images/welcome/welcome-background-tablet-light@1x.png);
   --welcome-element-desktop-light: url(../assets/images/welcome/welcome-element-desktop-light@1x.png);
   --welcome-background-desktop-light: url(../assets/images/welcome/welcome-background-desktop-light@1x.png);
