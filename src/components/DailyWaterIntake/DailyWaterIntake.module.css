@@ -31,7 +31,7 @@
 
 .dailyWaterBtnWrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin-right: 0;
   gap: 18px;
   height: 36px;
@@ -58,7 +58,7 @@
 .dailyWaterDeleteBtn {
   fill: none;
   border: none;
-  stroke: var(--color-secondary-2);
+  color: var(--color-secondary-2);
   background-color: transparent;
   width: 16px;
   height: 16px;
@@ -78,6 +78,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 12px;
+  color: var(--color-primary);
 }
 
 @media (min-width: 768px) {

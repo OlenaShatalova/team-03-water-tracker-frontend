@@ -10,7 +10,7 @@ const GenderIdentity = () => {
           type="radio"
           name="gender"
           value="female"
-          style={{ cursor: 'pointer' }}
+          className={css.radioBtn}
         />
         <span className={css.spanGender}>Female</span>
       </label>
@@ -19,7 +19,7 @@ const GenderIdentity = () => {
           type="radio"
           name="gender"
           value="male"
-          style={{ cursor: 'pointer' }}
+          className={css.radioBtn}
         />
         <span className={css.spanGender}>Male</span>
       </label>

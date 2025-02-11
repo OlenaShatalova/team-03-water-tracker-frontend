@@ -10,6 +10,7 @@ import {
   sendResetEmail,
   resetPassword,
 } from './operations';
+import { fetchWaterRate } from '../water/waterOperations';
 
 const initialState = {
   user: {
@@ -164,23 +165,13 @@ const authSlice = createSlice({
       .addCase(resetPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchWaterRate.fulfilled, (state, { payload }) => {
+        if (payload) {
+          state.user.dailyNorm = payload.dailyNorm;
+        }
       });
   },
 });
 
 export const auth = authSlice.reducer;
-
-//const authSlice = createSlice({
-//  name: 'auth',
-//  initialState,
-//  reducers: {
-//    loginSuccess: (state, action) => {
-//      state.token = action.payload; // Зберігаємо токен
-//    },
-//    logout: state => {
-//      state.token = null; // Видаляємо токен при виході
-//    },
-//  },
-//});
-
-//export const { loginSuccess, logout } = authSlice.actions;

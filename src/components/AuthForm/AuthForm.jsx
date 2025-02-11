@@ -25,7 +25,32 @@ const AuthForm = ({
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          onSubmit(values, actions);
+          // Якщо немає пароля, проводимо тільки валідацію email
+          if (!values.password) {
+            // Валідація лише email (ви можете викликати вашу валідацію окремо)
+            validationSchema
+              .validate({ email: values.email })
+              .then(() => {
+                const normalizedValues = {
+                  ...values,
+                  email: values.email.toLowerCase(),
+                };
+                onSubmit(normalizedValues, actions);
+              })
+              .catch(err => {
+                actions.setFieldError('email', err.message);
+              });
+            return;
+          }
+
+          // Якщо пароль є, нормалізуємо значення і виконуємо submit
+          const normalizedValues = {
+            ...values,
+            email: values.email.toLowerCase(),
+            password: values.password.trim(),
+          };
+
+          onSubmit(normalizedValues, actions);
         }}
       >
         <Form className={css.form}>
@@ -44,7 +69,9 @@ const AuthForm = ({
         </Link>
       )}
 
-      <LinkButton to={linkTo}>{linkText}</LinkButton>
+      <LinkButton to={linkTo} className={css.linkButton}>
+        {linkText}
+      </LinkButton>
     </div>
   );
 };

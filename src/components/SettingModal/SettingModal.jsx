@@ -19,7 +19,7 @@ import { SuccessToast } from '../../utils/successToast';
 import { ErrorToast } from '../../utils/errorToast';
 import { Loader } from '../Loader/Loader';
 
-const SettingModal = ({ closeSettingModal }) => {
+const SettingModal = ({ isSettingModalOpen, closeSettingModal }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const avatarRef = useRef(null);
@@ -31,6 +31,18 @@ const SettingModal = ({ closeSettingModal }) => {
     // Оновлюємо avatarUrl при зміні user.avatar
     setAvatarUrl(user.avatarUrl);
   }, [user.avatarUrl]);
+
+  useEffect(() => {
+    if (isSettingModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isSettingModalOpen]);
 
   useEffect(() => {
     const onKeyDown = evt => {
@@ -96,7 +108,8 @@ const SettingModal = ({ closeSettingModal }) => {
       ErrorToast('Repeat new password!');
       return;
     } else if (
-      (otherValues.newPassword && !otherValues.oldPassword) ||
+      otherValues.newPassword &&
+      !otherValues.oldPassword &&
       !repeatPassword
     ) {
       ErrorToast('Current password is required to change your password!');

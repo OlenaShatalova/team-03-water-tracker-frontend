@@ -1,34 +1,27 @@
+// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '../../redux/water/waterSlice';
-import {
-  selectIsWaterRateModalOpen,
-  selectWaterRateNumber,
-} from '../../redux/water/waterSelectors';
+
 import DailyNormaModal from '../DailyNormaModal/DailyNormaModal';
+
+import { selectDailyNorm } from '../../redux/auth/selectors';
+import { selectIsWaterRateModalOpen } from '../../redux/water/waterSelectors';
+import { openModal } from '../../redux/water/waterSlice';
+
 import css from './DailyNorma.module.css';
-import { selectUser } from '../../redux/auth/selectors';
-import { useEffect } from 'react';
-import { fetchWaterRate } from '../../redux/water/waterOperations';
 
 const DailyNorma = () => {
   const dispatch = useDispatch();
-  const isOpen = useSelector(selectIsWaterRateModalOpen);
-  const waterRate = useSelector(selectWaterRateNumber);
-  console.log("waterRate:", waterRate)
-  const user = useSelector(selectUser);
-  console.log("from user:", user.dailyNorm)
 
-  useEffect(() => {
-    if (user.dailyNorm) {
-      dispatch(fetchWaterRate(user.dailyNorm)).unwrap(); // Оновлюємо waterRate після зміни user.dailyNorm
-    }
-  }, [user.dailyNorm, dispatch]);
-  const waterInLiters = user.dailyNorm / 1000;
+  const dailyNorm = useSelector(selectDailyNorm);
+  // console.log({ dailyNorm });
+
+  const isOpen = useSelector(selectIsWaterRateModalOpen);
+
+  const waterInLiters = dailyNorm / 1000;
 
   const onOpenModal = () => {
     dispatch(openModal('isWaterRateOpen'));
   };
-
 
   return (
     <div className={css.container}>
