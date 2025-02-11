@@ -38,7 +38,7 @@
   /* Dark Theme Cursors */
   --cursor-pointer-dark-hover: url('/src/assets/images/cursors/outlineArrow1.svg'),
     pointer;
-  --cursor-pointer-dark-active: url('/src/assets/images/cursors/outlineArrow2.svg'),
+  --cursor-pointer-dark-active: url('/src/assets/images/cursors/cursor-arrow-ripple-outline.svg'),
     pointer;
 
   /* Default Variables */
