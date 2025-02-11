@@ -43,7 +43,7 @@ const DailyNormaModal = () => {
   }, [onModalClose]);
 
   if (!isOpen) return null;
-
+  
   return (
     <div onClick={onModalClose} className={css.modalOverlay}>
       <div onClick={e => e.stopPropagation()} className={css.modal}>
