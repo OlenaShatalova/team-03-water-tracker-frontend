@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { closeModal } from "../../redux/water/waterSlice";
 // import { SuccessToast } from "../../utils/successToast";
 // import { fetchWaterRate } from "../../redux/water/waterOperations";
@@ -10,36 +10,22 @@ import css from './DailyNormaModalForm.module.css';
 import useCalculateWaterRate from '../../utils/useCalculateWaterRate';
 import { validationSchema } from '../../utils/schemas/WaterRateSchema';
 import { handleSubmit } from './SubmitFunction';
+import { selectDailyNorm } from '../../redux/auth/selectors';
 
-const initialValues = {
-  gender: '',
-  weight: '',
-  sportTimes: '',
-  dailyNorm: '',
-};
 
 const DailyNormaModalForm = () => {
   const dispatch = useDispatch();
-  // const womanBtnId = useId();
-  // const manBtnId = useId();
-  // const weightId = useId();
-  // const sportTimesId = useId();
-  // const finalNumberId = useId();
+  const dailyNorm = useSelector(selectDailyNorm);
+
+  const initialValues = {
+    gender: 'For woman',
+    weight: '20',
+    sportTimes: '0',
+    dailyNorm: dailyNorm / 1000,
+  };
 
   const [formValues, setFormValues] = useState(initialValues);
-
   const calculatedNumber = useCalculateWaterRate(formValues);
-
-  // const handleSubmit = async (values) => {
-  //     try {
-  //         console.log("dailyNorm:", values.dailyNorm)
-  //         await dispatch(fetchWaterRate(values.dailyNorm)).unwrap();
-  //         dispatch(closeModal("isWaterRateOpen"));
-  //         SuccessToast("Successfully set your water rate!");
-  //     } catch {
-  //         ErrorToast("Failed to set water rate. Please try again.");
-  //     }
-  // };
 
   return (
     <Formik

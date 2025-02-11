@@ -110,15 +110,14 @@ const Input = ({ type = 'text', name, label, placeholder, autoFocus }) => {
             autoFocus={autoFocus}
             onFocus={() => setWasFocused(true)}
             onBlur={() => {
-              if (wasFocused && field.value.trim() === '') {
-                setTouched(false); // Не показуємо помилку, якщо користувач не вводив нічого
+              if (wasFocused && String(field.value).trim() === '') {
+                setTouched(false);
               } else {
                 setTouched(true);
               }
             }}
-            className={`${css.input} ${
-              meta.touched && meta.error ? css.inputError : ''
-            }`}
+            className={`${css.input} ${meta.touched && meta.error ? css.inputError : ''
+              }`}
           />
           {type === 'password' && (
             <span onClick={togglePasswordVisibility} className={css.iconEye}>
