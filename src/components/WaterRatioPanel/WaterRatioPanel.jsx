@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import styles from './WaterRatioPanel.module.css';
+
 // import { fetchWaterToday } from '../../redux/water/waterOperations';
 import { selectPercentTodayWater } from '../../redux/water/waterSelectors';
+
+import styles from './WaterRatioPanel.module.css';
 
 const WaterRatioPanel = () => {
   // const dispatch = useDispatch();
 
   let progress = useSelector(selectPercentTodayWater);
+
   progress = Math.min(progress, 100);
 
   // console.log('Component progress (from Redux):', progress);
