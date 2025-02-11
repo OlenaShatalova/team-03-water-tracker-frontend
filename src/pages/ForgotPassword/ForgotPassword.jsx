@@ -33,7 +33,11 @@ const ForgotPassword = () => {
       resetForm();
       navigate('/signin');
     } catch (error) {
-      if (error.status === 404) {
+      if (
+        error.status === 404 ||
+        error.message?.includes('not registered') ||
+        error.message?.includes('not found')
+      ) {
         ErrorToast('User with this email is not registered');
       } else {
         ErrorToast(error?.message || 'Failed to send reset instructions');
