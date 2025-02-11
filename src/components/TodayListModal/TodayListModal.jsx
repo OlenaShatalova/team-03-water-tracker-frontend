@@ -29,6 +29,18 @@ const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
     water: waterVolume || 0,
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   const timeId = useId();
   const waterId = useId();
 

@@ -27,6 +27,18 @@ const AddWaterModal = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsAddWaterModalOpen);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   const formattedTime = new Date(currentTime).toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',

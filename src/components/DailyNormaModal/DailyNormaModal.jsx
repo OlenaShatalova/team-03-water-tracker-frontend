@@ -18,6 +18,18 @@ const DailyNormaModal = () => {
     dispatch(closeModal('isWaterRateOpen'));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   // для закриття модалки на esc
   useEffect(() => {
     const handleKeyDown = event => {

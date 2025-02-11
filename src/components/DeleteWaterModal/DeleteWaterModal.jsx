@@ -1,17 +1,28 @@
 import { useDispatch } from 'react-redux';
 import Modal from 'react-modal';
-
-import { deleteWater } from '../../redux/water/waterOperations';
-
+import { useEffect } from 'react';
 import { ReactSVG } from 'react-svg';
-import close from '../../assets/icons/close.svg';
 
 import css from './DeleteWaterModal.module.css';
+import close from '../../assets/icons/close.svg';
+import { deleteWater } from '../../redux/water/waterOperations';
 
 Modal.setAppElement('#root'); // Додаємо цей рядок
 
 const DeleteWaterModal = ({ isOpen, onRequestClose, id }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   const handleDelete = () => {
     dispatch(deleteWater(id));
