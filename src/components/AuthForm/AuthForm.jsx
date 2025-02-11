@@ -25,7 +25,12 @@ const AuthForm = ({
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          onSubmit(values, actions);
+          const normalizedValues = {
+            ...values,
+            email: values.email.toLowerCase(),
+            password: values.password.trim(), 
+          };
+          onSubmit(normalizedValues, actions);
         }}
       >
         <Form className={css.form}>
