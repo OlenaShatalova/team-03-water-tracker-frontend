@@ -1,8 +1,7 @@
 .mainBackground {
-  min-height: 100vh;
-  background: var(--bg-image-mobile-welcome);
-  background-position: bottom;
-  background-repeat: no-repeat;
+  height: 100vh;
+  background: var(--bg-image-mobile-welcome) no-repeat bottom 56px center/ 320px
+    844px;
 }
 
 .welcomeContainer {
@@ -17,9 +16,8 @@
 
 @media screen and (min-width: 768px) {
   .mainBackground {
-    background: var(--bg-image-tablet-welcome);
-    background-position: bottom;
-    background-repeat: no-repeat;
+    background: var(--bg-image-tablet-welcome) no-repeat bottom 96px center/
+      768px 800px;
   }
   .welcomeContainer {
     margin-top: 40px;
@@ -31,12 +29,11 @@
 
 @media screen and (min-width: 1440px) {
   .mainBackground {
-    background: var(--bg-image-desktop-welcome);
-    background-position: bottom;
-    background-repeat: no-repeat;
+    background: var(--bg-image-desktop-welcome) no-repeat bottom 144px center/
+      1440px 432px;
   }
   .welcomeContainer {
-    margin: 80px 98px 294px 104px;
+    margin: 80px 98px 0px 104px;
     max-width: 1014px;
     /* height: 366px; */
     flex-direction: row;
