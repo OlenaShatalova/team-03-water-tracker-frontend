@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchWaterToday } from '../../redux/water/waterOperations';
+import {
+  fetchWaterPerMonth,
+  fetchWaterToday,
+} from '../../redux/water/waterOperations';
 
 import { selectDailyNorm } from '../../redux/auth/selectors';
 
@@ -21,6 +24,7 @@ const HomePage = () => {
   useEffect(() => {
     // console.log('APP useEffect triggered, fetching water data...');
     dispatch(fetchWaterToday());
+    dispatch(fetchWaterPerMonth());
   }, [dispatch, dailyNorm]);
 
   return (

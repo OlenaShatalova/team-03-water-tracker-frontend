@@ -32,7 +32,6 @@ const waterSlice = createSlice({
     waters: {
       waterPerMonth: {},
       waterPerDay: {
-        // waterRate: {},
         waterRecord: [],
       },
     },
@@ -42,7 +41,6 @@ const waterSlice = createSlice({
     currentDate: Date.now(),
 
     isWaterRateOpen: false,
-    // dailyNorm: null,
     isAddWaterOpen: false,
     percentTodayWater: 0,
   },

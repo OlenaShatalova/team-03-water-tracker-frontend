@@ -6,6 +6,7 @@ import { selectPercentTodayWater } from '../../redux/water/waterSelectors';
 
 import styles from './WaterRatioPanel.module.css';
 import { fetchWaterToday } from '../../redux/water/waterOperations';
+import { selectDailyNorm } from '../../redux/auth/selectors';
 
 const WaterRatioPanel = () => {
   const dispatch = useDispatch();
@@ -13,10 +14,12 @@ const WaterRatioPanel = () => {
   let progress = useSelector(selectPercentTodayWater);
   progress = Math.min(progress, 100);
 
-  // Загружаем данные при монтировании компонента
+  const dailyNorm = useSelector(selectDailyNorm);
+
   useEffect(() => {
+    // console.log('APP useEffect triggered, fetching water data...');
     dispatch(fetchWaterToday());
-  }, [dispatch]);
+  }, [dispatch, dailyNorm]);
 
   return (
     <div className={styles.wrapper} key={progress}>
