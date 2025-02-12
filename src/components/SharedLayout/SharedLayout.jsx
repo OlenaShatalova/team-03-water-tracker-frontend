@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import Header from '../Header/Header';
-import ThemeBtn from '../ThemeBtn/ThemeBtn';
+// import ThemeBtn from '../ThemeBtn/ThemeBtn';
 import { Toaster } from 'react-hot-toast';
 
 const SharedLayout = () => {
@@ -12,7 +12,7 @@ const SharedLayout = () => {
       <div
         style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}
       >
-        <ThemeBtn />
+        {/* <ThemeBtn /> */}
       </div>
       <Outlet />
     </>

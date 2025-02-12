@@ -1,25 +1,30 @@
 import useTheme from '../ThemeContext/useTheme';
 import { BsSun, BsMoon } from 'react-icons/bs';
 import css from './ThemeBtn.module.css';
+import Container from '../Container/Container';
 
 const ThemeBtn = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button
-      className={css.themeButton}
-      onClick={toggleTheme}
-      aria-label="Toggle theme"
-    >
-      <span
-        className={`${css.icon} ${theme === 'light' ? css.show : css.hide}`}
+    <Container>
+      <button
+        className={css.themeButton}
+        onClick={toggleTheme}
+        aria-label="Toggle theme"
       >
-        <BsSun />
-      </span>
-      <span className={`${css.icon} ${theme === 'dark' ? css.show : css.hide}`}>
-        <BsMoon />
-      </span>
-    </button>
+        <span
+          className={`${css.icon} ${theme === 'light' ? css.show : css.hide}`}
+        >
+          <BsSun />
+        </span>
+        <span
+          className={`${css.icon} ${theme === 'dark' ? css.show : css.hide}`}
+        >
+          <BsMoon />
+        </span>
+      </button>
+    </Container>
   );
 };
 

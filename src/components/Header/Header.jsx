@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
-
+import ThemeBtn from '../ThemeBtn/ThemeBtn';
 import Container from '../Container/Container';
 import UserAuth from '../UserAuth/UserAuth'; // Підключаємо UserAuth
 import UserLogo from '../UserLogo/UserLogo';
@@ -23,7 +23,10 @@ const Header = () => {
           <Link to={isLoggedIn ? '/home' : '/welcome'}>
             <ReactSVG src={logo} className={css.logo} />
           </Link>
-          {isLoggedIn ? <UserLogo user={user} /> : <UserAuth />}
+          <div className={css.btn_info}>
+            <ThemeBtn />
+            {isLoggedIn ? <UserLogo user={user} /> : <UserAuth />}
+          </div>
         </nav>
       </Container>
     </header>
