@@ -1,8 +1,7 @@
 .mainBackground {
   min-height: 100vh;
-  background: var(--bg-image-mobile-welcome);
-  background-position: bottom;
-  background-repeat: no-repeat;
+  background: var(--bg-image-mobile-welcome) no-repeat bottom 76px center/ 320px
+    960px;
 }
 
 .welcomeContainer {
