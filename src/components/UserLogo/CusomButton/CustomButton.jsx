@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function CustomButton({ onClick, children }) {
   return (
-    <Button variant="text" onClick={onClick}>
+    <Button variant="text" onClick={onClick} sx={{ zIndex: '10' }}>
       {children}
     </Button>
   );
