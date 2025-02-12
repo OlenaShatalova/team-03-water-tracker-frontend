@@ -12,6 +12,8 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 import LoaderFallback from './components/LoaderFallback/LoaderFallback';
 import { Loader } from './components/Loader/Loader';
 
+import { setTheme } from './redux/theme/themeSlice';
+
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('./pages/SigninPage/SigninPage'));
@@ -26,10 +28,15 @@ const ResetPasswordPage = lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const theme = useSelector(state => state.theme.theme);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setTheme(theme));
+  }, [dispatch, theme]);
 
   if (isRefreshing) <LoaderFallback />;
 
