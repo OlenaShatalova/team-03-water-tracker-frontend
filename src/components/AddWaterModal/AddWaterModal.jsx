@@ -180,6 +180,7 @@ const AddWaterModal = () => {
                   type="number"
                   name="water"
                   id={water}
+                  autoFocus={true}
                 />
               </div>
 

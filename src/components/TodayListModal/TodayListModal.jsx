@@ -156,7 +156,7 @@ const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
                 <Field
                   as={Input}
                   placeholder="07:00"
-                  type="text"
+                  type="time"
                   name="time"
                   id={timeId}
                 />
@@ -176,6 +176,7 @@ const TodayListModal = ({ isOpen, onRequestClose, id, waterVolume, time }) => {
                   type="number"
                   name="water"
                   id={waterId}
+                  autoFocus={true}
                 />
               </div>
 
