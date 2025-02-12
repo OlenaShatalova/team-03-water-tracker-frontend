@@ -18,8 +18,8 @@
 .radioBtn::before {
   content: '';
   display: block;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: transparent;
   margin: 3px auto 3px;

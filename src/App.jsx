@@ -38,7 +38,7 @@ const App = () => {
     dispatch(setTheme(theme));
   }, [dispatch, theme]);
 
-  if (isRefreshing) <LoaderFallback />;
+  if (isRefreshing) return <LoaderFallback />;
 
   return (
     <Suspense fallback={<LoaderFallback />}>
