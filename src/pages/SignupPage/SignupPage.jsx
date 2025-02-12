@@ -58,9 +58,9 @@ const SignupPage = () => {
       .finally(() => formActions.setSubmitting(false));
   };
   return (
-    <main>
-      <Container className={css.mycontainer}>
-        <div className={css.background}>
+    <main className="signInUpPages">
+      <Container>
+        <div>
           <AuthForm
             title={'Sign Up'}
             initialValues={{ email: '', password: '', repeatPassword: '' }}
