@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9;
 }
 
 .modal {
@@ -17,6 +17,7 @@
   border-radius: 10px;
   padding: 32px 24px;
   width: 280px;
+  text-align: left;
 }
 
 .closeButton {
@@ -28,6 +29,10 @@
   font-size: 18px;
   color: var(--color-text);
   cursor: pointer;
+}
+
+.closeButton:hover {
+  color: var(--color-primary);
 }
 
 .title {
@@ -63,13 +68,13 @@
 }
 
 .logoutButton {
-  background-color: #ef5050;
-  color: white;
+  background-color: var(--color-secondary-2);
+  color: var(--color-bg);
 }
 
 .cancelButton {
-  background-color: #d7e3ff;
-  color: #407bff;
+  background-color: var(--color-accent-blue);
+  color: var(--color-primary);
 }
 
 @media screen and (min-width: 768px) {

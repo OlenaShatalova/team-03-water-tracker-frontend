@@ -16,6 +16,7 @@
   top: 40;
   left: 20;
   max-height: 550px;
+  width: 280px;
   overflow-y: scroll;
   margin: 40px 20px;
   border-radius: 10px;
@@ -152,6 +153,7 @@
     padding: 32px 24px;
     max-height: 504px;
     overflow-y: auto;
+    width: 704px;
   }
 
   .containerForCalc {
@@ -175,5 +177,6 @@
   .modal {
     margin: 44px 424px;
     max-height: fit-content;
+    width: 592px;
   }
 }
