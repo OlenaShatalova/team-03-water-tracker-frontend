@@ -26,8 +26,10 @@
   background: none;
   border: none;
   font-size: 18px;
-  color: var(--color-text);
+  color: #407bff;
   cursor: pointer;
+  stroke-width: 1.5px;
+  stroke: var(--primery-color-blue);
 }
 
 .title {
@@ -36,6 +38,7 @@
   line-height: 1.23;
   margin-bottom: 24px;
   color: var(--color-text);
+  font-family: var(--font-family);
 }
 
 .text {
@@ -46,9 +49,10 @@
 }
 
 .buttonWrapper {
+  margin-top: 24px;
   display: flex;
+  flex-direction: column-reverse;
   gap: 24px;
-  justify-content: space-between;
 }
 
 .logoutButton,
@@ -79,11 +83,24 @@
   }
 
   .buttonWrapper {
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: end;
   }
 
   .logoutButton,
   .cancelButton {
     width: 160px;
   }
+}
+
+@media screen and (min-width: 1440px) {
+  .buttonWrapper {
+    justify-content: start;
+  }
+}
+.title {
+  display: flex;
+}
+.text {
+  display: flex;
 }
