@@ -35,29 +35,17 @@ const WaterRatioPanel = () => {
               className={styles.progressIndicator}
               style={{ left: `${progress}%` }}
             ></div>
+            <span
+              className={styles.progressNumber}
+              style={{ left: `${progress}%` }}
+            >
+              {progress}%
+            </span>
           </div>
           <div className={styles.progressLabels}>
-            <span
-              className={`${styles.label} ${styles.leftLabel} ${
-                progress < 25 ? styles.active : ''
-              }`}
-            >
-              0%
-            </span>
-            <span
-              className={`${styles.label} ${styles.middleLabel} ${
-                progress >= 25 && progress <= 75 ? styles.active : ''
-              }`}
-            >
-              50%
-            </span>
-            <span
-              className={`${styles.label} ${styles.rightLabel} ${
-                progress > 75 ? styles.active : ''
-              }`}
-            >
-              100%
-            </span>
+            <span className={`${styles.label} ${styles.leftLabel}`}>0%</span>
+            <span className={`${styles.label} ${styles.middleLabel}`}>50%</span>
+            <span className={`${styles.label} ${styles.rightLabel}`}>100%</span>
           </div>
         </div>
       </div>

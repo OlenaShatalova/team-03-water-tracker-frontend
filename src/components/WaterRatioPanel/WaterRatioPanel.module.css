@@ -3,7 +3,7 @@
   font-size: 18px;
   line-height: 1.33;
   text-align: left;
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   margin-bottom: 10px;
 }
 
@@ -31,13 +31,13 @@
 .progressBar {
   position: relative;
   height: 8px;
-  background: var(--color-accent-light-blue);
+  background: var(--color-accent-blue);
   border-radius: 10px;
 }
 
 .progressFill {
   height: 100%;
-  background: var(--color-secondary-light-3);
+  background: var(--color-secondary-3);
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
 }
@@ -48,9 +48,20 @@
   transform: translate(-50%, -50%);
   width: 14px;
   height: 14px;
-  background: var(--color-bg-light);
-  border: 1px solid #407bff;
+  background: var(--color-bg);
+  border: 1px solid var(--color-primary);
   border-radius: 50%;
+}
+
+.progressNumber {
+  position: absolute;
+  top: -25px; /* Відстань над прогрес-баром */
+  transform: translateX(-50%); /* Центруємо число */
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.33;
+  color: var(--color-primary);
+  transition: left 0.3s ease-in-out;
 }
 
 .progressLabels {
@@ -69,7 +80,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   transition: color 0.3s, font-weight 0.3s;
 }
 
@@ -81,14 +92,7 @@
   transform: translateX(-50%);
   width: 1px;
   height: 8px;
-  background-color: var(--color-accent-light-blue);
-}
-
-.label.active {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-primary-light);
+  background-color: var(--color-accent-blue);
 }
 
 .label.active::before {

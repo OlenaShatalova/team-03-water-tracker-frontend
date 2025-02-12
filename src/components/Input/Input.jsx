@@ -20,7 +20,8 @@
 //   useEffect(() => {
 //     if (isPwdField) {
 //       setDisplayValue(
-//       showPassword ? inputValue : '*'.repeat(inputValue.length));
+//         showPassword ? inputValue : '*'.repeat(inputValue.length)
+//       );
 //     }
 //   }, [showPassword, inputValue, isPwdField]);
 
@@ -72,7 +73,8 @@
 //   );
 // };
 
-// export default Input;import { useState } from 'react';import { useState } from 'react';
+// export default Input;
+
 import { useEffect, useState } from 'react';
 import { useField } from 'formik';
 import { ReactSVG } from 'react-svg';
