@@ -5,6 +5,7 @@ import Container from '../Container/Container';
 
 const ThemeBtn = () => {
   const { theme, toggleTheme } = useTheme();
+  console.log('Current theme:', theme);
 
   return (
     <Container>
