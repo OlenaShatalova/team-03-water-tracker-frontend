@@ -104,10 +104,6 @@ const MonthStatsTable = () => {
       <div
         ref={modalRef}
         className={css.modalWrapper}
-        onMouseEnter={!isMobile ? openModal : undefined}
-        onMouseLeave={
-          !isMobile && !wasOpenedByClick.current ? closeModal : undefined
-        }
         onClick={isMobile ? () => setIsModalOpen(prev => !prev) : undefined}
       >
         {isModalOpen && (
