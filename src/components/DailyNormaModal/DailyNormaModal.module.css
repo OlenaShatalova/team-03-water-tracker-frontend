@@ -15,7 +15,7 @@
   position: absolute;
   top: 40;
   left: 20;
-  max-height: 550px;
+  max-height: 80vh;
   width: 280px;
   overflow-y: scroll;
   margin: 40px 20px;
@@ -151,7 +151,6 @@
   .modal {
     margin: 40px 32px;
     padding: 32px 24px;
-    max-height: 504px;
     overflow-y: auto;
     width: 704px;
   }
@@ -176,7 +175,6 @@
 @media (min-width: 1440px) {
   .modal {
     margin: 44px 424px;
-    max-height: fit-content;
     width: 592px;
   }
 }
