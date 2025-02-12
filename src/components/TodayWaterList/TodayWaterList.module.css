@@ -75,10 +75,16 @@
   font-size: 16px;
   line-height: 1.25;
   color: var(--color-text);
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
+}
+.todayWaterListWrapper {
+  height: 192px;
 }
 
 @media (min-width: 768px) {
+  .todayWaterListSectionWrapper {
+    height: 260px;
+  }
   .scrollableList {
     max-height: 176px;
   }
@@ -86,6 +92,10 @@
   .plusIcon {
     width: 16px;
     height: 16px;
+  }
+
+  .todayWaterListWrapper {
+    height: 194px;
   }
 }
 
@@ -99,5 +109,9 @@
     width: 114px;
     font-size: 18px;
     line-height: 1.33;
+  }
+
+  .todayWaterListWrapper {
+    height: 188px;
   }
 }
