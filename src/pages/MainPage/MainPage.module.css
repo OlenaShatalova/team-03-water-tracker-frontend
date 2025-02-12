@@ -1,5 +1,5 @@
 .mainBackground {
-  min-height: 100vh;
+  min-height: 960px;
   background: var(--bg-image-mobile-welcome) no-repeat bottom 76px center/ 320px
     960px;
 }
@@ -16,6 +16,7 @@
 
 @media screen and (min-width: 768px) {
   .mainBackground {
+    min-height: 100vh;
     background: var(--bg-image-tablet-welcome) no-repeat bottom 96px center/
       768px 800px;
   }
