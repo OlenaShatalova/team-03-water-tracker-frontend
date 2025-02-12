@@ -81,7 +81,7 @@ const SettingModal = ({ isSettingModalOpen, closeSettingModal }) => {
     setFieldValue('avatarUrl', file); // Оновлює значення поля 'avatar'
   };
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values, actions) => {
     const { avatarUrl, repeatPassword, ...otherValues } = values;
 
     const isDataUnchanged =
@@ -126,6 +126,7 @@ const SettingModal = ({ isSettingModalOpen, closeSettingModal }) => {
       }
       SuccessToast('Your changes is successfully saved!');
       closeSettingModal();
+      actions.resetForm();
     } catch (error) {
       ErrorToast(error.message || 'Update failed!');
     }
