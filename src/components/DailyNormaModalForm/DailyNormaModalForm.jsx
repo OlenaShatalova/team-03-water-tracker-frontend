@@ -1,20 +1,24 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 // import { closeModal } from "../../redux/water/waterSlice";
 // import { SuccessToast } from "../../utils/successToast";
 // import { fetchWaterRate } from "../../redux/water/waterOperations";
 // import { ErrorToast } from "../../utils/errorToast";
+
 import Input from '../Input/Input';
-import css from './DailyNormaModalForm.module.css';
+
+import { handleSubmit } from './SubmitFunction';
 import useCalculateWaterRate from '../../utils/useCalculateWaterRate';
 import { validationSchema } from '../../utils/schemas/WaterRateSchema';
-import { handleSubmit } from './SubmitFunction';
+
 import { selectDailyNorm } from '../../redux/auth/selectors';
 
+import css from './DailyNormaModalForm.module.css';
 
 const DailyNormaModalForm = () => {
   const dispatch = useDispatch();
+
   const dailyNorm = useSelector(selectDailyNorm);
 
   const initialValues = {
@@ -121,6 +125,7 @@ const DailyNormaModalForm = () => {
               type="number"
               name="dailyNorm"
               id="finalNumberId"
+              min="0" max="15"
             />
           </div>
 

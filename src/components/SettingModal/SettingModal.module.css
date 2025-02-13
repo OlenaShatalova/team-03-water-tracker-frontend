@@ -13,9 +13,10 @@
   background-color: var(--color-bg);
   border-radius: 10px;
   width: 280px;
-  max-height: 90vh;
+  max-height: 80vh;
   padding: 32px 12px;
   overflow: auto;
+  text-align: left;
 }
 
 .titleWrapper {
@@ -58,7 +59,7 @@
 }
 
 .saveBtn:hover {
-  box-shadow: var(--shadow-light-primary);
+  box-shadow: var(--shadow-primary);
 }
 
 @media screen and (min-width: 768px) {

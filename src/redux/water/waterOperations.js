@@ -56,7 +56,7 @@ export const fetchWaterRate = createAsyncThunk(
   'water/fetchWaterRate',
   async (dailyNorm, thunkAPI) => {
     try {
-      console.log(dailyNorm);
+      // console.log(dailyNorm);
       if (dailyNorm === 0) return;
 
       const response = await api.patch('/water/water-rate', { dailyNorm });
@@ -72,7 +72,7 @@ export const fetchWaterRate = createAsyncThunk(
 /////  ADD WATER
 export const addWater = createAsyncThunk('today/addWater', async waterData => {
   try {
-    console.log('waterData:', waterData);
+    // console.log('waterData:', waterData);
 
     await api.post('/water/', waterData);
     // console.log(res);
@@ -90,7 +90,7 @@ export const addWater = createAsyncThunk('today/addWater', async waterData => {
 export const deleteWater = createAsyncThunk(
   'today/deleteWater',
   async (id, thunkAPI) => {
-    console.log(id);
+    // console.log(id);
 
     try {
       await api.delete(`/water/${id}`);

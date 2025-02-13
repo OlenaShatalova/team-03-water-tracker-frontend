@@ -6,6 +6,8 @@ import Container from '../../components/Container/Container';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { SuccessToast } from '../../utils/successToast';
 import { ErrorToast } from '../../utils/errorToast';
+import { useState } from 'react';
+import LoaderFallback from '../../components/LoaderFallback/LoaderFallback';
 
 const resetPasswordSchema = Yup.object({
   password: Yup.string()
@@ -37,11 +39,15 @@ const resetPasswordFields = [
 ];
 
 const ResetPasswordPage = () => {
+  const [loading, setLoading] = useState(false);
+
   const { token } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async values => {
+    setLoading(true);
+
     try {
       await dispatch(
         resetPassword({
@@ -54,20 +60,26 @@ const ResetPasswordPage = () => {
       navigate('/signin');
     } catch (error) {
       ErrorToast(error?.message || 'Failed to reset password');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <main className="signInUpPages">
       <Container>
-        <AuthForm
-          title="Reset Password"
-          initialValues={{ password: '', confirmPassword: '' }}
-          onSubmit={handleSubmit}
-          validationSchema={resetPasswordSchema}
-          fields={resetPasswordFields}
-          btnText="Reset Password"
-        />
+        {loading ? (
+          <LoaderFallback />
+        ) : (
+          <AuthForm
+            title="Reset Password"
+            initialValues={{ password: '', confirmPassword: '' }}
+            onSubmit={handleSubmit}
+            validationSchema={resetPasswordSchema}
+            fields={resetPasswordFields}
+            btnText="Reset Password"
+          />
+        )}
       </Container>
     </main>
   );

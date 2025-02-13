@@ -72,7 +72,7 @@
   }
 
   .mainContainer {
-    /* position: absolute; */
+/*     position: absolute; */
     background-image: var(--bg-bottle-desktop-home),
       var(--bg-image-desktop-home);
     background-size: 738px 548px, contain;

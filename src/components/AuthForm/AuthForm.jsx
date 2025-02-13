@@ -25,44 +25,30 @@ const AuthForm = ({
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          // Якщо немає пароля, проводимо тільки валідацію email
-          if (!values.password) {
-            // Валідація лише email (ви можете викликати вашу валідацію окремо)
-            validationSchema
-              .validate({ email: values.email })
-              .then(() => {
-                const normalizedValues = {
-                  ...values,
-                  email: values.email.toLowerCase(),
-                };
-                onSubmit(normalizedValues, actions);
-              })
-              .catch(err => {
-                actions.setFieldError('email', err.message);
-              });
-            return;
-          }
-
-          // Якщо пароль є, нормалізуємо значення і виконуємо submit
           const normalizedValues = {
             ...values,
-            email: values.email.toLowerCase(),
-            password: values.password.trim(),
+            ...(values.email && { email: values.email.toLowerCase() }),
+            ...(values.password && { password: values.password.trim() }),
+            ...(values.confirmPassword && {
+              confirmPassword: values.confirmPassword.trim(),
+            }),
           };
-
           onSubmit(normalizedValues, actions);
         }}
       >
-        <Form className={css.form}>
-          {fields.map(field => (
-            <Input key={field.name} {...field} />
-          ))}
+        {({ isSubmitting }) => (
+          <Form className={css.form}>
+            {fields.map(field => (
+              <Input key={field.name} {...field} />
+            ))}
 
-          <button type="submit" className={css.submitBtn}>
-            {btnText}
-          </button>
-        </Form>
+            <button type="submit" className={css.submitBtn}>
+              {btnText}
+            </button>
+          </Form>
+        )}
       </Formik>
+
       {showForgotPassword && (
         <Link to="/forgot-password" className={css.forgotLink}>
           Forgot password?

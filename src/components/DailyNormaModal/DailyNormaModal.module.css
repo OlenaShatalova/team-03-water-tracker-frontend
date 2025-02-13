@@ -15,7 +15,8 @@
   position: absolute;
   top: 40;
   left: 20;
-  max-height: 550px;
+  max-height: 80vh;
+  width: 280px;
   overflow-y: scroll;
   margin: 40px 20px;
   border-radius: 10px;
@@ -39,6 +40,15 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.closeIcon {
+  color: var(--color-text);
+  transition: color 0.1s ease-in-out;
+}
+
+.closeIcon:hover {
+  color: var(--color-primary);
 }
 
 .subTitle {
@@ -144,14 +154,19 @@
   border: none;
   color: var(--color-bg);
   margin-top: 24px;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.button:hover {
+  box-shadow: var(--shadow-light-primary);
 }
 
 @media (min-width: 768px) {
   .modal {
     margin: 40px 32px;
     padding: 32px 24px;
-    max-height: 504px;
     overflow-y: auto;
+    width: 704px;
   }
 
   .containerForCalc {
@@ -169,11 +184,13 @@
     width: 160px;
     margin-left: auto;
   }
+
+
 }
 
 @media (min-width: 1440px) {
   .modal {
     margin: 44px 424px;
-    max-height: fit-content;
+    width: 592px;
   }
 }

@@ -32,7 +32,6 @@ const waterSlice = createSlice({
     waters: {
       waterPerMonth: {},
       waterPerDay: {
-        // waterRate: {},
         waterRecord: [],
       },
     },
@@ -42,7 +41,6 @@ const waterSlice = createSlice({
     currentDate: Date.now(),
 
     isWaterRateOpen: false,
-    // dailyNorm: null,
     isAddWaterOpen: false,
     percentTodayWater: 0,
   },
@@ -98,7 +96,7 @@ const waterSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.waters.waterPerDay.waterRecord = action.payload.todayRecord;
         state.percentTodayWater = action.payload.percentTodayWater;
@@ -113,7 +111,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
 
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.waters.waterPerDay.waterRecord =
           state.waters.waterPerDay.waterRecord.filter(
@@ -147,10 +145,5 @@ const waterSlice = createSlice({
 });
 
 export const waterReducer = waterSlice.reducer;
-export const {
-  setActiveDay,
-  setCurrentDate,
-  openModal,
-  closeModal,
-  // setWaterRate,
-} = waterSlice.actions;
+export const { setActiveDay, setCurrentDate, openModal, closeModal } =
+  waterSlice.actions;

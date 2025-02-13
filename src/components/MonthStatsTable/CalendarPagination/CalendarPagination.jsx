@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setCurrentDate } from '../../../redux/water/waterSlice';
-// import { fetchWaterPerMonth } from '../../../redux/water/waterOperations';
 
+import { ReactSVG } from 'react-svg';
 import left from '../../../assets/icons/left.svg';
 import right from '../../../assets/icons/right.svg';
 
@@ -27,15 +27,10 @@ const CalendarPagination = () => {
   const dispatch = useDispatch();
 
   const fetchAndSetDate = newDate => {
-    // const localDate = newDate.toLocaleDateString();
-    // const year = newDate.getFullYear();
-    // const month = newDate.getMonth() + 1;
     dispatch(setCurrentDate(newDate.getTime()));
-    // dispatch(fetchWaterPerMonth({ month, year }));
   };
 
   const currentDate = useSelector(state => state.water.currentDate);
-  // console.log(currentDate);
   const dateObj = new Date(currentDate);
   const goToPreviousMonth = () => {
     const newDate = new Date(currentDate);
@@ -52,14 +47,14 @@ const CalendarPagination = () => {
   return (
     <div className={css.container}>
       <button className={css.button} type="button" onClick={goToPreviousMonth}>
-        <img src={left} alt="" />
+        <ReactSVG src={left} />
       </button>
       <p>
         {months[dateObj.getMonth()]}, {dateObj.getFullYear()}
       </p>
 
       <button className={css.button} type="button" onClick={goToNextMonth}>
-        <img src={right} alt="" />
+        <ReactSVG src={right} />
       </button>
     </div>
   );

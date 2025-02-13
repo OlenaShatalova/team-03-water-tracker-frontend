@@ -1,10 +1,14 @@
+/* .mainBackground {
+  min-height: 960px;
+  background: var(--bg-image-mobile-welcome) no-repeat bottom 76px center/ 320px
+    960px;
+} */
 .mainBackground {
-  min-height: 100vh;
-  background: var(--bg-image-mobile-welcome);
-  background-position: bottom;
-  background-repeat: no-repeat;
+  /* max-height: 855px; */
+  /* height: 92vh; */
+  overflow: hidden;
+  background: var(--bg-image-mobile-welcome) no-repeat bottom center/cover;
 }
-
 .welcomeContainer {
   margin-top: 24px;
   max-width: 280px;
@@ -16,11 +20,18 @@
 }
 
 @media screen and (min-width: 768px) {
+  /* .mainBackground {
+    min-height: 100vh;
+    background: var(--bg-image-tablet-welcome) no-repeat bottom 96px center/
+      768px 800px;
+  } */
+
   .mainBackground {
-    background: var(--bg-image-tablet-welcome);
-    background-position: bottom;
-    background-repeat: no-repeat;
+    background: var(--bg-image-tablet-welcome) no-repeat bottom center/cover;
+    overflow: hidden;
+    height: 93vh;
   }
+
   .welcomeContainer {
     margin-top: 40px;
     max-width: 704px;
@@ -30,13 +41,19 @@
 }
 
 @media screen and (min-width: 1440px) {
+  /* .mainBackground {
+    background: var(--bg-image-desktop-welcome) no-repeat bottom 144px center/
+      1440px 432px;
+  } */
+
   .mainBackground {
-    background: var(--bg-image-desktop-welcome);
-    background-position: bottom;
-    background-repeat: no-repeat;
+    background: var(--bg-image-desktop-welcome) no-repeat bottom center/contain;
+    overflow: hidden;
+    height: 92vh;
   }
+
   .welcomeContainer {
-    margin: 80px 98px 294px 104px;
+    margin: 80px 98px 0px 104px;
     max-width: 1014px;
     /* height: 366px; */
     flex-direction: row;

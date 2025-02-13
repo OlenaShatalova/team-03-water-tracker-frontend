@@ -10,7 +10,8 @@ import PrivateRoute from './components/PrivateRoute';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import LoaderFallback from './components/LoaderFallback/LoaderFallback';
-import { Loader } from './components/Loader/Loader';
+
+import { setTheme } from './redux/theme/themeSlice';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
@@ -26,12 +27,17 @@ const ResetPasswordPage = lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const theme = useSelector(state => state.theme.theme);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  if (isRefreshing) <LoaderFallback />;
+  useEffect(() => {
+    dispatch(setTheme(theme));
+  }, [dispatch, theme]);
+
+  if (isRefreshing) return <LoaderFallback />;
 
   return (
     <Suspense fallback={<LoaderFallback />}>
@@ -67,6 +73,7 @@ const App = () => {
             }
           />
           <Route path="reset-password/:token" element={<ResetPasswordPage />} />
+          <Route path="*" element={<MainPage />} />
         </Route>
       </Routes>
     </Suspense>

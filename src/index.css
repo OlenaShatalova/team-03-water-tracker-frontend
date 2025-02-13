@@ -74,30 +74,32 @@ button {
 
 .signInUpPages {
   min-height: 100vh;
-  background: var(--bg-bottle-mobile-home) no-repeat bottom 40px left,
-    var(--bg-image-mobile-home) no-repeat bottom right 20px;
-  background-size: auto;
+  background: var(--bg-bottle-mobile-home) no-repeat top 420px center/ 280px
+      210px,
+    var(--bg-image-mobile-home) no-repeat top 55px right/ 320px 844px;
+  /* background-size: auto; */
 
   padding-top: 24px;
-  padding-bottom: 296px;
+  /* padding-bottom: 296px; */
   text-align: start;
 }
 
 @media screen and (min-width: 768px) {
   .signInUpPages {
-    background: var(--bg-bottle-tablet-home) no-repeat bottom right,
-      var(--bg-image-tablet-home) no-repeat bottom left;
+    background: var(--bg-bottle-tablet-home) no-repeat center right -90px / 736px
+        548px,
+      var(--bg-image-tablet-home) no-repeat bottom -33px left / 768px 680px;
     padding-top: 40px;
-    padding-bottom: 248px;
+    /* padding-bottom: 248px; */
   }
 }
 
 @media screen and (min-width: 1440px) {
   .signInUpPages {
-    background: var(--bg-bottle-desktop-home) no-repeat bottom left,
-      var(--bg-image-desktop-home) no-repeat bottom right;
+    background: var(--bg-bottle-desktop-home) no-repeat center left/ 916px 680px,
+      var(--bg-image-desktop-home) no-repeat center;
     padding-top: 162px;
-    padding-bottom: 266px;
+    /* padding-bottom: 170px; */
     padding-left: 840px;
   }
 }

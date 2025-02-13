@@ -1,28 +1,25 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import { fetchWaterToday } from '../../redux/water/waterOperations';
 import { selectPercentTodayWater } from '../../redux/water/waterSelectors';
 
 import styles from './WaterRatioPanel.module.css';
+import { fetchWaterToday } from '../../redux/water/waterOperations';
+import { selectDailyNorm } from '../../redux/auth/selectors';
 
 const WaterRatioPanel = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   let progress = useSelector(selectPercentTodayWater);
-
   progress = Math.min(progress, 100);
 
-  // console.log('Component progress (from Redux):', progress);
-
-  // useEffect(() => {
-  //   console.log('useEffect triggered, fetching water data...');
-  //   dispatch(fetchWaterToday());
-  // }, [dispatch]);
+  const dailyNorm = useSelector(selectDailyNorm);
 
   useEffect(() => {
-    // console.log('Redux updated, component should re-render.');
-  }, [progress]);
+    // console.log('APP useEffect triggered, fetching water data...');
+    dispatch(fetchWaterToday());
+  }, [dispatch, dailyNorm]);
 
   return (
     <div className={styles.wrapper} key={progress}>
@@ -38,29 +35,17 @@ const WaterRatioPanel = () => {
               className={styles.progressIndicator}
               style={{ left: `${progress}%` }}
             ></div>
+            <span
+              className={styles.progressNumber}
+              style={{ left: `${progress}%` }}
+            >
+              {progress}%
+            </span>
           </div>
           <div className={styles.progressLabels}>
-            <span
-              className={`${styles.label} ${styles.leftLabel} ${
-                progress < 25 ? styles.active : ''
-              }`}
-            >
-              0%
-            </span>
-            <span
-              className={`${styles.label} ${styles.middleLabel} ${
-                progress >= 25 && progress <= 75 ? styles.active : ''
-              }`}
-            >
-              50%
-            </span>
-            <span
-              className={`${styles.label} ${styles.rightLabel} ${
-                progress > 75 ? styles.active : ''
-              }`}
-            >
-              100%
-            </span>
+            <span className={`${styles.label} ${styles.leftLabel}`}>0%</span>
+            <span className={`${styles.label} ${styles.middleLabel}`}>50%</span>
+            <span className={`${styles.label} ${styles.rightLabel}`}>100%</span>
           </div>
         </div>
       </div>

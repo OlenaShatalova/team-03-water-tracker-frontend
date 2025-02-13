@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9;
 }
 
 .modal {
@@ -26,8 +26,14 @@
   background: none;
   border: none;
   font-size: 18px;
-  color: var(--color-text);
+  color: var(--color-primary);
   cursor: pointer;
+  stroke-width: 1.5px;
+  stroke: var(--primery-color-blue);
+}
+
+.closeButton:hover {
+  color: var(--color-primary);
 }
 
 .title {
@@ -36,6 +42,7 @@
   line-height: 1.23;
   margin-bottom: 24px;
   color: var(--color-text);
+  font-family: var(--font-family);
 }
 
 .text {
@@ -46,9 +53,10 @@
 }
 
 .buttonWrapper {
+  margin-top: 24px;
   display: flex;
+  flex-direction: column-reverse;
   gap: 24px;
-  justify-content: space-between;
 }
 
 .logoutButton,
@@ -63,13 +71,13 @@
 }
 
 .logoutButton {
-  background-color: #ef5050;
-  color: white;
+  background-color: var(--color-secondary-2);
+  color: var(--color-bg);
 }
 
 .cancelButton {
-  background-color: #d7e3ff;
-  color: #407bff;
+  background-color: var(--color-accent-blue);
+  color: var(--color-primary);
 }
 
 @media screen and (min-width: 768px) {
@@ -79,11 +87,24 @@
   }
 
   .buttonWrapper {
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: end;
   }
 
   .logoutButton,
   .cancelButton {
     width: 160px;
   }
+}
+
+@media screen and (min-width: 1440px) {
+  .buttonWrapper {
+    justify-content: start;
+  }
+}
+.title {
+  display: flex;
+}
+.text {
+  display: flex;
 }

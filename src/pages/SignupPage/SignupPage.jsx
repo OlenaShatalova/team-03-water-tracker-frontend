@@ -1,19 +1,27 @@
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+
+import Container from '../../components/Container/Container';
+import AuthForm from '../../components/AuthForm/AuthForm';
+import LoaderFallback from '../../components/LoaderFallback/LoaderFallback';
+
 import {
   registerFields,
   registerSchema,
 } from '../../utils/schemas/UserInfoSchema';
+
 import { ErrorToast } from '../../utils/errorToast';
 import { SuccessToast } from '../../utils/successToast';
 
-import Container from '../../components/Container/Container';
-import AuthForm from '../../components/AuthForm/AuthForm';
 import { register } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
+// import css from './AuthPage.module.css';
+
 const SignupPage = () => {
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,6 +41,8 @@ const SignupPage = () => {
   }, [isLoggedIn, navigate]);
 
   const handleSubmit = async (formValues, formActions) => {
+    setLoading(true);
+
     const userData = { email: formValues.email, password: formValues.password };
 
     dispatch(register(userData))
@@ -54,21 +64,30 @@ const SignupPage = () => {
         //   ErrorToast('Registration failed: ' + error);
         // }
       })
-      .finally(() => formActions.setSubmitting(false));
+      .finally(() => {
+        setLoading(false);
+        formActions.setSubmitting(false);
+      });
   };
   return (
     <main className="signInUpPages">
       <Container>
-        <AuthForm
-          title={'Sign Up'}
-          initialValues={{ email: '', password: '', repeatPassword: '' }}
-          onSubmit={handleSubmit}
-          validationSchema={registerSchema}
-          fields={registerFields}
-          btnText={'Sign Up'}
-          linkTo={'/signin'}
-          linkText={'Already have an account? Sign In'}
-        />
+        {loading ? (
+          <LoaderFallback />
+        ) : (
+          <div>
+            <AuthForm
+              title={'Sign Up'}
+              initialValues={{ email: '', password: '', repeatPassword: '' }}
+              onSubmit={handleSubmit}
+              validationSchema={registerSchema}
+              fields={registerFields}
+              btnText={'Sign Up'}
+              linkTo={'/signin'}
+              linkText={'Already have an account? Sign In'}
+            />
+          </div>
+        )}
       </Container>
     </main>
   );

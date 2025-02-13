@@ -1,9 +1,11 @@
 import useTheme from '../ThemeContext/useTheme';
 import { BsSun, BsMoon } from 'react-icons/bs';
 import css from './ThemeBtn.module.css';
+// import Container from '../Container/Container';
 
 const ThemeBtn = () => {
   const { theme, toggleTheme } = useTheme();
+  // console.log('Current theme:', theme);
 
   return (
     <button

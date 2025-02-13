@@ -1,23 +1,19 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from '../../redux/theme/themeSlice';
 
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem('theme') || 'light'
-  );
+  const dispatch = useDispatch();
+  const theme = useSelector(state => state.theme.theme);
 
-  useEffect(() => {
-    localStorage.setItem('theme', theme);
-    document.body.className = theme;
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme: handleToggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
