@@ -1,21 +1,27 @@
+import { useCallback, useEffect, useId, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import { ReactSVG } from 'react-svg';
+
+import Input from '../Input/Input';
+import { Loader } from '../Loader/Loader.jsx';
+
+import { closeModal } from '../../redux/water/waterSlice';
+import { addWater } from '../../redux/water/waterOperations.js';
 import {
   selectCurrentDate,
   selectIsAddWaterModalOpen,
 } from '../../redux/water/waterSelectors';
-import { closeModal } from '../../redux/water/waterSlice';
-import { Field, Form, Formik } from 'formik';
-import { useCallback, useEffect, useId } from 'react';
-import css from './AddWaterModal.module.css';
-import Input from '../Input/Input';
-import * as Yup from 'yup';
+
 import { SuccessToast } from '../../utils/successToast.js';
 import { ErrorToast } from '../../utils/errorToast.js';
-import { addWater } from '../../redux/water/waterOperations.js';
-import { ReactSVG } from 'react-svg';
+
 import plus from '../../assets/icons/plus.svg';
 import close from '../../assets/icons/close.svg';
 import minus from '../../assets/icons/solid.svg';
+
+import css from './AddWaterModal.module.css';
 
 const validationSchema = Yup.object({
   time: Yup.string().required('Required'),
@@ -23,8 +29,11 @@ const validationSchema = Yup.object({
 });
 
 const AddWaterModal = () => {
-  const currentTime = useSelector(selectCurrentDate);
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
+
+  const currentTime = useSelector(selectCurrentDate);
   const isOpen = useSelector(selectIsAddWaterModalOpen);
 
   useEffect(() => {
@@ -57,6 +66,7 @@ const AddWaterModal = () => {
   }, [dispatch]);
 
   const handleSubmit = async (values, actions) => {
+    setLoading(true);
     try {
       const now = new Date();
       const [hours, minutes] = values.time.split(':');
@@ -74,7 +84,7 @@ const AddWaterModal = () => {
         date: formattedTime, // Правильний формат для Joi
       };
 
-      console.log('waterData:', waterData);
+      // console.log('waterData:', waterData);
       await dispatch(addWater(waterData)).unwrap();
 
       actions.resetForm();
@@ -84,6 +94,8 @@ const AddWaterModal = () => {
       ErrorToast(
         error.message || 'Failed to add water record. Please try again.'
       );
+    } finally {
+      setLoading(false);
     }
   };
   // const onAddWater = (waterData) => {
@@ -185,7 +197,10 @@ const AddWaterModal = () => {
               </div>
 
               <div className={css.buttonAndNumberContainer}>
+                {loading && <Loader />}
+
                 <p className={css.valueNumber}>{values.water} ml</p>
+
                 <button className={css.button} type="submit">
                   Save
                 </button>

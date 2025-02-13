@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectIsWaterRateModalOpen } from '../../redux/water/waterSelectors';
-import { closeModal } from '../../redux/water/waterSlice';
-
 import DailyNormaModalForm from '../DailyNormaModalForm/DailyNormaModalForm';
+
+import { closeModal } from '../../redux/water/waterSlice';
+import { selectIsWaterRateModalOpen } from '../../redux/water/waterSelectors';
 
 import Icon from '../Icon/Icon.jsx';
 
@@ -43,7 +43,7 @@ const DailyNormaModal = () => {
   }, [onModalClose]);
 
   if (!isOpen) return null;
-  
+
   return (
     <div onClick={onModalClose} className={css.modalOverlay}>
       <div onClick={e => e.stopPropagation()} className={css.modal}>

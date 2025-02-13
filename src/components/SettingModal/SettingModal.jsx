@@ -1,23 +1,25 @@
-import css from './SettingModal.module.css';
-
-import { Form, Formik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Form, Formik } from 'formik';
 import { ReactSVG } from 'react-svg';
 
-import close from '../../assets/icons/close.svg';
-
+import Input from '../Input/Input';
 import UserAvatar from './UserAvatar/UserAvatar';
 import GenderIdentity from './GenderIdentity/GenderIdentity';
 import PwdSection from './PwdSection/PwdSection';
-import Input from '../Input/Input';
+import { Loader } from '../Loader/Loader';
+
 import { UserInfoSchema } from '../../utils/schemas/UserInfoSchema';
 
-import { selectLoading, selectUser } from '../../redux/auth/selectors';
 import { updateAvatar, updateUser } from '../../redux/auth/operations';
+import { selectLoading, selectUser } from '../../redux/auth/selectors';
+
 import { SuccessToast } from '../../utils/successToast';
 import { ErrorToast } from '../../utils/errorToast';
-import { Loader } from '../Loader/Loader';
+
+import close from '../../assets/icons/close.svg';
+
+import css from './SettingModal.module.css';
 
 const SettingModal = ({ isSettingModalOpen, closeSettingModal }) => {
   const user = useSelector(selectUser);

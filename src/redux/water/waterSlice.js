@@ -145,10 +145,5 @@ const waterSlice = createSlice({
 });
 
 export const waterReducer = waterSlice.reducer;
-export const {
-  setActiveDay,
-  setCurrentDate,
-  openModal,
-  closeModal,
-  // setWaterRate,
-} = waterSlice.actions;
+export const { setActiveDay, setCurrentDate, openModal, closeModal } =
+  waterSlice.actions;

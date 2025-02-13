@@ -10,7 +10,6 @@ import PrivateRoute from './components/PrivateRoute';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import LoaderFallback from './components/LoaderFallback/LoaderFallback';
-import { Loader } from './components/Loader/Loader';
 
 import { setTheme } from './redux/theme/themeSlice';
 

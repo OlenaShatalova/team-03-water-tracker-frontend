@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import DailyNormaModal from '../DailyNormaModal/DailyNormaModal';
 
+import { openModal } from '../../redux/water/waterSlice';
 import { selectDailyNorm } from '../../redux/auth/selectors';
 import { selectIsWaterRateModalOpen } from '../../redux/water/waterSelectors';
-import { openModal } from '../../redux/water/waterSlice';
 
 import css from './DailyNorma.module.css';
 
