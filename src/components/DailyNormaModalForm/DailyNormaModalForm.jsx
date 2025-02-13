@@ -125,6 +125,7 @@ const DailyNormaModalForm = () => {
               type="number"
               name="dailyNorm"
               id="finalNumberId"
+              min="0" max="15"
             />
           </div>
 

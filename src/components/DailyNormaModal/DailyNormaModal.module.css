@@ -42,6 +42,15 @@
   cursor: pointer;
 }
 
+.closeIcon {
+  color: var(--color-text);
+  transition: color 0.1s ease-in-out;
+}
+
+.closeIcon:hover {
+  color: var(--color-primary);
+}
+
 .subTitle {
   font-weight: 500;
   font-size: 18px;
@@ -145,6 +154,11 @@
   border: none;
   color: var(--color-bg);
   margin-top: 24px;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.button:hover {
+  box-shadow: var(--shadow-light-primary);
 }
 
 @media (min-width: 768px) {
@@ -170,6 +184,8 @@
     width: 160px;
     margin-left: auto;
   }
+
+
 }
 
 @media (min-width: 1440px) {

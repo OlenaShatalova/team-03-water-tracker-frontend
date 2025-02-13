@@ -6,9 +6,10 @@ import DailyNormaModalForm from '../DailyNormaModalForm/DailyNormaModalForm';
 import { closeModal } from '../../redux/water/waterSlice';
 import { selectIsWaterRateModalOpen } from '../../redux/water/waterSelectors';
 
-import Icon from '../Icon/Icon.jsx';
+import close from '../../assets/icons/close.svg';
 
 import css from './DailyNormaModal.module.css';
+import { ReactSVG } from 'react-svg';
 // import Submit from "../DailyNormaModalForm/Submit.jsx";
 
 const DailyNormaModal = () => {
@@ -50,13 +51,7 @@ const DailyNormaModal = () => {
         <div className={css.containerForTitleAndButton}>
           <h2 className={css.title}>My daily norma</h2>
           <button className={css.closeButton} onClick={onModalClose}>
-            <Icon
-              name="icon-cross"
-              width={24}
-              height={24}
-              color="#407BFF"
-              className={css.icon}
-            />
+            <ReactSVG src={close} className={css.closeIcon} />
           </button>
         </div>
 
