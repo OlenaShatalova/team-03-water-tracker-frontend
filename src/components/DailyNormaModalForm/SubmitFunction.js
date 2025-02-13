@@ -9,7 +9,7 @@ const handleSubmit = async (values, dispatch) => {
 
   try {
     const dailyNorm = values.dailyNorm * 1000;
-    console.log('dailyNorm:', dailyNorm);
+    // console.log('dailyNorm:', dailyNorm);
 
     await dispatch(fetchWaterRate(dailyNorm)).unwrap();
 

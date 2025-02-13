@@ -96,7 +96,7 @@ const waterSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.waters.waterPerDay.waterRecord = action.payload.todayRecord;
         state.percentTodayWater = action.payload.percentTodayWater;
@@ -111,7 +111,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
 
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.waters.waterPerDay.waterRecord =
           state.waters.waterPerDay.waterRecord.filter(
